@@ -1,0 +1,288 @@
+// Digital Vikingz — Prisma Schema (Full CMS with SEO + Image Metadata)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id             String   @id @default(cuid())
+  email          String   @unique
+  name           String?
+  hashedPassword String?
+  role           Role     @default(ADMIN)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  posts          Post[]
+  uploads        Media[]
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+// ============================================================
+// MEDIA — image library with full metadata (alt, title, caption, description)
+// ============================================================
+model Media {
+  id           String   @id @default(cuid())
+  url          String
+  filename     String
+  mimeType     String?
+  width        Int?
+  height       Int?
+  size         Int
+  // Image metadata (Yoast-style)
+  title        String?   @db.Text   // Image title (shown on hover)
+  altText      String?   @db.Text   // Alt text for accessibility + SEO
+  caption      String?   @db.Text   // Visible caption below image
+  description  String?   @db.Text   // Longer description / context
+  uploadedById String
+  uploadedBy   User      @relation(fields: [uploadedById], references: [id], onDelete: NoAction)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([createdAt])
+}
+
+// ============================================================
+// PAGE — marketing pages with full SEO
+// ============================================================
+model Page {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  title          String
+  heroLabel      String?
+  heroHeading    String   @db.Text
+  heroSub        String   @db.Text
+  body           String?  @db.Text
+
+  // Featured image
+  featuredImage  String?
+  featuredImageAlt String?
+  featuredImageTitle String?
+
+  // SEO core
+  seoTitle       String?
+  seoDescription String?  @db.Text
+  focusKeyword   String?
+  canonicalUrl   String?
+  noindex        Boolean  @default(false)
+  nofollow       Boolean  @default(false)
+
+  // Open Graph
+  ogTitle        String?
+  ogDescription  String?  @db.Text
+  ogImage        String?
+
+  // Twitter Card
+  twitterTitle       String?
+  twitterDescription String?  @db.Text
+  twitterImage       String?
+
+  // Schema markup
+  schemaType     String?  @default("WebPage")  // WebPage, AboutPage, ContactPage, etc.
+
+  published      Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+// ============================================================
+// SERVICE — service pages with repeatable fields + full SEO
+// ============================================================
+model Service {
+  id               String      @id @default(cuid())
+  slug             String      @unique
+  title            String
+  tier             ServiceTier
+  shortDescription String      @db.Text
+
+  heroLabel        String
+  heroHeading      String      @db.Text
+  heroSub          String      @db.Text
+  pricing          String
+  minEngagement    String?
+  fullDescription  String      @db.Text
+
+  // Repeatable structured fields (stored as JSON)
+  deliverables     Json    // string[]
+  process          Json    // {title, description}[]
+  faqs             Json    // {question, answer}[]
+  fitsYou          Json    // string[]
+  notFitsYou       Json    // string[]
+
+  // Featured image
+  featuredImage      String?
+  featuredImageAlt   String?
+  featuredImageTitle String?
+
+  // SEO core
+  seoTitle         String?
+  seoDescription   String?     @db.Text
+  focusKeyword     String?
+  canonicalUrl     String?
+  noindex          Boolean     @default(false)
+  nofollow         Boolean     @default(false)
+
+  // Open Graph
+  ogTitle          String?
+  ogDescription    String?     @db.Text
+  ogImage          String?
+
+  // Twitter Card
+  twitterTitle       String?
+  twitterDescription String?    @db.Text
+  twitterImage       String?
+
+  // Schema
+  schemaType       String?     @default("Service")
+
+  categoryId       String?
+  category         Category?   @relation(fields: [categoryId], references: [id])
+
+  published        Boolean     @default(true)
+  status           String      @default("published") // draft | scheduled | published
+  scheduledFor     DateTime?
+  sortOrder        Int         @default(0)
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+
+  @@index([categoryId])
+  @@index([status, scheduledFor])
+}
+
+enum ServiceTier {
+  CLAIM
+  SHIELD
+  SCALE
+}
+
+// ============================================================
+// POST — blog posts with full SEO + image metadata
+// ============================================================
+model Post {
+  id             String    @id @default(cuid())
+  slug           String    @unique
+  title          String
+  excerpt        String    @db.Text
+  content        String    @db.Text
+
+  // Featured image with metadata
+  featuredImage      String?
+  featuredImageAlt   String?
+  featuredImageTitle String?
+  featuredImageCaption String? @db.Text
+
+  // Taxonomy
+  tags           String[]
+  categoryId     String?
+  category       Category? @relation(fields: [categoryId], references: [id])
+  authorId       String
+  author         User      @relation(fields: [authorId], references: [id])
+
+  // SEO core
+  seoTitle       String?
+  seoDescription String?   @db.Text
+  focusKeyword   String?   // The keyword to optimize for
+  secondaryKeywords String[]  // Supporting keywords
+  canonicalUrl   String?
+  noindex        Boolean   @default(false)
+  nofollow       Boolean   @default(false)
+
+  // Open Graph
+  ogTitle        String?
+  ogDescription  String?   @db.Text
+  ogImage        String?
+
+  // Twitter Card
+  twitterTitle       String?
+  twitterDescription String?  @db.Text
+  twitterImage       String?
+
+  // Schema
+  schemaType     String?   @default("Article")
+
+  // Reading
+  readingTimeMinutes Int?
+
+  published      Boolean   @default(false)
+  status         String    @default("draft") // draft | scheduled | published
+  scheduledFor   DateTime?
+  publishedAt    DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@index([categoryId])
+  @@index([published, publishedAt])
+  @@index([status, scheduledFor])
+}
+
+model Category {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  name          String   @unique
+  description   String?  @db.Text
+  seoTitle      String?
+  seoDescription String? @db.Text
+  posts         Post[]
+  services      Service[]
+  createdAt     DateTime @default(now())
+}
+
+// ============================================================
+// SETTINGS — singleton site config
+// ============================================================
+model Settings {
+  id                      String   @id @default("singleton")
+  siteTitle               String   @default("Digital Vikingz")
+  siteTagline             String?  @db.Text
+  logoUrl                 String?
+  faviconUrl              String?
+  contactEmail            String   @default("workwithus@digitalvikingz.com")
+  calendlyUrl             String
+  calendlyAuditUrl        String
+  agencyLocation          String   @default("Bahawalpur")
+  agencyRegions           String   @default("US · UK · CA · AU · DE")
+  footerTagline           String   @db.Text
+  noPromisesDisclaimer    String   @db.Text
+  statsProjects           String   @default("200+")
+  statsVerticals          String   @default("40+")
+  statsPracticingSince    String   @default("2019")
+  statsTeamSize           String   @default("15")
+  statsMethodologyLineage String   @default("Koray Tuğberk Gübür")
+  ctaPrimaryLabel         String   @default("Book Strategy Call")
+  ctaAuditLabel           String   @default("Book Audit Intake")
+  ctaFinalHeading         String   @db.Text
+  ctaFinalSub             String   @db.Text
+  facebookUrl             String?
+  linkedinUrl             String?
+  instagramUrl            String?
+  tiktokUrl               String?
+  founderName             String   @default("Usman Ishaq")
+  founderTitle            String   @default("Founder & CEO · Digital Vikingz")
+  founderPhotoUrl         String?
+  founderShortBio         String   @db.Text
+  auditPrice              String   @default("$3,500")
+  auditPricePrefix        String   @default("Starts at")
+  auditCreditWindow       Int      @default(60)
+  auditIntakeCapacity     Int      @default(4)
+
+  // Global SEO defaults
+  defaultOgImage          String?
+  twitterHandle           String?  // @digitalvikingz
+  googleSearchConsoleVerification String?
+  bingVerification        String?
+
+  // Analytics
+  googleAnalyticsId       String?
+  plausibleDomain         String?
+
+  updatedAt               DateTime @updatedAt
+}
