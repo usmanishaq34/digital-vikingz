@@ -8,13 +8,34 @@ export default async function PostsAdminPage() {
     include: { category: true },
   }).catch(() => [])
 
+  // Format helpers — force Asia/Karachi timezone (PKT) so Vercel UTC servers
+  // don't render times 5 hours behind for our team in Pakistan.
+  const fmtDateTime = (d: Date | string) =>
+    new Date(d).toLocaleString("en-US", {
+      timeZone: "Asia/Karachi",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    })
+
+  const fmtDate = (d: Date | string) =>
+    new Date(d).toLocaleDateString("en-US", {
+      timeZone: "Asia/Karachi",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    })
+
   // Shared helpers so table and mobile cards stay consistent
   const renderStatus = (post: any) => {
     const status = post.status as string | undefined
     const scheduledFor = post.scheduledFor as Date | null | undefined
     if (status === "scheduled" && scheduledFor) {
       return (
-        <span className="mono-pill text-accent" title={new Date(scheduledFor).toLocaleString()}>
+        <span className="mono-pill text-accent" title={fmtDateTime(scheduledFor)}>
           ◐ Scheduled
         </span>
       )
@@ -29,9 +50,9 @@ export default async function PostsAdminPage() {
     const status = post.status as string | undefined
     const scheduledFor = post.scheduledFor as Date | null | undefined
     if (status === "scheduled" && scheduledFor) {
-      return new Date(scheduledFor).toLocaleString()
+      return fmtDateTime(scheduledFor)
     }
-    return new Date(post.createdAt).toLocaleDateString()
+    return fmtDate(post.createdAt)
   }
 
   return (
