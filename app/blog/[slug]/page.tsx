@@ -254,8 +254,8 @@ export default async function SinglePostPage({ params }: PageProps) {
           font-variation-settings: "SOFT" 100, "opsz" 144;
         }
         .post-content blockquote p { margin: 0; }
-      `}
-/* Images */
+
+        /* Images */
         .post-content img {
           display: block;
           max-width: 100%;
@@ -270,8 +270,7 @@ export default async function SinglePostPage({ params }: PageProps) {
         .post-content img[data-size="full"] { max-width: 100%; }
         .post-content a { color: var(--accent); text-decoration: underline; }
         .post-content code { background: var(--bg-2); padding: 2px 6px; font-family: var(--font-mono); font-size: 0.9em; border-radius: 2px; }
-
-</style>
+      `}</style>
     </PageShell>
   )
 }
