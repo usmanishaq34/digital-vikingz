@@ -1,4 +1,10 @@
+'use client';
+
+import { useState } from 'react';
+
 export default function Page() {
+  const [calendarState, setCalendarState] = useState<'building' | 'complete'>('building');
+
   return (
     <main className="dv-clean-page">
 
@@ -462,23 +468,29 @@ export default function Page() {
         The first 12 phases of an Audit-First engagement, mapped at a granular level. Production and Distribution continue beyond this window in monthly cycles. The calendar below has <strong>two states</strong>: a representative engagement at <strong>Phase 05 (mid-build)</strong>, and the same engagement at <strong>completion</strong>. Toggle to see both.
       </p>
 </div>
-<div className="live-calendar" id="liveCalendar" data-state="building">
+<div className="live-calendar" id="liveCalendar" data-state={calendarState}>
 
 <div className="lc-header">
 <div className="lc-header-left">
 <span className="lc-pill">
-<span className="lc-state-block lc-state-building">Live · Phase 05 of 12</span>
-<span className="lc-state-block lc-state-complete">Cycle Closed · 12 / 12</span>
+{calendarState === 'building' ? 'Live · Phase 05 of 12' : 'Cycle Closed · 12 / 12'}
 </span>
 <span className="lc-title">
-<span className="lc-state-block lc-state-building">Active engagement: <strong>SaaS workflow automation · Topical Map under construction</strong></span>
-<span className="lc-state-block lc-state-complete">Engagement complete: <strong>blueprint shipped · production live · distribution active</strong></span>
+{calendarState === 'building' ? (
+  <>Active engagement: <strong>SaaS workflow automation · Topical Map under construction</strong></>
+) : (
+  <>Engagement complete: <strong>blueprint shipped · production live · distribution active</strong></>
+)}
 </span>
 </div>
-<button type="button" className="lc-toggle-btn" data-toggle="liveCalendar" aria-label="Toggle between mid-build and complete states">
+<button
+  type="button"
+  className="lc-toggle-btn"
+  onClick={() => setCalendarState(s => s === 'building' ? 'complete' : 'building')}
+  aria-label="Toggle between mid-build and complete states"
+>
 <span className="lc-toggle-dot"></span>
-<span className="lc-state-block lc-state-building">See completion</span>
-<span className="lc-state-block lc-state-complete">Back to live</span>
+{calendarState === 'building' ? 'See completion' : 'Back to live'}
 </button>
 </div>
 
@@ -540,8 +552,7 @@ export default function Page() {
 </div>
 <div className="lc-week-status">
 <span className="lc-week-status-dot"></span>
-<span className="lc-state-block lc-state-building">▸ In progress</span>
-<span className="lc-state-block lc-state-complete">✓ Complete</span>
+<span>{calendarState === 'building' ? '▸ In progress' : '✓ Complete'}</span>
 </div>
 </div>
 
@@ -553,8 +564,7 @@ export default function Page() {
 </div>
 <div className="lc-week-status">
 <span className="lc-week-status-dot"></span>
-<span className="lc-state-block lc-state-building">○ Queued</span>
-<span className="lc-state-block lc-state-complete">✓ Complete</span>
+<span>{calendarState === 'building' ? '○ Queued' : '✓ Complete'}</span>
 </div>
 </div>
 
@@ -566,8 +576,7 @@ export default function Page() {
 </div>
 <div className="lc-week-status">
 <span className="lc-week-status-dot"></span>
-<span className="lc-state-block lc-state-building">○ Queued</span>
-<span className="lc-state-block lc-state-complete">✓ Complete</span>
+<span>{calendarState === 'building' ? '○ Queued' : '✓ Complete'}</span>
 </div>
 </div>
 
@@ -579,8 +588,7 @@ export default function Page() {
 </div>
 <div className="lc-week-status">
 <span className="lc-week-status-dot"></span>
-<span className="lc-state-block lc-state-building">○ Queued</span>
-<span className="lc-state-block lc-state-complete">✓ Complete</span>
+<span>{calendarState === 'building' ? '○ Queued' : '✓ Complete'}</span>
 </div>
 </div>
 
@@ -592,8 +600,7 @@ export default function Page() {
 </div>
 <div className="lc-week-status">
 <span className="lc-week-status-dot"></span>
-<span className="lc-state-block lc-state-building">○ Queued</span>
-<span className="lc-state-block lc-state-complete">✓ Complete</span>
+<span>{calendarState === 'building' ? '○ Queued' : '✓ Complete'}</span>
 </div>
 </div>
 
@@ -605,8 +612,7 @@ export default function Page() {
 </div>
 <div className="lc-week-status">
 <span className="lc-week-status-dot"></span>
-<span className="lc-state-block lc-state-building">○ Milestone</span>
-<span className="lc-state-block lc-state-complete">✓ Handed off</span>
+<span>{calendarState === 'building' ? '○ Milestone' : '✓ Handed off'}</span>
 </div>
 </div>
 
@@ -618,8 +624,7 @@ export default function Page() {
 </div>
 <div className="lc-week-status">
 <span className="lc-week-status-dot"></span>
-<span className="lc-state-block lc-state-building">○ Queued</span>
-<span className="lc-state-block lc-state-complete">✓ Live</span>
+<span>{calendarState === 'building' ? '○ Queued' : '✓ Live'}</span>
 </div>
 </div>
 
@@ -631,21 +636,25 @@ export default function Page() {
 </div>
 <div className="lc-week-status">
 <span className="lc-week-status-dot"></span>
-<span className="lc-state-block lc-state-building">○ Continuous</span>
-<span className="lc-state-block lc-state-complete">✓ Sustained</span>
+<span>{calendarState === 'building' ? '○ Continuous' : '✓ Sustained'}</span>
 </div>
 </div>
 </div>
 
-<div className="lc-outcome-banner lc-state-block lc-state-complete">
+{calendarState === 'complete' && (
+<div className="lc-outcome-banner">
 <span className="lc-outcome-tag">Engagement complete · representative outcome · 14-month cycle</span>
 <div className="lc-outcome-text">All 12 phases cleared · <strong>blueprint shipped at Phase 10</strong> · production live by Phase 11 · 84 entity-clean nodes shipped · 247 AI citations earned across GPT, Perplexity, Gemini · pipeline attribution mapped quarter over quarter.</div>
 </div>
+)}
 
 <div className="lc-foot">
 <span className="lc-foot-text">
-<span className="lc-state-block lc-state-building">Live engagement · <strong>Phase 05 of 12</strong> · Topical Map under construction</span>
-<span className="lc-state-block lc-state-complete">Build complete · <strong>cycle closed</strong> · production runs in continuous monthly rhythm</span>
+{calendarState === 'building' ? (
+  <>Live engagement · <strong>Phase 05 of 12</strong> · Topical Map under construction</>
+) : (
+  <>Build complete · <strong>cycle closed</strong> · production runs in continuous monthly rhythm</>
+)}
 </span>
 <div className="lc-foot-meter">
 <span className="lc-foot-meter-label">Progress</span>
@@ -653,8 +662,7 @@ export default function Page() {
 <div className="lc-foot-meter-fill"></div>
 </div>
 <span className="lc-foot-meter-num">
-<span className="lc-state-block lc-state-building">5 / 12</span>
-<span className="lc-state-block lc-state-complete">12 / 12</span>
+{calendarState === 'building' ? '5 / 12' : '12 / 12'}
 </span>
 </div>
 </div>
