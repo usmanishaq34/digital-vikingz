@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/db";
+import ClientFixes from "../ClientFixes";
 
 export const revalidate = 30; // ISR: refresh posts every 30s
 
@@ -33,16 +34,18 @@ export default async function Page() {
   var dropdown = document.getElementById('servicesDropdown');
   var megaMenu = document.getElementById('megaMenu');
   var chevron  = document.getElementById('serviceChevron');
-  dropdown.addEventListener('mouseenter', function () {
-    if (window.innerWidth >= 960) { megaMenu.style.opacity='1'; megaMenu.style.pointerEvents='all'; megaMenu.style.transform='translateY(0)'; chevron.style.transform='rotate(180deg)'; }
-  });
-  dropdown.addEventListener('mouseleave', function () {
-    if (window.innerWidth >= 960) { megaMenu.style.opacity='0'; megaMenu.style.pointerEvents='none'; megaMenu.style.transform='translateY(-4px)'; chevron.style.transform='rotate(0deg)'; }
-  });
-  document.getElementById('menuBtn').addEventListener('click', function () {
-    document.getElementById('navLinks').classList.toggle('show');
-  });
-  document.getElementById('servicesToggle').addEventListener('click', function (e) {
+  if (dropdown && megaMenu && chevron) {
+    dropdown.addEventListener('mouseenter', function () {
+      if (window.innerWidth >= 960) { megaMenu.style.opacity='1'; megaMenu.style.pointerEvents='all'; megaMenu.style.transform='translateY(0)'; chevron.style.transform='rotate(180deg)'; }
+    });
+    dropdown.addEventListener('mouseleave', function () {
+      if (window.innerWidth >= 960) { megaMenu.style.opacity='0'; megaMenu.style.pointerEvents='none'; megaMenu.style.transform='translateY(-4px)'; chevron.style.transform='rotate(0deg)'; }
+    });
+  }
+  var menuBtn = document.getElementById('menuBtn');
+  if (menuBtn) menuBtn.addEventListener('click', function () { document.getElementById('navLinks').classList.toggle('show'); });
+  var servicesToggle = document.getElementById('servicesToggle');
+  if (servicesToggle) servicesToggle.addEventListener('click', function (e) {
     if (window.innerWidth < 960) { e.preventDefault(); megaMenu.classList.toggle('show'); chevron.style.transform = megaMenu.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)'; }
   });
 })();
@@ -66,6 +69,7 @@ document.querySelectorAll('.dv-blog-cat-pill').forEach(function(btn) {
 
   return (
     <>
+      <ClientFixes />
       <script dangerouslySetInnerHTML={{ __html: `document.addEventListener('DOMContentLoaded', function(){${navAndFilterScript}});` }} />
       <style dangerouslySetInnerHTML={{ __html: `
 /* ===== DESIGN SYSTEM ===== */
@@ -443,7 +447,7 @@ body {
       <nav style={{ background: "#fff", boxShadow: "0 2px 10px rgba(0,0,0,0.05)", position: "fixed", top: "0", left: "0", right: "0", zIndex: "1000" }}>
         <div className="wrap">
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", height: "62px" }}>
-            <a href="https://digitalvikingz.com/" className="logo" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }}>
+            <a href="/" className="logo" style={{ display: "flex", alignItems: "center", gap: "8px", textDecoration: "none" }}>
               <img src="/images/logo.png" alt="Digital Vikingz" className="logo-mark" style={{ height: "42px", width: "auto" }} />
               <span style={{ fontFamily: "var(--display)", fontSize: "22px", fontWeight: "600", color: "#111", letterSpacing: "-0.02em" }}>
                 Digital Vikingz
@@ -480,7 +484,7 @@ body {
                       </div>
                       <ul style={{ listStyle: "none", margin: "0 0 20px 0", padding: "0" }}>
                         <li>
-                          <a href="/services/semantic-seo-architecture" className="svc-link" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
+                          <a href="/services/semantic-seo-architecture" data-svc="semantic-seo-architecture" className="svc-link" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
                             <div style={{ fontFamily: "var(--body)", fontSize: "16px", fontWeight: "500", color: "#111", lineHeight: "1.3", marginBottom: "2px" }}>
                               Semantic SEO Architecture
                             </div>
@@ -490,7 +494,7 @@ body {
                           </a>
                         </li>
                         <li>
-                          <a href="/services/semantic-content-audit" className="svc-link" style={{ textDecoration: "none", display: "block", padding: "8px 0" }}>
+                          <a href="/services/semantic-content-audit" data-svc="semantic-content-audit" className="svc-link" style={{ textDecoration: "none", display: "block", padding: "8px 0" }}>
                             <div style={{ fontFamily: "var(--body)", fontSize: "16px", fontWeight: "500", color: "#111", lineHeight: "1.3", marginBottom: "2px" }}>
                               Semantic Content Audit
                             </div>
@@ -505,7 +509,7 @@ body {
                       </div>
                       <ul style={{ listStyle: "none", margin: "0", padding: "0" }}>
                         <li>
-                          <a href="/services/semantic-content-production" className="svc-link" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
+                          <a href="/services/semantic-content-production" data-svc="semantic-content-production" className="svc-link" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
                             <div style={{ fontFamily: "var(--body)", fontSize: "16px", fontWeight: "500", color: "#111", lineHeight: "1.3", marginBottom: "2px" }}>
                               Semantic Content Production
                             </div>
@@ -515,7 +519,7 @@ body {
                           </a>
                         </li>
                         <li>
-                          <a href="/services/pipeline-attribution-seo" className="svc-link" style={{ textDecoration: "none", display: "block", padding: "8px 0" }}>
+                          <a href="/services/pipeline-attribution-seo" data-svc="pipeline-attribution-seo" className="svc-link" style={{ textDecoration: "none", display: "block", padding: "8px 0" }}>
                             <div style={{ fontFamily: "var(--body)", fontSize: "16px", fontWeight: "500", color: "#111", lineHeight: "1.3", marginBottom: "2px" }}>
                               Pipeline Attribution SEO
                             </div>
@@ -532,7 +536,7 @@ body {
                       </div>
                       <ul style={{ listStyle: "none", margin: "0", padding: "0" }}>
                         <li>
-                          <a href="/services/llm-ai-search-visibility" className="svc-link" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
+                          <a href="/services/llm-ai-search-visibility" data-svc="llm-ai-search-visibility" className="svc-link" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
                             <div style={{ fontFamily: "var(--body)", fontSize: "16px", fontWeight: "500", color: "#111", lineHeight: "1.3", marginBottom: "2px" }}>
                               LLM &amp; AI Search Visibility
                             </div>
@@ -542,7 +546,7 @@ body {
                           </a>
                         </li>
                         <li>
-                          <a href="/services/authority-link-building" className="svc-link" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
+                          <a href="/services/authority-link-building" data-svc="authority-link-building" className="svc-link" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
                             <div style={{ fontFamily: "var(--body)", fontSize: "16px", fontWeight: "500", color: "#111", lineHeight: "1.3", marginBottom: "2px" }}>
                               Authority Link Building
                             </div>
@@ -552,7 +556,7 @@ body {
                           </a>
                         </li>
                         <li>
-                          <a href="/services/semantic-content-network" className="svc-link" style={{ textDecoration: "none", display: "block", padding: "8px 0" }}>
+                          <a href="/services/semantic-content-network" data-svc="semantic-content-network" className="svc-link" style={{ textDecoration: "none", display: "block", padding: "8px 0" }}>
                             <div style={{ fontFamily: "var(--body)", fontSize: "16px", fontWeight: "500", color: "#111", lineHeight: "1.3", marginBottom: "2px" }}>
                               Semantic Content Network
                             </div>
@@ -690,7 +694,7 @@ body {
                 </span>
               </a>
               <p>
-                Semantic SEO authority agency built on Koray Tuğberk Gübür's methodology. We architect topical authority, defend it against AI dilution, and convert it into pipeline for businesses that want to claim a topic and own it.
+                Semantic SEO authority agency built on Koray Tuğberk Gübür&apos;s methodology. We architect topical authority, defend it against AI dilution, and convert it into pipeline for businesses that want to claim a topic and own it.
               </p>
               <div className="footer-location">
                 Based in Bahawalpur
