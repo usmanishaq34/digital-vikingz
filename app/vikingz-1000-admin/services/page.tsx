@@ -5,13 +5,34 @@ import DeleteWithUndo from "@/components/admin/DeleteWithUndo"
 export default async function AdminServicesList() {
   const services = await prisma.service.findMany({ orderBy: { sortOrder: "asc" } }).catch(() => [])
 
+  // Format helpers — force Asia/Karachi timezone (PKT) so Vercel UTC servers
+  // don't render times 5 hours behind for our team in Pakistan.
+  const fmtDateTime = (d: Date | string) =>
+    new Date(d).toLocaleString("en-US", {
+      timeZone: "Asia/Karachi",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: true,
+    })
+
+  const fmtDate = (d: Date | string) =>
+    new Date(d).toLocaleDateString("en-US", {
+      timeZone: "Asia/Karachi",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    })
+
   // Shared helpers so table + mobile cards stay consistent
   const renderStatus = (s: any) => {
     const status = s.status as string | undefined
     const scheduledFor = s.scheduledFor as Date | null | undefined
     if (status === "scheduled" && scheduledFor) {
       return (
-        <span className="mono-pill text-accent" title={new Date(scheduledFor).toLocaleString()}>
+        <span className="mono-pill text-accent" title={fmtDateTime(scheduledFor)}>
           ◐ Scheduled
         </span>
       )
@@ -26,9 +47,9 @@ export default async function AdminServicesList() {
     const status = s.status as string | undefined
     const scheduledFor = s.scheduledFor as Date | null | undefined
     if (status === "scheduled" && scheduledFor) {
-      return `Goes live ${new Date(scheduledFor).toLocaleString()}`
+      return `Goes live ${fmtDateTime(scheduledFor)}`
     }
-    return s.updatedAt.toLocaleDateString()
+    return fmtDate(s.updatedAt)
   }
 
   return (
