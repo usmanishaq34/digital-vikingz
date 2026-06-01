@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next"
 import { prisma } from "@/lib/db"
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.digitalvikingz.com"
+const BASE_URL = "https://digitalvikingz.com"
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
