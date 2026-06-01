@@ -1,6 +1,6 @@
 import { MetadataRoute } from "next"
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.digitalvikingz.com"
+const BASE_URL = "https://digitalvikingz.com"
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "*",
         allow: "/",
         disallow: [
-          "/vikingz-1000-admin/",
+          
           "/api/",
           "/_next/",
         ],
