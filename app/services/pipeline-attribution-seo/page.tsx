@@ -1156,7 +1156,7 @@ export default function Page() {
             </p>
           </div>
           <div className="related-grid">
-            <a href="semantic-content-production" className="related-card">
+            <a href="/services/semantic-content-production" className="related-card">
               <span className="related-tier">
                 Scale · Service 06
               </span>
@@ -1174,7 +1174,7 @@ export default function Page() {
                 View service →
               </div>
             </a>
-            <a href="semantic-seo-architecture" className="related-card">
+            <a href="/services/semantic-seo-architecture" className="related-card">
               <span className="related-tier">
                 Claim · Service 01
               </span>
@@ -1192,7 +1192,7 @@ export default function Page() {
                 View service →
               </div>
             </a>
-            <a href="llm-ai-search-visibility" className="related-card">
+            <a href="/services/llm-ai-search-visibility" className="related-card">
               <span className="related-tier">
                 Shield · Service 03
               </span>
@@ -1234,7 +1234,7 @@ export default function Page() {
               Book Strategy Call
               <span className="btn-arrow"></span>
             </a>
-            <a href="semantic-content-production" className="btn btn-ghost">
+            <a href="/services/semantic-content-production" className="btn btn-ghost">
               See Production Pairing
               <span className="btn-arrow"></span>
             </a>
@@ -1269,37 +1269,37 @@ export default function Page() {
               </h5>
               <ul>
                 <li>
-                  <a href="semantic-seo-architecture">
+                  <a href="/services/semantic-seo-architecture">
                     Semantic SEO Architecture
                   </a>
                 </li>
                 <li>
-                  <a href="semantic-content-audit">
+                  <a href="/services/semantic-content-audit">
                     Semantic Content Audit
                   </a>
                 </li>
                 <li>
-                  <a href="llm-ai-search-visibility">
+                  <a href="/services/llm-ai-search-visibility">
                     LLM &amp; AI Search Visibility
                   </a>
                 </li>
                 <li>
-                  <a href="authority-link-building" style={{ color: "var(--accent)" }}>
+                  <a href="/services/authority-link-building" style={{ color: "var(--accent)" }}>
                     Authority Link Building
                   </a>
                 </li>
                 <li>
-                  <a href="semantic-content-network">
+                  <a href="/services/semantic-content-network">
                     Semantic Content Network
                   </a>
                 </li>
                 <li>
-                  <a href="semantic-content-production">
+                  <a href="/services/semantic-content-production">
                     Semantic Content Production
                   </a>
                 </li>
                 <li>
-                  <a href="pipeline-attribution-seo">
+                  <a href="/services/pipeline-attribution-seo">
                     Pipeline Attribution SEO
                   </a>
                 </li>
