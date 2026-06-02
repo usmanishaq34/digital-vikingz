@@ -10,6 +10,10 @@ export default function Page() {
   const [openFaq, setOpenFaq] = useState<number>(-1);
   const toggleFaq = (idx: number) => setOpenFaq(prev => (prev === idx ? -1 : idx));
 
+  // ── FIX 3: Mobile menu toggle (was broken in production)
+  const [navOpen, setNavOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+
   useEffect(() => {
     const originalAddEventListener = document.addEventListener.bind(document);
     const patchedAddEventListener = ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) => {
@@ -73,25 +77,7 @@ export default function Page() {
     });
   }
 
-  // ── MOBILE MENU ──
-  var menuBtn = document.getElementById('menuBtn');
-  if (menuBtn) {
-    menuBtn.addEventListener('click', function () {
-      document.getElementById('navLinks').classList.toggle('show');
-    });
-  }
 
-  // ── MOBILE DROPDOWN ──
-  var servicesToggle = document.getElementById('servicesToggle');
-  if (servicesToggle && megaMenu && chevron) {
-    servicesToggle.addEventListener('click', function (e) {
-      if (window.innerWidth < 960) {
-        e.preventDefault();
-        megaMenu.classList.toggle('show');
-        chevron.style.transform = megaMenu.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
-      }
-    });
-  }
 
   // ── AUTO HIGHLIGHT current service page ──
   var currentFile = path.split('/').pop();
@@ -153,7 +139,7 @@ export default function Page() {
               </span>
             </a>
             {/* NAV LINKS */}
-            <ul id="navLinks" style={{ display: "flex", alignItems: "center", listStyle: "none", margin: "0", padding: "0", gap: "0" }}>
+            <ul id="navLinks" className={navOpen ? 'show' : ''} style={{ display: "flex", alignItems: "center", listStyle: "none", margin: "0", padding: "0", gap: "0" }}>
               <li>
                 <a id="link-om" href="/operating-manual" className="nav-link-item">
                   Operating Manual
@@ -171,13 +157,13 @@ export default function Page() {
               </li>
               {/* SERVICES MEGA MENU */}
               <li style={{ position: "relative" }} id="servicesDropdown">
-                <a href="/services/semantic-seo-architecture" id="servicesToggle" className="nav-link-item" style={{ color: "#C4401A", gap: "4px" }}>
+                <a href="/services/semantic-seo-architecture" id="servicesToggle" className="nav-link-item" onClick={(e) => { if (window.innerWidth < 960) { e.preventDefault(); setMobileServicesOpen(s => !s); } }} style={{ color: "#C4401A", gap: "4px" }}>
                   Services
                   <svg id="serviceChevron" style={{ width: "10px", height: "10px", transition: "transform 0.2s", opacity: "0.7", flexShrink: "0" }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <polyline points="6 9 12 15 18 9"></polyline>
                   </svg>
                 </a>
-                <div id="megaMenu" style={{ position: "absolute", top: "100%", left: "-20px", width: "580px", background: "#fff", border: "1px solid rgba(0,0,0,0.08)", borderTop: "2px solid rgba(0,0,0,0.05)", boxShadow: "0 12px 40px rgba(0,0,0,0.09)", opacity: "0", pointerEvents: "none", transform: "translateY(-4px)", transition: "opacity 0.18s ease,transform 0.18s ease", zIndex: "999" }}>
+                <div id="megaMenu" className={mobileServicesOpen ? 'show' : ''} style={{ position: "absolute", top: "100%", left: "-20px", width: "580px", background: "#fff", border: "1px solid rgba(0,0,0,0.08)", borderTop: "2px solid rgba(0,0,0,0.05)", boxShadow: "0 12px 40px rgba(0,0,0,0.09)", opacity: "0", pointerEvents: "none", transform: "translateY(-4px)", transition: "opacity 0.18s ease,transform 0.18s ease", zIndex: "999" }}>
                   <div className="mega-grid-inner" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", padding: "24px 28px 26px", gap: "0 40px" }}>
                     {/* LEFT COLUMN */}
                     <div>
@@ -284,7 +270,7 @@ export default function Page() {
                 </a>
               </li>
             </ul>
-            <button id="menuBtn" style={{ display: "none", cursor: "pointer", background: "none", border: "1px solid #ddd", fontFamily: "'Inter',sans-serif", fontSize: "14px", padding: "7px 16px", borderRadius: "6px", fontWeight: "500", color: "#333" }}>
+            <button id="menuBtn" onClick={() => setNavOpen(s => !s)} style={{ display: "none", cursor: "pointer", background: "none", border: "1px solid #ddd", fontFamily: "'Inter',sans-serif", fontSize: "14px", padding: "7px 16px", borderRadius: "6px", fontWeight: "500", color: "#333" }}>
               Menu
             </button>
           </div>
