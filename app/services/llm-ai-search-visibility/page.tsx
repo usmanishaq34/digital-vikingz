@@ -1,8 +1,15 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Page() {
+  // ── FIX 1: Engagement Console toggle (Live Engine)
+  const [engagementState, setEngagementState] = useState<'building' | 'outcome'>('building');
+
+  // ── FIX 2: FAQ accordion — -1 means all closed
+  const [openFaq, setOpenFaq] = useState<number>(-1);
+  const toggleFaq = (idx: number) => setOpenFaq(prev => (prev === idx ? -1 : idx));
+
   useEffect(() => {
     const originalAddEventListener = document.addEventListener.bind(document);
     const patchedAddEventListener = ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) => {
@@ -23,7 +30,6 @@ export default function Page() {
 (function () {
 
   // ── PATH DETECTION ──
-  // Check kar rahe hain ke hum services/ folder mein hain ya root mein
   var path     = window.location.pathname;
   var inSvc    = path.indexOf('/services/') !== -1;
   var root     = '/';
@@ -48,36 +54,44 @@ export default function Page() {
   var megaMenu = document.getElementById('megaMenu');
   var chevron  = document.getElementById('serviceChevron');
 
-  dropdown.addEventListener('mouseenter', function () {
-    if (window.innerWidth >= 960) {
-      megaMenu.style.opacity      = '1';
-      megaMenu.style.pointerEvents = 'all';
-      megaMenu.style.transform    = 'translateY(0)';
-      chevron.style.transform     = 'rotate(180deg)';
-    }
-  });
-  dropdown.addEventListener('mouseleave', function () {
-    if (window.innerWidth >= 960) {
-      megaMenu.style.opacity      = '0';
-      megaMenu.style.pointerEvents = 'none';
-      megaMenu.style.transform    = 'translateY(-4px)';
-      chevron.style.transform     = 'rotate(0deg)';
-    }
-  });
+  if (dropdown && megaMenu && chevron) {
+    dropdown.addEventListener('mouseenter', function () {
+      if (window.innerWidth >= 960) {
+        megaMenu.style.opacity      = '1';
+        megaMenu.style.pointerEvents = 'all';
+        megaMenu.style.transform    = 'translateY(0)';
+        chevron.style.transform     = 'rotate(180deg)';
+      }
+    });
+    dropdown.addEventListener('mouseleave', function () {
+      if (window.innerWidth >= 960) {
+        megaMenu.style.opacity      = '0';
+        megaMenu.style.pointerEvents = 'none';
+        megaMenu.style.transform    = 'translateY(-4px)';
+        chevron.style.transform     = 'rotate(0deg)';
+      }
+    });
+  }
 
   // ── MOBILE MENU ──
-  document.getElementById('menuBtn').addEventListener('click', function () {
-    document.getElementById('navLinks').classList.toggle('show');
-  });
+  var menuBtn = document.getElementById('menuBtn');
+  if (menuBtn) {
+    menuBtn.addEventListener('click', function () {
+      document.getElementById('navLinks').classList.toggle('show');
+    });
+  }
 
   // ── MOBILE DROPDOWN ──
-  document.getElementById('servicesToggle').addEventListener('click', function (e) {
-    if (window.innerWidth < 960) {
-      e.preventDefault();
-      megaMenu.classList.toggle('show');
-      chevron.style.transform = megaMenu.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
-    }
-  });
+  var servicesToggle = document.getElementById('servicesToggle');
+  if (servicesToggle && megaMenu && chevron) {
+    servicesToggle.addEventListener('click', function (e) {
+      if (window.innerWidth < 960) {
+        e.preventDefault();
+        megaMenu.classList.toggle('show');
+        chevron.style.transform = megaMenu.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
+      }
+    });
+  }
 
   // ── AUTO HIGHLIGHT current service page ──
   var currentFile = path.split('/').pop();
@@ -98,21 +112,6 @@ export default function Page() {
 
 })();
 
-
-
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.faq-item');
-      const answer = item.querySelector('.faq-answer');
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(o => {
-        if (o !== item) { o.classList.remove('open'); o.querySelector('.faq-answer').style.maxHeight = '0px'; }
-      });
-      if (isOpen) { item.classList.remove('open'); answer.style.maxHeight = '0px'; }
-      else { item.classList.add('open'); answer.style.maxHeight = answer.scrollHeight + 'px'; }
-    });
-  });
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; }
@@ -124,21 +123,9 @@ export default function Page() {
 
   window.addEventListener('scroll', () => {
     const nav = document.querySelector('.nav');
+    if (!nav) return;
     if (window.scrollY > 80) { nav.style.background = 'rgba(255, 255, 255, 0.96)'; nav.style.boxShadow = '0 1px 0 rgba(10,10,10,0.06)'; }
     else { nav.style.background = 'rgba(255, 255, 255, 0.85)'; nav.style.boxShadow = 'none'; }
-  });
-
-  document.querySelectorAll('[data-toggle]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const targetId = btn.getAttribute('data-toggle');
-      const target = document.getElementById(targetId);
-      if (!target) return;
-      const current = target.getAttribute('data-state') || 'building';
-      const next = current === 'building' ? 'outcome' : 'building';
-      target.setAttribute('data-state', next);
-      const rect = target.getBoundingClientRect();
-      if (rect.top < -100 || rect.bottom > window.innerHeight + 100) { target.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-    });
   });
 `;
       if (script.trim()) {
@@ -582,7 +569,7 @@ export default function Page() {
           </div>
         </div>
       </section>
-      {/* ENGAGEMENT CONSOLE TWO-STATE */}
+      {/* ENGAGEMENT CONSOLE TWO-STATE (FIXED with React state) */}
       <section className="engagement-section">
         <div className="wrap">
           <div className="engagement-head">
@@ -614,299 +601,139 @@ export default function Page() {
               shows representative state at month 06.
             </p>
           </div>
-          <div className="engagement-console" id="engagementConsole" data-state="building">
+          <div className="engagement-console" id="engagementConsole" data-state={engagementState}>
             <div className="ec-header">
               <div className="ec-header-left">
                 <span className="ec-pill">
-                  <span className="ec-state-block ec-state-building">
-                    Live · Building
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    Live · Outcome
-                  </span>
+                  {engagementState === 'building' ? 'Live · Building' : 'Live · Outcome'}
                 </span>
                 <span className="ec-title">
-                  <span className="ec-state-block ec-state-building">
-                    Engagement:
-                    {' '}
-                    <strong>
-                      Visibility build · Month 02 of continuous
-                    </strong>
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    Engagement:
-                    {' '}
-                    <strong>
-                      Visibility live · representative state · month 06
-                    </strong>
-                  </span>
+                  {engagementState === 'building' ? (
+                    <>Engagement: <strong>Visibility build · Month 02 of continuous</strong></>
+                  ) : (
+                    <>Engagement: <strong>Visibility live · representative state · month 06</strong></>
+                  )}
                 </span>
               </div>
-              <button type="button" className="ec-toggle-btn" data-toggle="engagementConsole" aria-label="Toggle between building and outcome">
+              <button
+                type="button"
+                className="ec-toggle-btn"
+                onClick={() => setEngagementState(s => s === 'building' ? 'outcome' : 'building')}
+                aria-label="Toggle between building and outcome"
+              >
                 <span className="ec-toggle-dot"></span>
-                <span className="ec-state-block ec-state-building">
-                  See completion
-                </span>
-                <span className="ec-state-block ec-state-outcome">
-                  Back to building
-                </span>
+                {engagementState === 'building' ? 'See completion' : 'Back to building'}
               </button>
             </div>
             <div className="ec-grid">
               <div className="ec-card">
-                <span className="ec-card-num">
-                  Component 01
-                </span>
-                <div className="ec-card-name">
-                  E-A-V
-                  {' '}
-                  <em>
-                    Production
-                  </em>
-                </div>
+                <span className="ec-card-num">Component 01</span>
+                <div className="ec-card-name">E-A-V <em>Production</em></div>
                 <div className="ec-card-state">
-                  <span className="ec-state-block ec-state-building">
-                    Producing:
-                    {' '}
-                    <strong>
-                      120 triples specified · 84 deployed
-                    </strong>
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    Deployed:
-                    {' '}
-                    <strong>
-                      340 triples live across all priority pages
-                    </strong>
-                  </span>
+                  {engagementState === 'building' ? (
+                    <>Producing: <strong>120 triples specified · 84 deployed</strong></>
+                  ) : (
+                    <>Deployed: <strong>340 triples live across all priority pages</strong></>
+                  )}
                 </div>
                 <div className="ec-card-status">
                   <span className="ec-card-status-dot"></span>
-                  <span className="ec-state-block ec-state-building">
-                    ▸ Producing
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    ✓ Live
-                  </span>
+                  {engagementState === 'building' ? '▸ Producing' : '✓ Live'}
                 </div>
               </div>
               <div className="ec-card">
-                <span className="ec-card-num">
-                  Component 02
-                </span>
-                <div className="ec-card-name">
-                  Schema
-                  {' '}
-                  <em>
-                    Deployment
-                  </em>
-                </div>
+                <span className="ec-card-num">Component 02</span>
+                <div className="ec-card-name">Schema <em>Deployment</em></div>
                 <div className="ec-card-state">
-                  <span className="ec-state-block ec-state-building">
-                    Deploying:
-                    {' '}
-                    <strong>
-                      4 types · 60% coverage · validation underway
-                    </strong>
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    Deployed:
-                    {' '}
-                    <strong>
-                      6 schema types · 100% coverage · validated
-                    </strong>
-                  </span>
+                  {engagementState === 'building' ? (
+                    <>Deploying: <strong>4 types · 60% coverage · validation underway</strong></>
+                  ) : (
+                    <>Deployed: <strong>6 schema types · 100% coverage · validated</strong></>
+                  )}
                 </div>
                 <div className="ec-card-status">
                   <span className="ec-card-status-dot"></span>
-                  <span className="ec-state-block ec-state-building">
-                    ▸ Deploying
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    ✓ Validated
-                  </span>
+                  {engagementState === 'building' ? '▸ Deploying' : '✓ Validated'}
                 </div>
               </div>
               <div className="ec-card">
-                <span className="ec-card-num">
-                  Component 03
-                </span>
-                <div className="ec-card-name">
-                  Query
-                  {' '}
-                  <em>
-                    Testing
-                  </em>
-                </div>
+                <span className="ec-card-num">Component 03</span>
+                <div className="ec-card-name">Query <em>Testing</em></div>
                 <div className="ec-card-state">
-                  <span className="ec-state-block ec-state-building">
-                    Testing:
-                    {' '}
-                    <strong>
-                      30 queries · 4 surfaces · monthly cycle
-                    </strong>
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    Tested:
-                    {' '}
-                    <strong>
-                      247 verified retrievals · 4 LLM surfaces
-                    </strong>
-                  </span>
+                  {engagementState === 'building' ? (
+                    <>Testing: <strong>30 queries · 4 surfaces · monthly cycle</strong></>
+                  ) : (
+                    <>Tested: <strong>247 verified retrievals · 4 LLM surfaces</strong></>
+                  )}
                 </div>
                 <div className="ec-card-status">
                   <span className="ec-card-status-dot"></span>
-                  <span className="ec-state-block ec-state-building">
-                    ▸ Testing
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    ✓ 247 cites
-                  </span>
+                  {engagementState === 'building' ? '▸ Testing' : '✓ 247 cites'}
                 </div>
               </div>
               <div className="ec-card">
-                <span className="ec-card-num">
-                  Component 04
-                </span>
-                <div className="ec-card-name">
-                  Retrieval
-                  {' '}
-                  <em>
-                    Reinforcement
-                  </em>
-                </div>
+                <span className="ec-card-num">Component 04</span>
+                <div className="ec-card-name">Retrieval <em>Reinforcement</em></div>
                 <div className="ec-card-state">
-                  <span className="ec-state-block ec-state-building">
-                    Reinforcing:
-                    {' '}
-                    <strong>
-                      12 pages restructured this cycle
-                    </strong>
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    Reinforced:
-                    {' '}
-                    <strong>
-                      84 pages restructured · all clear retrieval
-                    </strong>
-                  </span>
+                  {engagementState === 'building' ? (
+                    <>Reinforcing: <strong>12 pages restructured this cycle</strong></>
+                  ) : (
+                    <>Reinforced: <strong>84 pages restructured · all clear retrieval</strong></>
+                  )}
                 </div>
                 <div className="ec-card-status">
                   <span className="ec-card-status-dot"></span>
-                  <span className="ec-state-block ec-state-building">
-                    ▸ Reinforcing
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    ✓ Cleared
-                  </span>
+                  {engagementState === 'building' ? '▸ Reinforcing' : '✓ Cleared'}
                 </div>
               </div>
               <div className="ec-card">
-                <span className="ec-card-num">
-                  Component 05
-                </span>
-                <div className="ec-card-name">
-                  Info Gain
-                  {' '}
-                  <em>
-                    Engineering
-                  </em>
-                </div>
+                <span className="ec-card-num">Component 05</span>
+                <div className="ec-card-name">Info Gain <em>Engineering</em></div>
                 <div className="ec-card-state">
-                  <span className="ec-state-block ec-state-building">
-                    Engineering:
-                    {' '}
-                    <strong>
-                      3 net-new attributes per cluster
-                    </strong>
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    Engineered:
-                    {' '}
-                    <strong>
-                      18 net-new attributes · category-defining
-                    </strong>
-                  </span>
+                  {engagementState === 'building' ? (
+                    <>Engineering: <strong>3 net-new attributes per cluster</strong></>
+                  ) : (
+                    <>Engineered: <strong>18 net-new attributes · category-defining</strong></>
+                  )}
                 </div>
                 <div className="ec-card-status">
                   <span className="ec-card-status-dot"></span>
-                  <span className="ec-state-block ec-state-building">
-                    ▸ Engineering
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    ✓ Net-new
-                  </span>
+                  {engagementState === 'building' ? '▸ Engineering' : '✓ Net-new'}
                 </div>
               </div>
               <div className="ec-card">
-                <span className="ec-card-num">
-                  Component 06
-                </span>
-                <div className="ec-card-name">
-                  Monthly
-                  {' '}
-                  <em>
-                    Reporting
-                  </em>
-                </div>
+                <span className="ec-card-num">Component 06</span>
+                <div className="ec-card-name">Monthly <em>Reporting</em></div>
                 <div className="ec-card-state">
-                  <span className="ec-state-block ec-state-building">
-                    Reporting:
-                    {' '}
-                    <strong>
-                      cluster scorecard · cycle 02 in progress
-                    </strong>
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    Reporting:
-                    {' '}
-                    <strong>
-                      cluster scorecard · cycle 06 · trending up
-                    </strong>
-                  </span>
+                  {engagementState === 'building' ? (
+                    <>Reporting: <strong>cluster scorecard · cycle 02 in progress</strong></>
+                  ) : (
+                    <>Reporting: <strong>cluster scorecard · cycle 06 · trending up</strong></>
+                  )}
                 </div>
                 <div className="ec-card-status">
                   <span className="ec-card-status-dot"></span>
-                  <span className="ec-state-block ec-state-building">
-                    ▸ Reporting
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    ✓ Trending
-                  </span>
+                  {engagementState === 'building' ? '▸ Reporting' : '✓ Trending'}
                 </div>
               </div>
             </div>
-            <div className="ec-outcome-banner ec-state-block ec-state-outcome">
-              <span className="ec-outcome-tag">
-                Engagement complete · representative outcome
-              </span>
-              <div className="ec-outcome-text">
-                All 6 components
-                {' '}
-                <strong>
-                  operational and compounding
-                </strong>
-                · 247 verified AI citations across 4 LLM surfaces · 100% schema coverage · cluster-by-cluster reporting cycle stable · category-defining authority compounds without further architectural intervention.
+            {engagementState === 'outcome' && (
+              <div className="ec-outcome-banner">
+                <span className="ec-outcome-tag">
+                  Engagement complete · representative outcome
+                </span>
+                <div className="ec-outcome-text">
+                  All 6 components <strong>operational and compounding</strong> · 247 verified AI citations across 4 LLM surfaces · 100% schema coverage · cluster-by-cluster reporting cycle stable · category-defining authority compounds without further architectural intervention.
+                </div>
               </div>
-            </div>
+            )}
             <div className="ec-foot">
               <span className="ec-foot-text">
-                <span className="ec-state-block ec-state-building">
-                  Live engagement ·
-                  {' '}
-                  <strong>
-                    active build cycle
-                  </strong>
-                  · components in flight
-                </span>
-                <span className="ec-state-block ec-state-outcome">
-                  Cycle outcome ·
-                  {' '}
-                  <strong>
-                    compounding state
-                  </strong>
-                  · ready for next cycle
-                </span>
+                {engagementState === 'building' ? (
+                  <>Live engagement · <strong>active build cycle</strong> · components in flight</>
+                ) : (
+                  <>Cycle outcome · <strong>compounding state</strong> · ready for next cycle</>
+                )}
               </span>
             </div>
           </div>
@@ -1176,7 +1003,7 @@ export default function Page() {
           </div>
         </div>
       </section>
-      {/* FAQ */}
+      {/* FAQ (FIXED with React state) */}
       <section className="section faq">
         <div className="wrap">
           <div className="section-head">
@@ -1197,12 +1024,12 @@ export default function Page() {
             </p>
           </div>
           <div className="faq-list">
-            <div className="faq-item">
-              <button className="faq-question">
+            <div className={`faq-item ${openFaq === 0 ? 'open' : ''}`}>
+              <button className="faq-question" onClick={() => toggleFaq(0)}>
                 How long until I see AI citation improvements?
                 <span className="faq-icon"></span>
               </button>
-              <div className="faq-answer">
+              <div className="faq-answer" style={{ maxHeight: openFaq === 0 ? '1000px' : '0px' }}>
                 <div className="faq-answer-inner">
                   <p>
                     Measurable improvements typically appear by
@@ -1225,12 +1052,12 @@ export default function Page() {
                 </div>
               </div>
             </div>
-            <div className="faq-item">
-              <button className="faq-question">
+            <div className={`faq-item ${openFaq === 1 ? 'open' : ''}`}>
+              <button className="faq-question" onClick={() => toggleFaq(1)}>
                 Which LLMs do you test against?
                 <span className="faq-icon"></span>
               </button>
-              <div className="faq-answer">
+              <div className="faq-answer" style={{ maxHeight: openFaq === 1 ? '1000px' : '0px' }}>
                 <div className="faq-answer-inner">
                   <p>
                     Standard test panel:
@@ -1254,12 +1081,12 @@ export default function Page() {
                 </div>
               </div>
             </div>
-            <div className="faq-item">
-              <button className="faq-question">
+            <div className={`faq-item ${openFaq === 2 ? 'open' : ''}`}>
+              <button className="faq-question" onClick={() => toggleFaq(2)}>
                 Do I need an existing topical architecture for this to work?
                 <span className="faq-icon"></span>
               </button>
-              <div className="faq-answer">
+              <div className="faq-answer" style={{ maxHeight: openFaq === 2 ? '1000px' : '0px' }}>
                 <div className="faq-answer-inner">
                   <p>
                     Strongly recommended. AI visibility engineering operates on top of architectural foundation. If your Central Entity is fragmented or your topical map is incomplete, citation engineering compounds slowly.
@@ -1270,12 +1097,12 @@ export default function Page() {
                 </div>
               </div>
             </div>
-            <div className="faq-item">
-              <button className="faq-question">
+            <div className={`faq-item ${openFaq === 3 ? 'open' : ''}`}>
+              <button className="faq-question" onClick={() => toggleFaq(3)}>
                 Is this just schema markup?
                 <span className="faq-icon"></span>
               </button>
-              <div className="faq-answer">
+              <div className="faq-answer" style={{ maxHeight: openFaq === 3 ? '1000px' : '0px' }}>
                 <div className="faq-answer-inner">
                   <p>
                     No. Schema is one of 6 workstreams. The bigger leverage is in
@@ -1297,12 +1124,12 @@ export default function Page() {
                 </div>
               </div>
             </div>
-            <div className="faq-item">
-              <button className="faq-question">
+            <div className={`faq-item ${openFaq === 4 ? 'open' : ''}`}>
+              <button className="faq-question" onClick={() => toggleFaq(4)}>
                 How do you measure success?
                 <span className="faq-icon"></span>
               </button>
-              <div className="faq-answer">
+              <div className="faq-answer" style={{ maxHeight: openFaq === 4 ? '1000px' : '0px' }}>
                 <div className="faq-answer-inner">
                   <p>
                     Cluster-by-cluster AI citation tracking. Each cluster has a representative query set tested monthly across 4 surfaces. Success = sustained citation rates increasing quarter over quarter.
@@ -1316,12 +1143,12 @@ export default function Page() {
                 </div>
               </div>
             </div>
-            <div className="faq-item">
-              <button className="faq-question">
+            <div className={`faq-item ${openFaq === 5 ? 'open' : ''}`}>
+              <button className="faq-question" onClick={() => toggleFaq(5)}>
                 What's the minimum engagement length?
                 <span className="faq-icon"></span>
               </button>
-              <div className="faq-answer">
+              <div className="faq-answer" style={{ maxHeight: openFaq === 5 ? '1000px' : '0px' }}>
                 <div className="faq-answer-inner">
                   <p>
                     6 months. AI citation outcomes are structural and compound over cycles. A 1–3 month engagement produces work without producing the outcomes the work is engineered for. We've declined shorter engagements where the math didn't favor the client.
