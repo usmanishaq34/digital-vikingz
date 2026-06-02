@@ -1,8 +1,15 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Page() {
+  // ── FIX 1: Engagement Console toggle (Live Engine)
+  const [engagementState, setEngagementState] = useState<'building' | 'outcome'>('building');
+
+  // ── FIX 2: FAQ accordion — -1 means all closed
+  const [openFaq, setOpenFaq] = useState<number>(-1);
+  const toggleFaq = (idx: number) => setOpenFaq(prev => (prev === idx ? -1 : idx));
+
   useEffect(() => {
     const originalAddEventListener = document.addEventListener.bind(document);
     const patchedAddEventListener = ((type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) => {
@@ -23,7 +30,6 @@ export default function Page() {
 (function () {
 
   // ── PATH DETECTION ──
-  // Check kar rahe hain ke hum services/ folder mein hain ya root mein
   var path     = window.location.pathname;
   var inSvc    = path.indexOf('/services/') !== -1;
   var root     = '/';
@@ -48,36 +54,44 @@ export default function Page() {
   var megaMenu = document.getElementById('megaMenu');
   var chevron  = document.getElementById('serviceChevron');
 
-  dropdown.addEventListener('mouseenter', function () {
-    if (window.innerWidth >= 960) {
-      megaMenu.style.opacity      = '1';
-      megaMenu.style.pointerEvents = 'all';
-      megaMenu.style.transform    = 'translateY(0)';
-      chevron.style.transform     = 'rotate(180deg)';
-    }
-  });
-  dropdown.addEventListener('mouseleave', function () {
-    if (window.innerWidth >= 960) {
-      megaMenu.style.opacity      = '0';
-      megaMenu.style.pointerEvents = 'none';
-      megaMenu.style.transform    = 'translateY(-4px)';
-      chevron.style.transform     = 'rotate(0deg)';
-    }
-  });
+  if (dropdown && megaMenu && chevron) {
+    dropdown.addEventListener('mouseenter', function () {
+      if (window.innerWidth >= 960) {
+        megaMenu.style.opacity      = '1';
+        megaMenu.style.pointerEvents = 'all';
+        megaMenu.style.transform    = 'translateY(0)';
+        chevron.style.transform     = 'rotate(180deg)';
+      }
+    });
+    dropdown.addEventListener('mouseleave', function () {
+      if (window.innerWidth >= 960) {
+        megaMenu.style.opacity      = '0';
+        megaMenu.style.pointerEvents = 'none';
+        megaMenu.style.transform    = 'translateY(-4px)';
+        chevron.style.transform     = 'rotate(0deg)';
+      }
+    });
+  }
 
   // ── MOBILE MENU ──
-  document.getElementById('menuBtn').addEventListener('click', function () {
-    document.getElementById('navLinks').classList.toggle('show');
-  });
+  var menuBtn = document.getElementById('menuBtn');
+  if (menuBtn) {
+    menuBtn.addEventListener('click', function () {
+      document.getElementById('navLinks').classList.toggle('show');
+    });
+  }
 
   // ── MOBILE DROPDOWN ──
-  document.getElementById('servicesToggle').addEventListener('click', function (e) {
-    if (window.innerWidth < 960) {
-      e.preventDefault();
-      megaMenu.classList.toggle('show');
-      chevron.style.transform = megaMenu.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
-    }
-  });
+  var servicesToggle = document.getElementById('servicesToggle');
+  if (servicesToggle && megaMenu && chevron) {
+    servicesToggle.addEventListener('click', function (e) {
+      if (window.innerWidth < 960) {
+        e.preventDefault();
+        megaMenu.classList.toggle('show');
+        chevron.style.transform = megaMenu.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
+      }
+    });
+  }
 
   // ── AUTO HIGHLIGHT current service page ──
   var currentFile = path.split('/').pop();
@@ -98,21 +112,6 @@ export default function Page() {
 
 })();
 
-
-
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.faq-item');
-      const answer = item.querySelector('.faq-answer');
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(o => {
-        if (o !== item) { o.classList.remove('open'); o.querySelector('.faq-answer').style.maxHeight = '0px'; }
-      });
-      if (isOpen) { item.classList.remove('open'); answer.style.maxHeight = '0px'; }
-      else { item.classList.add('open'); answer.style.maxHeight = answer.scrollHeight + 'px'; }
-    });
-  });
-
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) { entry.target.style.opacity = '1'; entry.target.style.transform = 'translateY(0)'; }
@@ -124,21 +123,9 @@ export default function Page() {
 
   window.addEventListener('scroll', () => {
     const nav = document.querySelector('.nav');
+    if (!nav) return;
     if (window.scrollY > 80) { nav.style.background = 'rgba(255, 255, 255, 0.96)'; nav.style.boxShadow = '0 1px 0 rgba(10,10,10,0.06)'; }
     else { nav.style.background = 'rgba(255, 255, 255, 0.85)'; nav.style.boxShadow = 'none'; }
-  });
-
-  document.querySelectorAll('[data-toggle]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const targetId = btn.getAttribute('data-toggle');
-      const target = document.getElementById(targetId);
-      if (!target) return;
-      const current = target.getAttribute('data-state') || 'building';
-      const next = current === 'building' ? 'outcome' : 'building';
-      target.setAttribute('data-state', next);
-      const rect = target.getBoundingClientRect();
-      if (rect.top < -100 || rect.bottom > window.innerHeight + 100) { target.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-    });
   });
 `;
       if (script.trim()) {
@@ -580,7 +567,7 @@ export default function Page() {
           </div>
         </div>
       </section>
-      {/* ENGAGEMENT CONSOLE TWO-STATE */}
+      {/* ENGAGEMENT CONSOLE TWO-STATE (FIXED with React state) */}
       <section className="engagement-section">
         <div className="wrap">
           <div className="engagement-head">
@@ -612,299 +599,139 @@ export default function Page() {
               shows representative state at month 09.
             </p>
           </div>
-          <div className="engagement-console" id="engagementConsole" data-state="building">
+          <div className="engagement-console" id="engagementConsole" data-state={engagementState}>
             <div className="ec-header">
               <div className="ec-header-left">
                 <span className="ec-pill">
-                  <span className="ec-state-block ec-state-building">
-                    Live · Building
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    Live · Outcome
-                  </span>
+                  {engagementState === 'building' ? 'Live · Building' : 'Live · Outcome'}
                 </span>
                 <span className="ec-title">
-                  <span className="ec-state-block ec-state-building">
-                    Engagement:
-                    {' '}
-                    <strong>
-                      Attribution build · Month 03 of continuous
-                    </strong>
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    Engagement:
-                    {' '}
-                    <strong>
-                      Attribution · representative state · month 09
-                    </strong>
-                  </span>
+                  {engagementState === 'building' ? (
+                    <>Engagement: <strong>Attribution build · Month 03 of continuous</strong></>
+                  ) : (
+                    <>Engagement: <strong>Attribution · representative state · month 09</strong></>
+                  )}
                 </span>
               </div>
-              <button type="button" className="ec-toggle-btn" data-toggle="engagementConsole" aria-label="Toggle between building and outcome">
+              <button
+                type="button"
+                className="ec-toggle-btn"
+                onClick={() => setEngagementState(s => s === 'building' ? 'outcome' : 'building')}
+                aria-label="Toggle between building and outcome"
+              >
                 <span className="ec-toggle-dot"></span>
-                <span className="ec-state-block ec-state-building">
-                  See completion
-                </span>
-                <span className="ec-state-block ec-state-outcome">
-                  Back to building
-                </span>
+                {engagementState === 'building' ? 'See completion' : 'Back to building'}
               </button>
             </div>
             <div className="ec-grid">
               <div className="ec-card">
-                <span className="ec-card-num">
-                  Component 01
-                </span>
-                <div className="ec-card-name">
-                  Attribution
-                  {' '}
-                  <em>
-                    Infrastructure
-                  </em>
-                </div>
+                <span className="ec-card-num">Component 01</span>
+                <div className="ec-card-name">Attribution <em>Infrastructure</em></div>
                 <div className="ec-card-state">
-                  <span className="ec-state-block ec-state-building">
-                    Building:
-                    {' '}
-                    <strong>
-                      GA4 · UTM · CRM integration · model spec
-                    </strong>
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    Built:
-                    {' '}
-                    <strong>
-                      full multi-touch attribution model live
-                    </strong>
-                  </span>
+                  {engagementState === 'building' ? (
+                    <>Building: <strong>GA4 · UTM · CRM integration · model spec</strong></>
+                  ) : (
+                    <>Built: <strong>full multi-touch attribution model live</strong></>
+                  )}
                 </div>
                 <div className="ec-card-status">
                   <span className="ec-card-status-dot"></span>
-                  <span className="ec-state-block ec-state-building">
-                    ▸ Building
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    ✓ Live
-                  </span>
+                  {engagementState === 'building' ? '▸ Building' : '✓ Live'}
                 </div>
               </div>
               <div className="ec-card">
-                <span className="ec-card-num">
-                  Component 02
-                </span>
-                <div className="ec-card-name">
-                  Cluster
-                  {' '}
-                  <em>
-                    Tracking
-                  </em>
-                </div>
+                <span className="ec-card-num">Component 02</span>
+                <div className="ec-card-name">Cluster <em>Tracking</em></div>
                 <div className="ec-card-state">
-                  <span className="ec-state-block ec-state-building">
-                    Tagging:
-                    {' '}
-                    <strong>
-                      156 assets tagged · 6 clusters mapped
-                    </strong>
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    Tracking:
-                    {' '}
-                    <strong>
-                      312 assets tracked · stage-mapped
-                    </strong>
-                  </span>
+                  {engagementState === 'building' ? (
+                    <>Tagging: <strong>156 assets tagged · 6 clusters mapped</strong></>
+                  ) : (
+                    <>Tracking: <strong>312 assets tracked · stage-mapped</strong></>
+                  )}
                 </div>
                 <div className="ec-card-status">
                   <span className="ec-card-status-dot"></span>
-                  <span className="ec-state-block ec-state-building">
-                    ▸ Tagging
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    ✓ Mapped
-                  </span>
+                  {engagementState === 'building' ? '▸ Tagging' : '✓ Mapped'}
                 </div>
               </div>
               <div className="ec-card">
-                <span className="ec-card-num">
-                  Component 03
-                </span>
-                <div className="ec-card-name">
-                  Win/Loss
-                  {' '}
-                  <em>
-                    Analysis
-                  </em>
-                </div>
+                <span className="ec-card-num">Component 03</span>
+                <div className="ec-card-name">Win/Loss <em>Analysis</em></div>
                 <div className="ec-card-state">
-                  <span className="ec-state-block ec-state-building">
-                    Analyzing:
-                    {' '}
-                    <strong>
-                      cycle 03 win/loss · 4 winners · 2 losers
-                    </strong>
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    Analyzed:
-                    {' '}
-                    <strong>
-                      cycle 09 · winners reinforced · losers pruned
-                    </strong>
-                  </span>
+                  {engagementState === 'building' ? (
+                    <>Analyzing: <strong>cycle 03 win/loss · 4 winners · 2 losers</strong></>
+                  ) : (
+                    <>Analyzed: <strong>cycle 09 · winners reinforced · losers pruned</strong></>
+                  )}
                 </div>
                 <div className="ec-card-status">
                   <span className="ec-card-status-dot"></span>
-                  <span className="ec-state-block ec-state-building">
-                    ▸ Analyzing
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    ✓ Compounded
-                  </span>
+                  {engagementState === 'building' ? '▸ Analyzing' : '✓ Compounded'}
                 </div>
               </div>
               <div className="ec-card">
-                <span className="ec-card-num">
-                  Component 04
-                </span>
-                <div className="ec-card-name">
-                  Reinforcement
-                  {' '}
-                  <em>
-                    Spec
-                  </em>
-                </div>
+                <span className="ec-card-num">Component 04</span>
+                <div className="ec-card-name">Reinforcement <em>Spec</em></div>
                 <div className="ec-card-state">
-                  <span className="ec-state-block ec-state-building">
-                    Specifying:
-                    {' '}
-                    <strong>
-                      3 clusters get +velocity · 1 retired
-                    </strong>
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    Specified:
-                    {' '}
-                    <strong>
-                      cycle 09 reinforcement plan · stable
-                    </strong>
-                  </span>
+                  {engagementState === 'building' ? (
+                    <>Specifying: <strong>3 clusters get +velocity · 1 retired</strong></>
+                  ) : (
+                    <>Specified: <strong>cycle 09 reinforcement plan · stable</strong></>
+                  )}
                 </div>
                 <div className="ec-card-status">
                   <span className="ec-card-status-dot"></span>
-                  <span className="ec-state-block ec-state-building">
-                    ▸ Specifying
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    ✓ Stable
-                  </span>
+                  {engagementState === 'building' ? '▸ Specifying' : '✓ Stable'}
                 </div>
               </div>
               <div className="ec-card">
-                <span className="ec-card-num">
-                  Component 05
-                </span>
-                <div className="ec-card-name">
-                  Budget
-                  {' '}
-                  <em>
-                    Defense
-                  </em>
-                </div>
+                <span className="ec-card-num">Component 05</span>
+                <div className="ec-card-name">Budget <em>Defense</em></div>
                 <div className="ec-card-state">
-                  <span className="ec-state-block ec-state-building">
-                    Producing:
-                    {' '}
-                    <strong>
-                      Q1 board report · pipeline tracking
-                    </strong>
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    Producing:
-                    {' '}
-                    <strong>
-                      Q3 report · ROI defended at board
-                    </strong>
-                  </span>
+                  {engagementState === 'building' ? (
+                    <>Producing: <strong>Q1 board report · pipeline tracking</strong></>
+                  ) : (
+                    <>Producing: <strong>Q3 report · ROI defended at board</strong></>
+                  )}
                 </div>
                 <div className="ec-card-status">
                   <span className="ec-card-status-dot"></span>
-                  <span className="ec-state-block ec-state-building">
-                    ▸ Producing
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    ✓ Defended
-                  </span>
+                  {engagementState === 'building' ? '▸ Producing' : '✓ Defended'}
                 </div>
               </div>
               <div className="ec-card">
-                <span className="ec-card-num">
-                  Component 06
-                </span>
-                <div className="ec-card-name">
-                  Strategic
-                  {' '}
-                  <em>
-                    Review
-                  </em>
-                </div>
+                <span className="ec-card-num">Component 06</span>
+                <div className="ec-card-name">Strategic <em>Review</em></div>
                 <div className="ec-card-state">
-                  <span className="ec-state-block ec-state-building">
-                    Reviewing:
-                    {' '}
-                    <strong>
-                      quarterly recalibration in progress
-                    </strong>
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    Reviewing:
-                    {' '}
-                    <strong>
-                      cycle 09 review · priorities locked
-                    </strong>
-                  </span>
+                  {engagementState === 'building' ? (
+                    <>Reviewing: <strong>quarterly recalibration in progress</strong></>
+                  ) : (
+                    <>Reviewing: <strong>cycle 09 review · priorities locked</strong></>
+                  )}
                 </div>
                 <div className="ec-card-status">
                   <span className="ec-card-status-dot"></span>
-                  <span className="ec-state-block ec-state-building">
-                    ▸ Reviewing
-                  </span>
-                  <span className="ec-state-block ec-state-outcome">
-                    ✓ Locked
-                  </span>
+                  {engagementState === 'building' ? '▸ Reviewing' : '✓ Locked'}
                 </div>
               </div>
             </div>
-            <div className="ec-outcome-banner ec-state-block ec-state-outcome">
-              <span className="ec-outcome-tag">
-                Engagement complete · representative outcome
-              </span>
-              <div className="ec-outcome-text">
-                All 6 workstreams
-                {' '}
-                <strong>
-                  operational and producing
-                </strong>
-                · 312 assets tracked at cluster + stage level · winners reinforced through additional content velocity · losers pruned without ambiguity · SEO budget defended with revenue data at board level · strategic priorities locked from attribution insights.
+            {engagementState === 'outcome' && (
+              <div className="ec-outcome-banner">
+                <span className="ec-outcome-tag">
+                  Engagement complete · representative outcome
+                </span>
+                <div className="ec-outcome-text">
+                  All 6 workstreams <strong>operational and producing</strong> · 312 assets tracked at cluster + stage level · winners reinforced through additional content velocity · losers pruned without ambiguity · SEO budget defended with revenue data at board level · strategic priorities locked from attribution insights.
+                </div>
               </div>
-            </div>
+            )}
             <div className="ec-foot">
               <span className="ec-foot-text">
-                <span className="ec-state-block ec-state-building">
-                  Live engagement ·
-                  {' '}
-                  <strong>
-                    active build cycle
-                  </strong>
-                  · components in flight
-                </span>
-                <span className="ec-state-block ec-state-outcome">
-                  Cycle outcome ·
-                  {' '}
-                  <strong>
-                    compounding state
-                  </strong>
-                  · ready for next cycle
-                </span>
+                {engagementState === 'building' ? (
+                  <>Live engagement · <strong>active build cycle</strong> · components in flight</>
+                ) : (
+                  <>Cycle outcome · <strong>compounding state</strong> · ready for next cycle</>
+                )}
               </span>
             </div>
           </div>
@@ -1174,7 +1001,7 @@ export default function Page() {
           </div>
         </div>
       </section>
-      {/* FAQ */}
+      {/* FAQ (FIXED with React state) */}
       <section className="section faq">
         <div className="wrap">
           <div className="section-head">
@@ -1195,12 +1022,12 @@ export default function Page() {
             </p>
           </div>
           <div className="faq-list">
-            <div className="faq-item">
-              <button className="faq-question">
+            <div className={`faq-item ${openFaq === 0 ? 'open' : ''}`}>
+              <button className="faq-question" onClick={() => toggleFaq(0)}>
                 What CRMs do you support?
                 <span className="faq-icon"></span>
               </button>
-              <div className="faq-answer">
+              <div className="faq-answer" style={{ maxHeight: openFaq === 0 ? '1000px' : '0px' }}>
                 <div className="faq-answer-inner">
                   <p>
                     Salesforce, HubSpot, Pipedrive, Close, Copper, Zoho, ActiveCampaign — all native. Other CRMs supported via Zapier/Make integration.
@@ -1214,12 +1041,12 @@ export default function Page() {
                 </div>
               </div>
             </div>
-            <div className="faq-item">
-              <button className="faq-question">
+            <div className={`faq-item ${openFaq === 1 ? 'open' : ''}`}>
+              <button className="faq-question" onClick={() => toggleFaq(1)}>
                 How long until I see meaningful attribution data?
                 <span className="faq-icon"></span>
               </button>
-              <div className="faq-answer">
+              <div className="faq-answer" style={{ maxHeight: openFaq === 1 ? '1000px' : '0px' }}>
                 <div className="faq-answer-inner">
                   <p>
                     The multi-touch model populates over
@@ -1231,12 +1058,12 @@ export default function Page() {
                 </div>
               </div>
             </div>
-            <div className="faq-item">
-              <button className="faq-question">
+            <div className={`faq-item ${openFaq === 2 ? 'open' : ''}`}>
+              <button className="faq-question" onClick={() => toggleFaq(2)}>
                 Is this just GA4 setup?
                 <span className="faq-icon"></span>
               </button>
-              <div className="faq-answer">
+              <div className="faq-answer" style={{ maxHeight: openFaq === 2 ? '1000px' : '0px' }}>
                 <div className="faq-answer-inner">
                   <p>
                     No. GA4 is one input. The attribution model also pulls from CRM stage data, sales-cycle timing, multi-touch session data, and content engagement patterns.
@@ -1250,12 +1077,12 @@ export default function Page() {
                 </div>
               </div>
             </div>
-            <div className="faq-item">
-              <button className="faq-question">
+            <div className={`faq-item ${openFaq === 3 ? 'open' : ''}`}>
+              <button className="faq-question" onClick={() => toggleFaq(3)}>
                 How do you handle multi-stakeholder B2B deals?
                 <span className="faq-icon"></span>
               </button>
-              <div className="faq-answer">
+              <div className="faq-answer" style={{ maxHeight: openFaq === 3 ? '1000px' : '0px' }}>
                 <div className="faq-answer-inner">
                   <p>
                     The attribution model accommodates multi-touch buyer committees — a deal where 3 stakeholders engaged 8 different content assets across 90 days. We weight touches based on cycle position and engagement depth.
@@ -1269,12 +1096,12 @@ export default function Page() {
                 </div>
               </div>
             </div>
-            <div className="faq-item">
-              <button className="faq-question">
+            <div className={`faq-item ${openFaq === 4 ? 'open' : ''}`}>
+              <button className="faq-question" onClick={() => toggleFaq(4)}>
                 What if a cluster shows zero pipeline contribution?
                 <span className="faq-icon"></span>
               </button>
-              <div className="faq-answer">
+              <div className="faq-answer" style={{ maxHeight: openFaq === 4 ? '1000px' : '0px' }}>
                 <div className="faq-answer-inner">
                   <p>
                     That's a feature, not a failure.
@@ -1288,12 +1115,12 @@ export default function Page() {
                 </div>
               </div>
             </div>
-            <div className="faq-item">
-              <button className="faq-question">
+            <div className={`faq-item ${openFaq === 5 ? 'open' : ''}`}>
+              <button className="faq-question" onClick={() => toggleFaq(5)}>
                 Will this replace my existing analytics setup?
                 <span className="faq-icon"></span>
               </button>
-              <div className="faq-answer">
+              <div className="faq-answer" style={{ maxHeight: openFaq === 5 ? '1000px' : '0px' }}>
                 <div className="faq-answer-inner">
                   <p>
                     No. This complements existing GA4, CRM, and BI infrastructure. We layer attribution governance and SEO-specific cluster tracking on top.
