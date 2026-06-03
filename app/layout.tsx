@@ -3,7 +3,11 @@ import './globals.css';
 import ClientFixes from './ClientFixes';
 
 export const metadata: Metadata = {
-  title: 'Semantic SEO Authority Agency — Digital Vikingz',
+  metadataBase: new URL('https://digitalvikingz.com'),
+  title: {
+    default: 'Semantic SEO Authority Agency — Digital Vikingz',
+    template: '%s | Digital Vikingz',
+  },
   description: 'Digital Vikingz is a semantic SEO authority agency. We architect topical authority, AI search visibility, and pipeline attribution for businesses claiming category ownership.',
   icons: { icon: '/images/icon.png' },
 };
