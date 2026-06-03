@@ -17,7 +17,7 @@ export default function PageShell({ children }: { children: React.ReactNode }) {
               <li><a id="link-vp" href="/vertical-playbooks" className="nav-link-item">Vertical Playbooks</a></li>
 
               <li style={{ position: "relative" }} id="servicesDropdown">
-                <a href="#" id="servicesToggle" className="nav-link-item" style={{ gap: 4 }}>
+                <a href="/services/semantic-seo-architecture" id="servicesToggle" className="nav-link-item" style={{ gap: 4 }}>
                   Services
                   <svg id="serviceChevron" style={{ width: 10, height: 10, transition: "transform 0.2s", opacity: 0.7, flexShrink: 0 }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>
                     <polyline points="6 9 12 15 18 9"></polyline>

@@ -470,7 +470,7 @@ body {
                 </a>
               </li>
               <li style={{ position: "relative" }} id="servicesDropdown">
-                <a href="#" id="servicesToggle" className="nav-link-item" style={{ gap: "4px" }}>
+                <a href="/services/semantic-seo-architecture" id="servicesToggle" className="nav-link-item" style={{ gap: "4px" }}>
                   Services
                   <svg id="serviceChevron" style={{ width: "10px", height: "10px", transition: "transform 0.2s", opacity: "0.7", flexShrink: "0" }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <polyline points="6 9 12 15 18 9"></polyline>

@@ -374,7 +374,7 @@ export default function Page() {
               </li>
               {/* SERVICES MEGA MENU */}
               <li style={{ position: "relative" }} id="servicesDropdown">
-                <a href="#" id="servicesToggle" className="nav-link-item" style={{ gap: "4px" }}>
+                <a href="/services/semantic-seo-architecture" id="servicesToggle" className="nav-link-item" style={{ gap: "4px" }}>
                   Services
                   <svg id="serviceChevron" style={{ width: "10px", height: "10px", transition: "transform 0.2s", opacity: "0.7", flexShrink: "0" }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                     <polyline points="6 9 12 15 18 9"></polyline>
@@ -389,7 +389,7 @@ export default function Page() {
                       </div>
                       <ul style={{ listStyle: "none", margin: "0 0 20px 0", padding: "0" }}>
                         <li>
-                          <a data-svc="semantic-seo-architecture" className="svc-link" href="#" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
+                          <a data-svc="semantic-seo-architecture" className="svc-link" href="/services/semantic-seo-architecture" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
                             <div style={{ fontFamily: "'Inter',sans-serif", fontSize: "16px", fontWeight: "500", color: "#111", lineHeight: "1.3", marginBottom: "2px" }}>
                               Semantic SEO Architecture
                             </div>
@@ -399,7 +399,7 @@ export default function Page() {
                           </a>
                         </li>
                         <li>
-                          <a data-svc="semantic-content-audit" className="svc-link" href="#" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "none" }}>
+                          <a data-svc="semantic-content-audit" className="svc-link" href="/services/semantic-content-audit" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "none" }}>
                             <div style={{ fontFamily: "'Inter',sans-serif", fontSize: "16px", fontWeight: "500", color: "#111", lineHeight: "1.3", marginBottom: "2px" }}>
                               Semantic Content Audit
                             </div>
@@ -414,7 +414,7 @@ export default function Page() {
                       </div>
                       <ul style={{ listStyle: "none", margin: "0", padding: "0" }}>
                         <li>
-                          <a data-svc="semantic-content-production" className="svc-link" href="#" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
+                          <a data-svc="semantic-content-production" className="svc-link" href="/services/semantic-content-production" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
                             <div style={{ fontFamily: "'Inter',sans-serif", fontSize: "16px", fontWeight: "500", color: "#111", lineHeight: "1.3", marginBottom: "2px" }}>
                               Semantic Content Production
                             </div>
@@ -424,7 +424,7 @@ export default function Page() {
                           </a>
                         </li>
                         <li>
-                          <a data-svc="pipeline-attribution-seo" className="svc-link" href="#" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "none" }}>
+                          <a data-svc="pipeline-attribution-seo" className="svc-link" href="/services/pipeline-attribution-seo" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "none" }}>
                             <div style={{ fontFamily: "'Inter',sans-serif", fontSize: "16px", fontWeight: "500", color: "#111", lineHeight: "1.3", marginBottom: "2px" }}>
                               Pipeline Attribution SEO
                             </div>
@@ -442,7 +442,7 @@ export default function Page() {
                       </div>
                       <ul style={{ listStyle: "none", margin: "0", padding: "0" }}>
                         <li>
-                          <a data-svc="llm-ai-search-visibility" className="svc-link" href="#" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
+                          <a data-svc="llm-ai-search-visibility" className="svc-link" href="/services/llm-ai-search-visibility" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
                             <div style={{ fontFamily: "'Inter',sans-serif", fontSize: "16px", fontWeight: "500", color: "#111", lineHeight: "1.3", marginBottom: "2px" }}>
                               LLM &amp; AI Search Visibility
                             </div>
@@ -452,7 +452,7 @@ export default function Page() {
                           </a>
                         </li>
                         <li>
-                          <a data-svc="authority-link-building" className="svc-link" href="#" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
+                          <a data-svc="authority-link-building" className="svc-link" href="/services/authority-link-building" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "1px solid rgba(0,0,0,0.05)" }}>
                             <div style={{ fontFamily: "'Inter',sans-serif", fontSize: "16px", fontWeight: "500", color: "#111", lineHeight: "1.3", marginBottom: "2px" }}>
                               Authority Link Building
                             </div>
@@ -462,7 +462,7 @@ export default function Page() {
                           </a>
                         </li>
                         <li>
-                          <a data-svc="semantic-content-network" className="svc-link" href="#" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "none" }}>
+                          <a data-svc="semantic-content-network" className="svc-link" href="/services/semantic-content-network" style={{ textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "none" }}>
                             <div style={{ fontFamily: "'Inter',sans-serif", fontSize: "16px", fontWeight: "500", color: "#111", lineHeight: "1.3", marginBottom: "2px" }}>
                               Semantic Content Network
                             </div>
