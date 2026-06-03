@@ -766,10 +766,11 @@ export default function Page() {
               </li>
             </ul>
             <p>
-              To exercise any of these rights, email
+              To exercise any of these rights, email {" "}
               <a href="mailto:workwithus@digitalvikingz.com">
                 workwithus@digitalvikingz.com
-              </a>
+              </a> 
+              
               . We respond within 7 business days.
             </p>
             <h2>
@@ -788,7 +789,7 @@ export default function Page() {
               </li>
             </ul>
             <p>
-              We don't use cookies for advertising, retargeting, or cross-site tracking. If you want to disable Google Analytics cookies specifically, you can install the
+              We don't use cookies for advertising, retargeting, or cross-site tracking. If you want to disable Google Analytics cookies specifically, you can install the {" "}
               <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">
                 Google Analytics Opt-out Browser Add-on
               </a>
