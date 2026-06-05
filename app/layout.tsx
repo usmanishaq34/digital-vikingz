@@ -4,6 +4,9 @@ import ClientFixes from './ClientFixes';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://digitalvikingz.com'),
+  alternates: {
+    canonical: './',
+  },
   title: {
     default: 'Semantic SEO Authority Agency — Digital Vikingz',
     template: '%s | Digital Vikingz',
