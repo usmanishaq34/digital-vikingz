@@ -38,6 +38,79 @@ interface DbService {
   tier: 'CLAIM' | 'SHIELD' | 'SCALE';
 }
 
+// ──────────────────────────────────────────────────────────────────────
+// Calendly popup widget — lazy loader.
+// Loads Calendly's CSS + JS the first time a Calendly link is clicked,
+// then reuses the cached promise for all subsequent clicks.
+// ──────────────────────────────────────────────────────────────────────
+let calendlyLoadPromise: Promise<void> | null = null;
+
+const loadCalendlyAssets = (): Promise<void> => {
+  if (calendlyLoadPromise) return calendlyLoadPromise;
+
+  calendlyLoadPromise = new Promise<void>((resolve, reject) => {
+    // If somehow already on the page, resolve immediately.
+    if ((window as any).Calendly) {
+      resolve();
+      return;
+    }
+
+    // 1. Inject Calendly CSS (idempotent — checks for existing link first)
+    const cssHref = 'https://assets.calendly.com/assets/external/widget.css';
+    if (!document.querySelector(`link[href="${cssHref}"]`)) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = cssHref;
+      document.head.appendChild(link);
+    }
+
+    // 2. Inject Calendly JS
+    const jsSrc = 'https://assets.calendly.com/assets/external/widget.js';
+    const existingScript = document.querySelector<HTMLScriptElement>(
+      `script[src="${jsSrc}"]`
+    );
+    if (existingScript) {
+      // Script tag exists — wait for it to be ready
+      if ((window as any).Calendly) {
+        resolve();
+      } else {
+        existingScript.addEventListener('load', () => resolve(), { once: true });
+        existingScript.addEventListener('error', () => reject(new Error('Calendly script failed')), { once: true });
+      }
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = jsSrc;
+    script.async = true;
+    script.onload = () => resolve();
+    script.onerror = () => {
+      calendlyLoadPromise = null; // allow retry on next click
+      reject(new Error('Calendly script failed to load'));
+    };
+    document.head.appendChild(script);
+  });
+
+  return calendlyLoadPromise;
+};
+
+const openCalendlyPopup = (url: string) => {
+  loadCalendlyAssets()
+    .then(() => {
+      const Calendly = (window as any).Calendly;
+      if (Calendly && typeof Calendly.initPopupWidget === 'function') {
+        Calendly.initPopupWidget({ url });
+      } else {
+        // Script loaded but Calendly object not found — fallback
+        window.open(url, '_blank', 'noopener,noreferrer');
+      }
+    })
+    .catch(() => {
+      // Network error or block — fall back to opening in a new tab
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+};
+
 export default function ClientFixes() {
   useEffect(() => {
 
@@ -262,6 +335,20 @@ export default function ClientFixes() {
     const onClickCapture = (event: MouseEvent) => {
       const targetEl = event.target as Element | null;
       if (!targetEl) return;
+
+      // ────────────────────────────────────────────────────────────────
+      // Calendly link interceptor — open as in-page popup.
+      // Lazy-loads Calendly's CSS + JS on first click, then uses
+      // initPopupWidget. Falls back to opening in a new tab if anything
+      // goes wrong (network block, CSP, etc).
+      // ────────────────────────────────────────────────────────────────
+      const calendlyLink = targetEl.closest<HTMLAnchorElement>('a[href*="calendly.com"]');
+      if (calendlyLink) {
+        event.preventDefault();
+        event.stopPropagation();
+        openCalendlyPopup(calendlyLink.href);
+        return;
+      }
 
       const menuBtn = targetEl.closest<HTMLElement>('#menuBtn');
       if (menuBtn) {

@@ -23707,3 +23707,180 @@ body { margin: 0; }
     padding: 40px 28px 36px !important;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ════════════════════════════════════════════════════════════════
+   CALENDLY POPUP — PREMIUM STYLING (V2)
+   - No dark overlay behind the popup
+   - Close button positioned at popup's top-right corner (not viewport)
+   - Round close button with brand-orange hover state
+   ════════════════════════════════════════════════════════════════ */
+
+/* Transparent overlay — no dark backdrop, no blur */
+.calendly-overlay {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Popup content — rounded corners, strong floating shadow.
+   overflow:visible lets the close button render slightly outside the corner. */
+.calendly-overlay .calendly-popup-content {
+  border-radius: 16px !important;
+  position: relative !important;
+  overflow: visible !important;
+  box-shadow:
+    0 30px 90px rgba(0, 0, 0, 0.28),
+    0 15px 40px rgba(0, 0, 0, 0.16),
+    0 5px 15px rgba(0, 0, 0, 0.10) !important;
+}
+
+/* Iframe inside popup — match rounded corners */
+.calendly-overlay .calendly-popup-content iframe {
+  border-radius: 16px !important;
+}
+
+/* ───── PREMIUM CLOSE BUTTON ─────
+   Sits at the popup's top-right corner, slightly outside,
+   creating an elevated "floating" look. */
+.calendly-popup-close {
+  position: absolute !important;
+  top: -16px !important;
+  right: -16px !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  background-color: #ffffff !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.10) !important;
+  box-shadow:
+    0 6px 20px rgba(0, 0, 0, 0.18),
+    0 2px 6px rgba(0, 0, 0, 0.10) !important;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23111111' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><line x1='18' y1='6' x2='6' y2='18'/><line x1='6' y1='6' x2='18' y2='18'/></svg>") !important;
+  background-size: 14px 14px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  cursor: pointer !important;
+  z-index: 9999 !important;
+  transition: all 0.2s ease !important;
+  opacity: 1 !important;
+}
+
+/* Hover — brand orange, scale up, white X, glow */
+.calendly-popup-close:hover {
+  background-color: #DB4C23 !important;
+  border-color: #DB4C23 !important;
+  transform: scale(1.08) !important;
+  box-shadow:
+    0 8px 24px rgba(219, 76, 35, 0.40),
+    0 3px 8px rgba(219, 76, 35, 0.20) !important;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><line x1='18' y1='6' x2='6' y2='18'/><line x1='6' y1='6' x2='18' y2='18'/></svg>") !important;
+}
+
+/* Active press feedback */
+.calendly-popup-close:active {
+  transform: scale(0.96) !important;
+}
+
+/* Mobile — close button INSIDE the popup (less corner room on small screens) */
+@media (max-width: 768px) {
+  .calendly-popup-close {
+    top: 12px !important;
+    right: 12px !important;
+    width: 36px !important;
+    height: 36px !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ════════════════════════════════════════════════════════════════
+   CALENDLY POPUP — PREMIUM STYLING
+   Overrides Calendly's default popup chrome with on-brand styling.
+   Brand orange: #DB4C23
+   ════════════════════════════════════════════════════════════════ */
+
+/* Dark overlay with subtle blur for "frosted glass" backdrop */
+.calendly-overlay {
+  background-color: rgba(10, 10, 10, 0.55) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+}
+
+/* Popup container — rounded corners + soft premium shadow */
+.calendly-overlay .calendly-popup {
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.28),
+              0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* ────────────────────────────────────────────────────────────────
+   PREMIUM CLOSE BUTTON — round, bordered, smooth hover transition
+   ──────────────────────────────────────────────────────────────── */
+.calendly-popup-close {
+  width: 44px !important;
+  height: 44px !important;
+  top: 20px !important;
+  right: 20px !important;
+  border-radius: 50% !important;
+  background-color: #ffffff !important;
+  border: 1.5px solid rgba(0, 0, 0, 0.12) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10),
+              0 2px 4px rgba(0, 0, 0, 0.06) !important;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23111111' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><line x1='18' y1='6' x2='6' y2='18'/><line x1='6' y1='6' x2='18' y2='18'/></svg>") !important;
+  background-size: 14px 14px !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover — brand orange, scale up, white X icon, glow shadow */
+.calendly-popup-close:hover {
+  background-color: #DB4C23 !important;
+  border-color: #DB4C23 !important;
+  transform: scale(1.06) !important;
+  box-shadow: 0 6px 20px rgba(219, 76, 35, 0.35),
+              0 2px 6px rgba(219, 76, 35, 0.2) !important;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><line x1='18' y1='6' x2='6' y2='18'/><line x1='6' y1='6' x2='18' y2='18'/></svg>") !important;
+}
+
+/* Active (mousedown) — subtle press effect */
+.calendly-popup-close:active {
+  transform: scale(0.98) !important;
+}
+
+/* Mobile adjustment — slightly smaller, less padding from edge */
+@media (max-width: 768px) {
+  .calendly-popup-close {
+    width: 40px !important;
+    height: 40px !important;
+    top: 12px !important;
+    right: 12px !important;
+  }
+}
