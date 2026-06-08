@@ -10,8 +10,8 @@ export async function GET() {
       data: {
         id: "singleton",
         siteTagline: "Semantic SEO authority agency. Built on Koray methodology.",
-        calendlyUrl: "https://calendly.com/usmanishaqsemanticseospecialist/30min",
-        calendlyAuditUrl: "https://calendly.com/usmanishaqsemanticseospecialist/30min?audit=true",
+        calendlyUrl: "https://cal.com/digital-vikingz/30min?overlayCalendar=true",
+        calendlyAuditUrl: "https://cal.com/digital-vikingz/30min?overlayCalendar=true?audit=true",
         footerTagline: "Semantic SEO authority agency built on Koray Tuğberk Gübür's methodology.",
         noPromisesDisclaimer: "No ranking guarantees · No traffic promises · Methodology only",
         ctaFinalHeading: "Want this <em>methodology</em> applied to your site?",

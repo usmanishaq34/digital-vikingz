@@ -576,7 +576,7 @@ body {
                 </a>
               </li>
               <li>
-                <a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" style={{ fontFamily: "var(--body)", background: "#db4c23", color: "#fff", borderRadius: "5px", fontWeight: "700", fontSize: "13px", padding: "9px 20px", letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", marginLeft: "10px", display: "inline-block" }}>
+                <a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" style={{ fontFamily: "var(--body)", background: "#db4c23", color: "#fff", borderRadius: "5px", fontWeight: "700", fontSize: "13px", padding: "9px 20px", letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", marginLeft: "10px", display: "inline-block" }}>
                   Book Strategy Call
                 </a>
               </li>
@@ -797,7 +797,7 @@ body {
                   </a>
                 </li>
                 <li>
-                  <a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener">
+                  <a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener">
                     Book a Call
                   </a>
                 </li>

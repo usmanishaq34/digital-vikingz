@@ -95,7 +95,7 @@ export default function Page() {
 </li>
 <li><a id="link-audit" href="/the-audit" className="nav-link-item">The Audit</a></li>
 <li>
-<a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" style={{fontFamily: "'Inter',sans-serif", background: "#db4c23", color: "#fff", borderRadius: "5px", fontWeight: "700", fontSize: "13px", padding: "9px 20px", letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", marginLeft: "10px", display: "inline-block"}}>
+<a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" style={{fontFamily: "'Inter',sans-serif", background: "#db4c23", color: "#fff", borderRadius: "5px", fontWeight: "700", fontSize: "13px", padding: "9px 20px", letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", marginLeft: "10px", display: "inline-block"}}>
             Book Strategy Call
           </a>
 </li>
@@ -165,7 +165,7 @@ export default function Page() {
 <div className="hero-meta-line-item">Weekly cadence</div>
 <div className="hero-meta-line-item">Architecture-first</div>
 </div>
-<a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" className="btn btn-primary">Book a 30-Min Strategy Call <span className="btn-arrow"></span></a>
+<a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" className="btn btn-primary">Book a 30-Min Strategy Call <span className="btn-arrow"></span></a>
 </div>
 </header>
 
@@ -1210,7 +1210,7 @@ export default function Page() {
 <h2 className="h-display">Now you know <em>how the build runs.</em></h2>
 <p>If the operational structure above matches how you'd want a serious engagement to run — predictable, transparent, decision-driven, and honest about what works and what doesn't — the next step is a 30-minute call.</p>
 <div className="final-cta-ctas">
-<a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" className="btn btn-primary">Book a 30-Min Strategy Call <span className="btn-arrow"></span></a>
+<a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" className="btn btn-primary">Book a 30-Min Strategy Call <span className="btn-arrow"></span></a>
 <a href="https://digitalvikingz.com" className="btn btn-ghost">Return to Home <span className="btn-arrow"></span></a>
 </div>
 <div className="final-cta-note">Limited intake <span>·</span> 6 new client engagements per quarter <span>·</span> Maintained for delivery quality</div>
@@ -1252,7 +1252,7 @@ export default function Page() {
 <li><a href="/#rankings">Live Rankings</a></li>
 <li><a href="/#team">Team</a></li>
 <li><a href="/privacy-policy">Privacy Policy</a></li>
-<li><a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener">Book a Call</a></li>
+<li><a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener">Book a Call</a></li>
 </ul>
 </div>
 <div className="footer-col">

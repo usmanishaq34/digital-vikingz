@@ -265,7 +265,7 @@ export default function ClientPage() {
                 </a>
               </li>
               <li>
-                <a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" style={{ fontFamily: "'Inter',sans-serif", background: "#db4c23", color: "#fff", borderRadius: "5px", fontWeight: "700", fontSize: "13px", padding: "9px 20px", letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", marginLeft: "10px", display: "inline-block" }}>
+                <a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" style={{ fontFamily: "'Inter',sans-serif", background: "#db4c23", color: "#fff", borderRadius: "5px", fontWeight: "700", fontSize: "13px", padding: "9px 20px", letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", marginLeft: "10px", display: "inline-block" }}>
                   Book Strategy Call
                 </a>
               </li>
@@ -362,7 +362,7 @@ export default function ClientPage() {
             </div>
           </div>
           <div className="hero-ctas">
-            <a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" className="btn btn-primary">
+            <a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" className="btn btn-primary">
               Book Strategy Call
               <span className="btn-arrow"></span>
             </a>
@@ -944,7 +944,7 @@ export default function ClientPage() {
               <p>
                 Onboarding fee at kickoff (Phase 01) · monthly retainer thereafter (Phase 02+). Minimum 6-month engagement to allow citation outcomes to compound. Cycle review after month 06 for scope continuation.
               </p>
-              <a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" className="btn btn-primary">
+              <a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" className="btn btn-primary">
                 Book Strategy Call
                 <span className="btn-arrow"></span>
               </a>
@@ -1240,7 +1240,7 @@ export default function ClientPage() {
             AI search is reshaping how buyers discover. The agencies that engineered for it early are compounding citations. The ones that didn't are watching their organic traffic decline. Get on the right side of the shift.
           </p>
           <div className="final-cta-ctas">
-            <a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" className="btn btn-primary">
+            <a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" className="btn btn-primary">
               Book Strategy Call
               <span className="btn-arrow"></span>
             </a>
@@ -1366,7 +1366,7 @@ export default function ClientPage() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener">
+                  <a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener">
                     Book a Call
                   </a>
                 </li>

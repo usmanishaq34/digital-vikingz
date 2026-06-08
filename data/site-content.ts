@@ -13,8 +13,8 @@ export const siteConfig = {
 
   // Contact
   email: "workwithus@digitalvikingz.com",
-  calendlyUrl: "https://calendly.com/usmanishaqsemanticseospecialist/30min",
-  calendlyAuditUrl: "https://calendly.com/usmanishaqsemanticseospecialist/30min?audit=true",
+  calendlyUrl: "https://cal.com/digital-vikingz/30min?overlayCalendar=true",
+  calendlyAuditUrl: "https://cal.com/digital-vikingz/30min?overlayCalendar=true?audit=true",
 
   // Location
   location: "Bahawalpur",

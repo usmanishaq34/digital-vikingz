@@ -39,9 +39,8 @@ interface DbService {
 }
 
 // ──────────────────────────────────────────────────────────────────────
-// Calendly popup widget — lazy loader.
-// Loads Calendly's CSS + JS the first time a Calendly link is clicked,
-// then reuses the cached promise for all subsequent clicks.
+// Calendly popup widget — lazy loader (kept for backward compatibility
+// in case any link still points to calendly.com).
 // ──────────────────────────────────────────────────────────────────────
 let calendlyLoadPromise: Promise<void> | null = null;
 
@@ -49,13 +48,11 @@ const loadCalendlyAssets = (): Promise<void> => {
   if (calendlyLoadPromise) return calendlyLoadPromise;
 
   calendlyLoadPromise = new Promise<void>((resolve, reject) => {
-    // If somehow already on the page, resolve immediately.
     if ((window as any).Calendly) {
       resolve();
       return;
     }
 
-    // 1. Inject Calendly CSS (idempotent — checks for existing link first)
     const cssHref = 'https://assets.calendly.com/assets/external/widget.css';
     if (!document.querySelector(`link[href="${cssHref}"]`)) {
       const link = document.createElement('link');
@@ -64,13 +61,11 @@ const loadCalendlyAssets = (): Promise<void> => {
       document.head.appendChild(link);
     }
 
-    // 2. Inject Calendly JS
     const jsSrc = 'https://assets.calendly.com/assets/external/widget.js';
     const existingScript = document.querySelector<HTMLScriptElement>(
       `script[src="${jsSrc}"]`
     );
     if (existingScript) {
-      // Script tag exists — wait for it to be ready
       if ((window as any).Calendly) {
         resolve();
       } else {
@@ -85,7 +80,7 @@ const loadCalendlyAssets = (): Promise<void> => {
     script.async = true;
     script.onload = () => resolve();
     script.onerror = () => {
-      calendlyLoadPromise = null; // allow retry on next click
+      calendlyLoadPromise = null;
       reject(new Error('Calendly script failed to load'));
     };
     document.head.appendChild(script);
@@ -101,14 +96,99 @@ const openCalendlyPopup = (url: string) => {
       if (Calendly && typeof Calendly.initPopupWidget === 'function') {
         Calendly.initPopupWidget({ url });
       } else {
-        // Script loaded but Calendly object not found — fallback
         window.open(url, '_blank', 'noopener,noreferrer');
       }
     })
     .catch(() => {
-      // Network error or block — fall back to opening in a new tab
       window.open(url, '_blank', 'noopener,noreferrer');
     });
+};
+
+// ──────────────────────────────────────────────────────────────────────
+// Cal.com popup widget — primary booking integration.
+// Loads Cal.com's official embed script and opens the booking modal on
+// any click of a cal.com link. Falls back to a new tab on failure.
+// ──────────────────────────────────────────────────────────────────────
+let calInitialized = false;
+
+const initCalEmbed = () => {
+  if (calInitialized || typeof window === 'undefined') return;
+
+  try {
+    // Cal.com's official embed bootstrap snippet (sets up Cal() global + queues
+    // commands until embed.js loads).
+    (function (C: any, A: string, L: string) {
+      const p = function (a: any, ar: any) { a.q.push(ar); };
+      const d = C.document;
+      C.Cal = C.Cal || function () {
+        const cal = C.Cal;
+        const ar = arguments;
+        if (!cal.loaded) {
+          cal.ns = {};
+          cal.q = cal.q || [];
+          d.head.appendChild(d.createElement('script')).src = A;
+          cal.loaded = true;
+        }
+        if (ar[0] === L) {
+          const api = function () { p(api, arguments); };
+          const namespace = ar[1];
+          (api as any).q = (api as any).q || [];
+          if (typeof namespace === 'string') {
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar);
+            p(cal, ['initNamespace', namespace]);
+          } else {
+            p(cal, ar);
+          }
+          return;
+        }
+        p(cal, ar);
+      };
+    })(window, 'https://app.cal.com/embed/embed.js', 'init');
+
+    const Cal = (window as any).Cal;
+    Cal('init', { origin: 'https://cal.com' });
+
+    // Brand the modal — orange accent matches the site palette.
+    Cal('ui', {
+      styles: { branding: { brandColor: '#DB4C23' } },
+      hideEventTypeDetails: false,
+      layout: 'month_view',
+    });
+
+    calInitialized = true;
+  } catch {
+    // Silently fail — fallback (new tab) will handle.
+  }
+};
+
+const openCalPopup = (url: string) => {
+  let calLink = '';
+  try {
+    const u = new URL(url);
+    // pathname is "/digital-vikingz/30min" → strip leading slash
+    calLink = u.pathname.replace(/^\//, '');
+  } catch {
+    // invalid URL
+  }
+
+  if (!calLink) {
+    window.open(url, '_blank', 'noopener,noreferrer');
+    return;
+  }
+
+  initCalEmbed();
+
+  try {
+    const Cal = (window as any).Cal;
+    if (typeof Cal === 'function') {
+      Cal('modal', { calLink });
+    } else {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  } catch {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  }
 };
 
 export default function ClientFixes() {
@@ -237,15 +317,8 @@ export default function ClientFixes() {
     /**
      * Inject DB-driven services into the existing 3 tier columns of the
      * static nav dropdown. Runs after fetching from /api/public/services.
-     *
-     * Logic:
-     *  - Find each <ul> by locating a known static service slug inside it
-     *    (using `data-svc` attribute), then walking up to its <ul> parent.
-     *  - Append new services to the matching tier's <ul>.
-     *  - Skip if already injected (marker class).
      */
     const injectServicesIntoNav = (services: DbService[]) => {
-      // Find anchor static links and use them to identify each <ul>
       const findTierUl = (anchorSlug: string): HTMLUListElement | null => {
         const anchor = document.querySelector<HTMLAnchorElement>(`a.svc-link[data-svc="${anchorSlug}"]`);
         if (!anchor) return null;
@@ -257,28 +330,21 @@ export default function ClientFixes() {
       const scaleUl = findTierUl('semantic-content-production');
       const shieldUl = findTierUl('llm-ai-search-visibility');
 
-      // If nav not present on this page (e.g. PageShell-based pages), bail
       if (!claimUl && !scaleUl && !shieldUl) return;
 
-      // Filter out the 7 hardcoded slugs — only NEW services
       const extra = services.filter((s) => !STATIC_NAV_SLUGS.has(s.slug));
 
-      // Group by tier
       const byTier: Record<'CLAIM' | 'SHIELD' | 'SCALE', DbService[]> = {
         CLAIM: extra.filter((s) => s.tier === 'CLAIM'),
         SHIELD: extra.filter((s) => s.tier === 'SHIELD'),
         SCALE: extra.filter((s) => s.tier === 'SCALE'),
       };
 
-      // Inject helper
       const injectInto = (ul: HTMLUListElement | null, list: DbService[]) => {
         if (!ul) return;
 
-        // Remove previously injected items so we re-render fresh
         ul.querySelectorAll(`li.${INJECTED_CLASS}`).forEach((el) => el.remove());
 
-        // Find the LAST static <li> in this <ul> and remove its bottom border
-        // (so the new injected items become the new "last" with no border)
         const staticLis = Array.from(ul.querySelectorAll<HTMLLIElement>('li')).filter(
           (li) => !li.classList.contains(INJECTED_CLASS)
         );
@@ -290,7 +356,6 @@ export default function ClientFixes() {
           }
         }
 
-        // Append the new items
         list.forEach((svc, idx) => {
           const isLast = idx === list.length - 1;
           ul.appendChild(buildExtraServiceLink(svc, isLast));
@@ -304,7 +369,6 @@ export default function ClientFixes() {
 
     /**
      * Fetch published services from the public API and inject them.
-     * Runs once on mount; cached for the page lifetime.
      */
     const loadAndInjectServices = async () => {
       try {
@@ -337,10 +401,28 @@ export default function ClientFixes() {
       if (!targetEl) return;
 
       // ────────────────────────────────────────────────────────────────
-      // Calendly link interceptor — open as in-page popup.
-      // Lazy-loads Calendly's CSS + JS on first click, then uses
-      // initPopupWidget. Falls back to opening in a new tab if anything
-      // goes wrong (network block, CSP, etc).
+      // Cal.com link interceptor — primary booking integration.
+      // Catches clicks on links to cal.com and opens the Cal modal instead
+      // of navigating away.
+      // ────────────────────────────────────────────────────────────────
+      const linkEl = targetEl.closest<HTMLAnchorElement>('a[href]');
+      if (linkEl && linkEl.href) {
+        try {
+          const u = new URL(linkEl.href);
+          if (u.hostname === 'cal.com' || u.hostname === 'www.cal.com') {
+            event.preventDefault();
+            event.stopPropagation();
+            openCalPopup(linkEl.href);
+            return;
+          }
+        } catch {
+          // Invalid URL — ignore
+        }
+      }
+
+      // ────────────────────────────────────────────────────────────────
+      // Calendly link interceptor — fallback for any legacy links that
+      // still point to calendly.com.
       // ────────────────────────────────────────────────────────────────
       const calendlyLink = targetEl.closest<HTMLAnchorElement>('a[href*="calendly.com"]');
       if (calendlyLink) {
@@ -407,7 +489,7 @@ export default function ClientFixes() {
 
     normalizeLinks();
     setupFeedback();
-    loadAndInjectServices(); // ← fetch + inject DB services on every page load
+    loadAndInjectServices();
     document.addEventListener('click', onClickCapture, true);
     const mo = new MutationObserver(() => { normalizeLinks(); setupFeedback(); });
     mo.observe(document.body, { childList: true, subtree: true });
