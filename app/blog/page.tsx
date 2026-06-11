@@ -593,7 +593,7 @@ body {
         <div className="dv-blog-wrap">
           <header className="dv-blog-hero">
             <span className="dv-blog-label">
-              Insights
+              Blogs
             </span>
             <h1 className="dv-blog-h1">
               Methodology,
@@ -687,7 +687,7 @@ body {
         <div className="wrap">
           <div className="footer-grid">
             <div className="footer-brand">
-              <a href="/">
+              <a href="https://digitalvikingz.com">
                 <img src="/images/logo.png" alt="Digital Vikingz" className="logo-mark" style={{ height: "36px", width: "auto", filter: "brightness(1.2)" }} />
                 <span className="logo-text" style={{ fontFamily: "var(--display)", fontSize: "22px", fontWeight: "600", color: "#fff", letterSpacing: "-0.02em" }}>
                   Digital Vikingz
