@@ -12,6 +12,9 @@ export const metadata: Metadata = {
     template: '%s | Digital Vikingz',
   },
   description: 'Digital Vikingz is a semantic SEO authority agency. We architect topical authority, AI search visibility, and pipeline attribution for businesses claiming category ownership.',
+  verification: {
+    google: 'DnaxiW3hERr_y8er0a1ZFBu9GZcjO1SyPCxS78LlqoE',
+  },
   icons: { icon: '/images/icon.png' },
 };
 
@@ -19,6 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
