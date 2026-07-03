@@ -183,6 +183,17 @@ const openCalPopup = (url: string) => {
     const Cal = (window as any).Cal;
     if (typeof Cal === 'function') {
       Cal('modal', { calLink });
+
+      // Guaranteed fallback: if the modal hasn't rendered within 1.5s
+      // (embed.js blocked or failed to load), open in a new tab instead.
+      setTimeout(() => {
+        const modal = document.querySelector(
+          'cal-modal-box, [data-cal-namespace] iframe, iframe[src*="cal.com"]'
+        );
+        if (!modal) {
+          window.open(url, '_blank', 'noopener,noreferrer');
+        }
+      }, 1500);
     } else {
       window.open(url, '_blank', 'noopener,noreferrer');
     }
@@ -486,6 +497,10 @@ export default function ClientFixes() {
         }
       }
     };
+
+    // Pre-load the Cal.com embed script on page load so the modal is
+    // ready before the first booking click (instead of loading on click).
+    initCalEmbed();
 
     normalizeLinks();
     setupFeedback();
