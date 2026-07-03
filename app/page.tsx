@@ -90,7 +90,7 @@ export default function Page() {
 </li>
 <li><a id="link-audit" href="/the-audit" className="nav-link-item">The Audit</a></li>
 <li>
-<a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" style={{fontFamily: "'Inter',sans-serif", background: "#db4c23", color: "#fff", borderRadius: "5px", fontWeight: "700", fontSize: "13px", padding: "9px 20px", letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", marginLeft: "10px", display: "inline-block"}}>
+<a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" style={{fontFamily: "'Inter',sans-serif", background: "#db4c23", color: "#fff", borderRadius: "5px", fontWeight: "700", fontSize: "13px", padding: "9px 20px", letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", marginLeft: "10px", display: "inline-block"}}>
             Book Strategy Call
           </a>
 </li>
@@ -117,7 +117,7 @@ export default function Page() {
 <strong>Digital Vikingz</strong> builds the entity infrastructure that ranks in Google and gets cited by ChatGPT, Perplexity, Claude, and AI Overviews. We engineer <strong>structural authority</strong> — using Koray Tuğberk Gübür's semantic SEO methodology proven across <strong>200+ projects in 40+ industries.</strong>
 </p>
 <div className="hero-ctas reveal reveal-delay-3">
-<a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" className="btn btn-primary">Book a 30-Min Strategy Call <span className="btn-arrow"></span></a>
+<a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" className="btn btn-primary">Book a 30-Min Strategy Call <span className="btn-arrow"></span></a>
 <a href="/operating-manual" className="btn btn-ghost">See the Methodology <span className="btn-arrow"></span></a>
 </div>
 </div>
@@ -2042,7 +2042,7 @@ export default function Page() {
 <h2 className="h-display">Stop chasing keywords. Start <em>claiming the topic.</em></h2>
 <p>The audit is the structured entry point. <strong>Fixed scope, written deliverable, zero commitment</strong> to longer engagement. If the methodology fits your business, we move forward. If it doesn't, you leave with a roadmap your team can execute.</p>
 <div className="final-cta-ctas">
-<a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" className="btn btn-primary">Book a 30-Min Strategy Call <span className="btn-arrow"></span></a>
+<a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" className="btn btn-primary">Book a 30-Min Strategy Call <span className="btn-arrow"></span></a>
 <a href="#methodology" className="btn btn-ghost">Review the Methodology <span className="btn-arrow"></span></a>
 </div>
 <div className="final-cta-note">Limited intake <span>·</span> 6 new client engagements per quarter <span>·</span> Maintained for delivery quality</div>
@@ -2084,7 +2084,7 @@ export default function Page() {
 <li><a href="#rankings">Live Rankings</a></li>
 <li><a href="#team">Team</a></li>
 <li><a href="/privacy-policy">Privacy Policy</a></li>
-<li><a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener">Book a Call</a></li>
+<li><a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener">Book a Call</a></li>
 </ul>
 </div>
 <div className="footer-col">

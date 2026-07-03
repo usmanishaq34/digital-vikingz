@@ -467,7 +467,7 @@ export default function Page() {
                 </a>
               </li>
               <li>
-                <a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" style={{ fontFamily: "'Inter',sans-serif", background: "#db4c23", color: "#fff", borderRadius: "5px", fontWeight: "700", fontSize: "13px", padding: "9px 20px", letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", marginLeft: "10px", display: "inline-block" }}>
+                <a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" style={{ fontFamily: "'Inter',sans-serif", background: "#db4c23", color: "#fff", borderRadius: "5px", fontWeight: "700", fontSize: "13px", padding: "9px 20px", letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", marginLeft: "10px", display: "inline-block" }}>
                   Book Strategy Call
                 </a>
               </li>
@@ -508,7 +508,7 @@ export default function Page() {
               <p>
                 Best starting point for most engagements. 30 minutes. We discuss your category, current authority architecture, and whether the methodology fits. No pitch deck — just methodology fit assessment.
               </p>
-              <a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" className="dv-contact-card-btn">
+              <a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" className="dv-contact-card-btn">
                 Book Strategy Call →
               </a>
             </div>
@@ -523,7 +523,7 @@ export default function Page() {
               <p>
                 If you want a productized $3,500 diagnostic of your site's entity layer before committing to longer engagements, book the audit intake call instead. Same calendar — different scope.
               </p>
-              <a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true?audit=true" target="_blank" rel="noopener" className="dv-contact-card-btn ghost">
+              <a href="https://calendly.com/usmanishaqsemanticseospecialist/30min?audit=true" target="_blank" rel="noopener" className="dv-contact-card-btn ghost">
                 Book Audit Intake →
               </a>
             </div>
@@ -755,7 +755,7 @@ export default function Page() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener">
+                  <a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener">
                     Book a Call
                   </a>
                 </li>

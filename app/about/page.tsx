@@ -1355,7 +1355,7 @@ export default function Page() {
                 <a id="link-audit" href="/the-audit" className="nav-link-item">The Audit</a>
               </li>
               <li>
-                <a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" style={{ fontFamily: "'Inter',sans-serif", background: "#db4c23", color: "#fff", borderRadius: "5px", fontWeight: "700", fontSize: "13px", padding: "9px 20px", letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", marginLeft: "10px", display: "inline-block" }}>Book Strategy Call</a>
+                <a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" style={{ fontFamily: "'Inter',sans-serif", background: "#db4c23", color: "#fff", borderRadius: "5px", fontWeight: "700", fontSize: "13px", padding: "9px 20px", letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", marginLeft: "10px", display: "inline-block" }}>Book Strategy Call</a>
               </li>
             </ul>
             <button id="menuBtn" style={{ display: "none", cursor: "pointer", background: "none", border: "1px solid #ddd", fontFamily: "'Inter',sans-serif", fontSize: "14px", padding: "7px 16px", borderRadius: "6px", fontWeight: "500", color: "#333" }}>Menu</button>
@@ -1383,7 +1383,7 @@ export default function Page() {
             <div className="hero-meta-cell"><span className="hero-meta-label">Regions</span><span className="hero-meta-value">5 <em>continents</em></span></div>
           </div>
           <div className="hero-ctas">
-            <a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" className="btn btn-primary">Book Strategy Call <span className="btn-arrow"></span></a>
+            <a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" className="btn btn-primary">Book Strategy Call <span className="btn-arrow"></span></a>
             <a href="#founder" className="btn btn-ghost">Read the Founder Bio <span className="btn-arrow"></span></a>
           </div>
         </div>
@@ -1781,7 +1781,7 @@ export default function Page() {
           <h2 className="h-display">Work with the practitioner, <em>not the agency.</em></h2>
           <p>Most agencies sell methodology they don't actually own. The strategy call goes directly to the founder — not an SDR, not an account manager. If we're right fit, you'll know in 30 minutes. If we're not, I'll tell you who is.</p>
           <div className="final-cta-ctas">
-            <a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" className="btn btn-primary">Book Strategy Call <span className="btn-arrow"></span></a>
+            <a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" className="btn btn-primary">Book Strategy Call <span className="btn-arrow"></span></a>
             <a href="/the-audit" className="btn btn-ghost">Or Start with the Audit <span className="btn-arrow"></span></a>
           </div>
         </div>
@@ -1822,7 +1822,7 @@ export default function Page() {
                 <li><a href="/#rankings">Live Rankings</a></li>
                 <li><a href="/#team">Team</a></li>
                 <li><a href="/privacy-policy">Privacy Policy</a></li>
-                <li><a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener">Book a Call</a></li>
+                <li><a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener">Book a Call</a></li>
               </ul>
             </div>
             <div className="footer-col">

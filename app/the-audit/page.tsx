@@ -89,7 +89,7 @@ export default function Page() {
 </li>
 <li><a id="link-audit" href="/the-audit" className="nav-link-item">The Audit</a></li>
 <li>
-<a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" style={{fontFamily: "'Inter',sans-serif", background: "#db4c23", color: "#fff", borderRadius: "5px", fontWeight: "700", fontSize: "13px", padding: "9px 20px", letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", marginLeft: "10px", display: "inline-block"}}>
+<a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" style={{fontFamily: "'Inter',sans-serif", background: "#db4c23", color: "#fff", borderRadius: "5px", fontWeight: "700", fontSize: "13px", padding: "9px 20px", letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", marginLeft: "10px", display: "inline-block"}}>
             Book Strategy Call
           </a>
 </li>
@@ -134,7 +134,7 @@ export default function Page() {
 </div>
 </div>
 <div className="hero-ctas">
-<a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true?audit=true" target="_blank" rel="noopener" className="btn btn-primary">Book Audit Intake Call <span className="btn-arrow"></span></a>
+<a href="https://calendly.com/usmanishaqsemanticseospecialist/30min?audit=true" target="_blank" rel="noopener" className="btn btn-primary">Book Audit Intake Call <span className="btn-arrow"></span></a>
 <a href="#scope" className="btn btn-ghost">See What's Inside <span className="btn-arrow"></span></a>
 </div>
 </div>
@@ -550,7 +550,7 @@ export default function Page() {
 <span className="pricing-amount-suffix">USD</span>
 </div>
 <p>Single payment · invoiced at kickoff · 50% upfront / 50% on deliverable · USD wire or Wise. Audit fee <strong>credited toward architecture engagement</strong> if started within 60 days of deliverable.</p>
-<a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true?audit=true" target="_blank" rel="noopener" className="btn btn-primary">Book Audit Intake Call <span className="btn-arrow"></span></a>
+<a href="https://calendly.com/usmanishaqsemanticseospecialist/30min?audit=true" target="_blank" rel="noopener" className="btn btn-primary">Book Audit Intake Call <span className="btn-arrow"></span></a>
 </div>
 <div className="pricing-included">
 <span className="pricing-included-label">What's Included</span>
@@ -677,7 +677,7 @@ export default function Page() {
 <h2 className="h-display">Diagnose what's actually <em>broken.</em></h2>
 <p>The audit is the lowest-commitment path to working with Digital Vikingz. You receive a structurally complete diagnostic of your site's authority infrastructure — yours to keep regardless of what you decide next.</p>
 <div className="final-cta-ctas">
-<a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true?audit=true" target="_blank" rel="noopener" className="btn btn-primary">Book Audit Intake Call <span className="btn-arrow"></span></a>
+<a href="https://calendly.com/usmanishaqsemanticseospecialist/30min?audit=true" target="_blank" rel="noopener" className="btn btn-primary">Book Audit Intake Call <span className="btn-arrow"></span></a>
 <a href="/build-process" className="btn btn-ghost">Or See the Full Build Process <span className="btn-arrow"></span></a>
 </div>
 <div className="final-cta-note">Limited intake <span>·</span> 4 audits per month <span>·</span> Maintained for delivery quality</div>
@@ -720,7 +720,7 @@ export default function Page() {
 <li><a href="/#rankings">Live Rankings</a></li>
 <li><a href="/#team">Team</a></li>
 <li><a href="/privacy-policy">Privacy Policy</a></li>
-<li><a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener">Book a Call</a></li>
+<li><a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener">Book a Call</a></li>
 </ul>
 </div>
 <div className="footer-col">

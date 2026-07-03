@@ -89,7 +89,7 @@ export default function Page() {
 </li>
 <li><a id="link-audit" href="/the-audit" className="nav-link-item">The Audit</a></li>
 <li>
-<a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" style={{fontFamily: "'Inter',sans-serif", background: "#db4c23", color: "#fff", borderRadius: "5px", fontWeight: "700", fontSize: "13px", padding: "9px 20px", letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", marginLeft: "10px", display: "inline-block"}}>
+<a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" style={{fontFamily: "'Inter',sans-serif", background: "#db4c23", color: "#fff", borderRadius: "5px", fontWeight: "700", fontSize: "13px", padding: "9px 20px", letterSpacing: "0.07em", textTransform: "uppercase", textDecoration: "none", marginLeft: "10px", display: "inline-block"}}>
             Book Strategy Call
           </a>
 </li>
@@ -149,7 +149,7 @@ export default function Page() {
 <p className="hero-sub">
       Semantic SEO is one discipline. <strong>Its application changes shape across industries.</strong> Buyer queries, entity hierarchies, predicate vocabularies, regulatory constraints, and compounding patterns shift dramatically between SaaS and healthcare, between e-commerce and finance. This page documents how the discipline adapts — six verticals, four operational layers each.
     </p>
-<a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" className="btn btn-primary">Book a 30-Min Strategy Call <span className="btn-arrow"></span></a>
+<a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" className="btn btn-primary">Book a 30-Min Strategy Call <span className="btn-arrow"></span></a>
 </div>
 </header>
 
@@ -330,7 +330,7 @@ export default function Page() {
 <span className="vc-state-block vc-state-pattern">Pattern mode · <strong>buyer behavior signatures</strong> · scroll into deep-dive sections below for full playbooks</span>
 <span className="vc-state-block vc-state-outcome">Outcome mode · <strong>representative engagement results</strong> · talk to a recent client to verify</span>
 </span>
-<a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" className="vc-foot-cta">Map your vertical →</a>
+<a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" className="vc-foot-cta">Map your vertical →</a>
 </div>
 </div>
 </div>
@@ -878,7 +878,7 @@ export default function Page() {
 <h2 className="h-display">Your vertical, <em>mapped honestly.</em></h2>
 <p>If your category is in the playbooks above — or in the adjacent verticals — the next step is a 30-minute call where we walk through how the methodology specifically applies to your entity, your buyer pattern, and your information gain opportunities.</p>
 <div className="final-cta-ctas">
-<a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener" className="btn btn-primary">Book a 30-Min Strategy Call <span className="btn-arrow"></span></a>
+<a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" className="btn btn-primary">Book a 30-Min Strategy Call <span className="btn-arrow"></span></a>
 <a href="/operating-manual" className="btn btn-ghost">See the Methodology <span className="btn-arrow"></span></a>
 </div>
 <div className="final-cta-note">Limited intake <span>·</span> 6 new client engagements per quarter <span>·</span> Maintained for delivery quality</div>
@@ -920,7 +920,7 @@ export default function Page() {
 <li><a href="/#rankings">Live Rankings</a></li>
 <li><a href="/#team">Team</a></li>
 <li><a href="/privacy-policy">Privacy Policy</a></li>
-<li><a href="https://cal.com/digital-vikingz/30min?overlayCalendar=true" target="_blank" rel="noopener">Book a Call</a></li>
+<li><a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener">Book a Call</a></li>
 </ul>
 </div>
 <div className="footer-col">
