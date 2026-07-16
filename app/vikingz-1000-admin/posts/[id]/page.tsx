@@ -4,9 +4,10 @@ import { prisma } from "@/lib/db"
 import PostEditorForm from "@/components/admin/PostEditorForm"
 
 export default async function AdminPostEditor({ params }: { params: { id: string } }) {
-  const [post, categories] = await Promise.all([
+  const [post, categories, authors] = await Promise.all([
     prisma.post.findUnique({ where: { id: params.id } }).catch(() => null),
     prisma.category.findMany().catch(() => []),
+    prisma.author.findMany({ orderBy: { name: "asc" } }).catch(() => []),
   ])
   if (!post) notFound()
 
@@ -19,7 +20,7 @@ export default async function AdminPostEditor({ params }: { params: { id: string
         <h1 className="h2-display italic-accent">Edit <em>post.</em></h1>
       </header>
 
-      <PostEditorForm post={post} categories={categories} />
+      <PostEditorForm post={post} categories={categories} authors={authors} />
     </div>
   )
 }

@@ -3,7 +3,10 @@ import { prisma } from "@/lib/db"
 import PostEditorForm from "@/components/admin/PostEditorForm"
 
 export default async function AdminNewPost() {
-  const categories = await prisma.category.findMany().catch(() => [])
+  const [categories, authors] = await Promise.all([
+    prisma.category.findMany().catch(() => []),
+    prisma.author.findMany({ orderBy: { name: "asc" } }).catch(() => []),
+  ])
 
   const emptyPost = {
     id: "",
@@ -17,6 +20,7 @@ export default async function AdminNewPost() {
     featuredImageCaption: null,
     tags: [],
     categoryId: null,
+    postAuthorId: null,
     authorId: "",
     seoTitle: null,
     seoDescription: null,
@@ -49,7 +53,7 @@ export default async function AdminNewPost() {
         <p className="text-base text-ink-2 mt-2">Write a new blog post. Save as draft or publish immediately.</p>
       </header>
 
-      <PostEditorForm post={emptyPost as any} categories={categories} isNew />
+      <PostEditorForm post={emptyPost as any} categories={categories} authors={authors} isNew />
     </div>
   )
 }

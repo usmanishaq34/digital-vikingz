@@ -1,80 +1,34 @@
-import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import PageShell from "@/components/marketing/PageShell"
 import { prisma } from "@/lib/db"
+import { auth } from "@/lib/auth"
 import { siteConfig } from "@/data/site-content"
 
 interface PageProps {
-  params: { slug: string }
+  params: { id: string }
 }
 
-export const revalidate = 60
+// Never cache a preview — always show the latest saved draft.
+export const dynamic = "force-dynamic"
 
 function slugifyCat(name: string) {
   return name.toLowerCase().replace(/\s+/g, "-")
 }
 
-async function fetchPost(slug: string) {
-  return prisma.post
+export default async function PreviewPostPage({ params }: PageProps) {
+  // Only logged-in admins can preview drafts.
+  const session = await auth()
+  if (!session) notFound()
+
+  const post = await prisma.post
     .findUnique({
-      where: { slug },
+      where: { id: params.id },
       include: { category: true, postAuthor: true },
     })
     .catch(() => null)
-}
 
-export async function generateStaticParams() {
-  try {
-    const posts = await prisma.post.findMany({
-      where: { published: true },
-      select: { slug: true },
-    })
-    return posts.map((p) => ({ slug: p.slug }))
-  } catch {
-    return []
-  }
-}
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const post = await fetchPost(params.slug)
-  if (!post) return { title: "Post Not Found" }
-  return {
-    title: post.seoTitle || post.title,
-    description: post.seoDescription || post.excerpt,
-    robots: { index: !post.noindex, follow: !post.nofollow },
-    alternates: post.canonicalUrl ? { canonical: post.canonicalUrl } : undefined,
-    openGraph: {
-      title: post.ogTitle ?? post.seoTitle ?? post.title,
-      description: post.ogDescription ?? post.seoDescription ?? post.excerpt,
-      images: post.ogImage ? [post.ogImage] : undefined,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: post.twitterTitle ?? post.ogTitle ?? post.title,
-      description: post.twitterDescription ?? post.ogDescription ?? post.seoDescription ?? post.excerpt,
-      images: post.twitterImage ? [post.twitterImage] : undefined,
-    },
-  }
-}
-
-export default async function SinglePostPage({ params }: PageProps) {
-  const post = await fetchPost(params.slug)
-  if (!post || !post.published) notFound()
-
-  // Related posts: same category, excluding current, max 3
-  const relatedPosts = await prisma.post
-    .findMany({
-      where: {
-        published: true,
-        slug: { not: params.slug },
-        categoryId: post.categoryId ?? undefined,
-      },
-      include: { category: true },
-      orderBy: { publishedAt: "desc" },
-      take: 3,
-    })
-    .catch(() => [])
+  if (!post) notFound()
 
   const categoryName = post.category?.name ?? "Methodology"
   const categorySlug = post.category?.slug ?? slugifyCat(categoryName)
@@ -82,9 +36,38 @@ export default async function SinglePostPage({ params }: PageProps) {
     | { name: string; title: string | null; bio: string | null; photoUrl: string | null }
     | null
 
+  const statusLabel =
+    (post as any).status === "published" || post.published
+      ? "PUBLISHED"
+      : (post as any).status === "scheduled"
+      ? "SCHEDULED"
+      : "DRAFT"
+
   return (
     <PageShell>
-      <article className="pt-40 pb-24 px-8 bg-bg">
+      {/* Preview banner — only admins see this */}
+      <div
+        style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 100,
+          background: "#0a0a0a",
+          color: "#fff",
+        }}
+        className="px-6 py-3 flex items-center justify-between gap-4 flex-wrap"
+      >
+        <span className="font-mono text-[11px] uppercase tracking-widest">
+          👁 Preview — status: <span style={{ color: "#db4c23" }}>{statusLabel}</span> · not indexed by search engines
+        </span>
+        <Link
+          href={`/vikingz-1000-admin/posts/${post.id}`}
+          className="font-mono text-[11px] uppercase tracking-widest underline hover:text-accent"
+        >
+          ← Back to editor
+        </Link>
+      </div>
+
+      <article className="pt-16 pb-24 px-8 bg-bg">
         <div className="max-w-prose mx-auto">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-3 mb-9 font-mono text-[11px] uppercase tracking-widest text-ink-muted font-semibold flex-wrap">
@@ -92,14 +75,12 @@ export default async function SinglePostPage({ params }: PageProps) {
             <span className="text-accent">/</span>
             <Link href="/blog" className="text-ink-muted hover:text-accent transition-colors">Insights</Link>
             <span className="text-accent">/</span>
-            <span>{post.title.slice(0, 40)}{post.title.length > 40 ? "â€¦" : ""}</span>
+            <span>{post.title.slice(0, 40)}{post.title.length > 40 ? "…" : ""}</span>
           </nav>
 
           {/* Meta */}
           <div className="flex items-center gap-3 mb-7 font-mono text-[11px] uppercase tracking-widest font-bold text-ink-muted flex-wrap">
-            <Link href={`/blog/category/${categorySlug}`} className="text-accent hover:underline">
-              {categoryName}
-            </Link>
+            <span className="text-accent">{categoryName}</span>
             <span className="w-1 h-1 rounded-full bg-line-strong" />
             <span>{new Date(post.publishedAt ?? post.createdAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</span>
             {post.readingTimeMinutes ? (
@@ -126,7 +107,7 @@ export default async function SinglePostPage({ params }: PageProps) {
             />
           )}
 
-          {/* Content with drop cap on first paragraph */}
+          {/* Content */}
           <div
             className="post-content prose-content"
             dangerouslySetInnerHTML={{ __html: post.content }}
@@ -136,7 +117,7 @@ export default async function SinglePostPage({ params }: PageProps) {
           {post.tags.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-12 mb-12">
               {post.tags.map((tag) => (
-                <span key={tag} className="font-mono text-[10px] uppercase tracking-wider font-bold px-3 py-1.5 border border-line text-ink-2 hover:border-accent hover:text-accent transition-colors">
+                <span key={tag} className="font-mono text-[10px] uppercase tracking-wider font-bold px-3 py-1.5 border border-line text-ink-2">
                   #{tag}
                 </span>
               ))}
@@ -175,50 +156,14 @@ export default async function SinglePostPage({ params }: PageProps) {
               Want this <em>methodology</em> applied to your site?
             </h3>
             <p className="text-sm text-ink-2 leading-relaxed mb-5">
-              Book a 30-minute strategy call. No pitch deck â€” methodology fit assessment, scope direction, and honest answers about whether we&apos;re the right partner.
+              Book a 30-minute strategy call. No pitch deck — methodology fit assessment, scope direction, and honest answers about whether we&apos;re the right partner.
             </p>
             <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-primary">
-              Book Strategy Call â†’
+              Book Strategy Call →
             </a>
           </div>
         </div>
       </article>
-
-      {/* Related Posts */}
-      {relatedPosts.length > 0 && (
-        <section className="py-20 px-8 bg-bg-2 border-t border-line">
-          <div className="max-w-content mx-auto">
-            <h3 className="h2-display italic-accent mb-12" style={{ fontSize: "clamp(24px, 3vw, 32px)" }}>
-              More <em>methodology essays</em>
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {relatedPosts.map((rp) => (
-                <Link
-                  key={rp.id}
-                  href={`/blog/${rp.slug}`}
-                  className="group flex flex-col bg-bg border border-line hover:border-accent transition-all hover:-translate-y-1 hover:shadow-xl no-underline overflow-hidden"
-                >
-                  <div className="aspect-[16/9] bg-gradient-to-br from-bg-3 to-bg-2 flex items-center justify-center">
-                    {rp.featuredImage ? (
-                      <img src={rp.featuredImage} alt={rp.featuredImageAlt ?? rp.title} className="w-full h-full object-cover" />
-                    ) : (
-                      <span className="font-display italic font-light text-5xl text-accent" style={{ fontVariationSettings: '"SOFT" 100, "opsz" 144' }}>
-                        {rp.title.charAt(0).toUpperCase()}
-                      </span>
-                    )}
-                  </div>
-                  <div className="p-6 flex flex-col gap-3">
-                    <span className="font-mono text-[10px] uppercase tracking-widest font-bold text-accent">{rp.category?.name ?? "Methodology"}</span>
-                    <h4 className="font-display text-lg font-medium leading-tight italic-accent group-hover:text-accent transition-colors">
-                      {rp.title}
-                    </h4>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       <style>{`
         .post-content {
@@ -249,11 +194,7 @@ export default async function SinglePostPage({ params }: PageProps) {
           padding-top: 32px;
           border-top: 1px solid var(--line);
         }
-        .post-content h2 em {
-          font-style: italic;
-          color: var(--accent);
-          font-variation-settings: "SOFT" 100, "opsz" 144;
-        }
+        .post-content h2 em { font-style: italic; color: var(--accent); font-variation-settings: "SOFT" 100, "opsz" 144; }
         .post-content h3 {
           font-family: var(--font-display);
           font-weight: 500;
@@ -262,11 +203,7 @@ export default async function SinglePostPage({ params }: PageProps) {
           color: var(--text);
           margin: 40px 0 16px 0;
         }
-        .post-content h3 em {
-          font-style: italic;
-          color: var(--accent);
-          font-variation-settings: "SOFT" 100, "opsz" 144;
-        }
+        .post-content h3 em { font-style: italic; color: var(--accent); font-variation-settings: "SOFT" 100, "opsz" 144; }
         .post-content strong { color: var(--accent); font-weight: 600; }
         .post-content ul, .post-content ol { margin: 0 0 24px 24px; }
         .post-content li { margin-bottom: 10px; }
@@ -283,7 +220,6 @@ export default async function SinglePostPage({ params }: PageProps) {
           font-variation-settings: "SOFT" 100, "opsz" 144;
         }
         .post-content blockquote p { margin: 0; }
-        /* Images */
         .post-content img {
           display: block;
           max-width: 100%;
@@ -298,7 +234,6 @@ export default async function SinglePostPage({ params }: PageProps) {
         .post-content img[data-size="full"] { max-width: 100%; }
         .post-content a { color: var(--accent); text-decoration: underline; }
         .post-content code { background: var(--bg-2); padding: 2px 6px; font-family: var(--font-mono); font-size: 0.9em; border-radius: 2px; }
-        /* Tables */
         .post-content table {
           width: 100%;
           border-collapse: collapse;
@@ -311,11 +246,7 @@ export default async function SinglePostPage({ params }: PageProps) {
           text-align: left;
           vertical-align: top;
         }
-        .post-content th {
-          background: var(--bg-2);
-          font-weight: 600;
-          color: var(--text);
-        }
+        .post-content th { background: var(--bg-2); font-weight: 600; color: var(--text); }
         .post-content tr:nth-child(even) td { background: var(--bg-2); }
       `}</style>
     </PageShell>

@@ -3,7 +3,7 @@
 import { useState, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
-import type { Post, Category } from "@prisma/client"
+import type { Post, Category, Author } from "@prisma/client"
 import { slugify } from "@/lib/slugify"
 import FormField from "./FormField"
 import SeoFieldsPanel, { type SeoFields } from "./SeoFieldsPanel"
@@ -16,10 +16,12 @@ import { premiumToast } from "./premiumToast"
 export default function PostEditorForm({
   post,
   categories,
+  authors = [],
   isNew = false,
 }: {
   post: Post
   categories: Category[]
+  authors?: Author[]
   isNew?: boolean
 }) {
   const router = useRouter()
@@ -35,6 +37,7 @@ export default function PostEditorForm({
     excerpt: post.excerpt,
     content: post.content,
     categoryId: post.categoryId,
+    postAuthorId: (post as any).postAuthorId ?? "",
     tags: post.tags.join(", "),
     featuredImage: post.featuredImage ?? "",
     featuredImageAlt: post.featuredImageAlt ?? "",
@@ -95,6 +98,7 @@ export default function PostEditorForm({
       const isPublished = form.status === "published"
       const payload = {
         ...form,
+        postAuthorId: form.postAuthorId || null,
         published: isPublished,
         tags: form.tags.split(",").map((t) => t.trim()).filter(Boolean),
         publishedAt:
@@ -215,7 +219,7 @@ export default function PostEditorForm({
           />
         </FormField>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           <FormField label="Category">
             <select
               value={form.categoryId ?? ""}
@@ -225,6 +229,19 @@ export default function PostEditorForm({
               <option value="">— No category —</option>
               {categories.map((c) => (
                 <option key={c.id} value={c.id}>{c.name}</option>
+              ))}
+            </select>
+          </FormField>
+
+          <FormField label="Author" hint="Byline shown on the post.">
+            <select
+              value={form.postAuthorId ?? ""}
+              onChange={(e) => set("postAuthorId", e.target.value)}
+              className="form-input"
+            >
+              <option value="">— No author —</option>
+              {authors.map((a) => (
+                <option key={a.id} value={a.id}>{a.name}</option>
               ))}
             </select>
           </FormField>
@@ -268,7 +285,7 @@ export default function PostEditorForm({
         <FormField
           label="Content"
           required
-          hint="Use the toolbar — H2/H3/H4, lists, links, images, undo. Click </> HTML to edit raw."
+          hint="Use the toolbar — H2/H3/H4, lists, links, images, tables, undo. Click </> HTML to edit raw."
         >
           <RichTextEditor
             value={form.content}
@@ -300,15 +317,27 @@ export default function PostEditorForm({
               `Goes live ${new Date(form.scheduledFor).toLocaleString()}`}
             {form.status === "published" && "Visible on site"}
           </span>
-          <button type="submit" disabled={saving} className="btn-primary disabled:opacity-60">
-            {saving
-              ? "Saving..."
-              : form.status === "scheduled"
-              ? "Schedule post →"
-              : form.status === "published"
-              ? (isNew ? "Publish post →" : "Update post →")
-              : "Save draft →"}
-          </button>
+          <div className="flex items-center gap-3">
+            {!isNew && post.id && (
+              <button
+                type="button"
+                onClick={() => window.open(`/preview/${post.id}`, "_blank")}
+                className="btn-ghost"
+                title="Open a live preview of the current saved version in a new tab"
+              >
+                👁 Preview
+              </button>
+            )}
+            <button type="submit" disabled={saving} className="btn-primary disabled:opacity-60">
+              {saving
+                ? "Saving..."
+                : form.status === "scheduled"
+                ? "Schedule post →"
+                : form.status === "published"
+                ? (isNew ? "Publish post →" : "Update post →")
+                : "Save draft →"}
+            </button>
+          </div>
         </div>
       </div>
 

@@ -8,6 +8,7 @@ const navItems = [
   { href: "/vikingz-1000-admin", label: "Dashboard" },
   { href: "/vikingz-1000-admin/pages", label: "Pages" },
   { href: "/vikingz-1000-admin/posts", label: "Posts" },
+  { href: "/vikingz-1000-admin/authors", label: "Authors" },
   { href: "/vikingz-1000-admin/services", label: "Services" },
   { href: "/vikingz-1000-admin/settings", label: "Settings" },
   { href: "/vikingz-1000-admin/media", label: "Media" },

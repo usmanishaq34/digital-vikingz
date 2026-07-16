@@ -7,6 +7,10 @@ import Link from "@tiptap/extension-link"
 import Placeholder from "@tiptap/extension-placeholder"
 import TextStyle from "@tiptap/extension-text-style"
 import Color from "@tiptap/extension-color"
+import Table from "@tiptap/extension-table"
+import TableRow from "@tiptap/extension-table-row"
+import TableHeader from "@tiptap/extension-table-header"
+import TableCell from "@tiptap/extension-table-cell"
 import { useEffect, useRef, useState } from "react"
 import { toast } from "sonner"
 
@@ -173,6 +177,10 @@ export default function RichTextEditor({ value, onChange, placeholder }: Props) 
       ResizableImage,
       TextStyle,
       Color,
+      Table.configure({ resizable: true }),
+      TableRow,
+      TableHeader,
+      TableCell,
       Placeholder.configure({ placeholder: placeholder ?? "Start writing..." }),
     ],
     content: value || "",
@@ -327,6 +335,14 @@ export default function RichTextEditor({ value, onChange, placeholder }: Props) 
         .ProseMirror hr { border: none; border-top: 1px solid rgba(10, 10, 10, 0.22); margin: 2em 0; }
         .ProseMirror a { color: #db4c23; text-decoration: underline; }
         .ProseMirror p.is-editor-empty:first-child::before { color: #9b9b95; content: attr(data-placeholder); float: left; height: 0; pointer-events: none; }
+
+        /* Tables inside the editor */
+        .ProseMirror table { border-collapse: collapse; width: 100%; margin: 1em 0; overflow: hidden; table-layout: fixed; }
+        .ProseMirror table td, .ProseMirror table th { border: 1px solid #cbcbc5; padding: 8px 10px; vertical-align: top; position: relative; min-width: 1em; }
+        .ProseMirror table th { background: #f3f1ec; font-weight: 600; text-align: left; }
+        .ProseMirror table .selectedCell:after { content: ""; position: absolute; inset: 0; background: rgba(219,76,35,0.12); pointer-events: none; }
+        .ProseMirror table .column-resize-handle { position: absolute; right: -2px; top: 0; bottom: 0; width: 4px; background: #db4c23; pointer-events: none; }
+        .ProseMirror .tableWrapper { overflow-x: auto; }
       `}} />
 
       {/* Sticky toolbar */}
@@ -430,6 +446,11 @@ export default function RichTextEditor({ value, onChange, placeholder }: Props) 
         <ToolGroup>
           <ToolButton active={editor.isActive("link")} onClick={setLink} label="🔗" tip="Link" />
           <ToolButton onClick={() => fileInputRef.current?.click()} label={uploading ? "..." : "🖼"} tip="Insert image" disabled={uploading} />
+          <ToolButton
+            onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}
+            label="⊞"
+            tip="Insert table"
+          />
           <input
             ref={fileInputRef}
             type="file"
@@ -535,6 +556,32 @@ export default function RichTextEditor({ value, onChange, placeholder }: Props) 
         </div>
       )}
 
+      {/* Table controls sub-toolbar — shown when cursor is inside a table */}
+      {editor.isActive("table") && !showSource && (
+        <div
+          className="flex items-center gap-1 px-2 py-2 border-b border-line bg-accent-soft flex-wrap rte-image-sub-toolbar"
+        >
+          <span className="mono-pill text-accent mr-2">Table:</span>
+          <TableBtn onClick={() => editor.chain().focus().addColumnBefore().run()} label="+ Col ←" tip="Add column before" />
+          <TableBtn onClick={() => editor.chain().focus().addColumnAfter().run()} label="+ Col →" tip="Add column after" />
+          <TableBtn onClick={() => editor.chain().focus().deleteColumn().run()} label="✕ Col" tip="Delete column" />
+          <span className="w-px h-5 bg-line mx-1" />
+          <TableBtn onClick={() => editor.chain().focus().addRowBefore().run()} label="+ Row ↑" tip="Add row above" />
+          <TableBtn onClick={() => editor.chain().focus().addRowAfter().run()} label="+ Row ↓" tip="Add row below" />
+          <TableBtn onClick={() => editor.chain().focus().deleteRow().run()} label="✕ Row" tip="Delete row" />
+          <span className="w-px h-5 bg-line mx-1" />
+          <TableBtn onClick={() => editor.chain().focus().toggleHeaderRow().run()} label="Header" tip="Toggle header row" />
+          <button
+            type="button"
+            onClick={() => editor.chain().focus().deleteTable().run()}
+            className="ml-auto mono-pill px-3 py-1.5 text-red-600 hover:bg-red-50"
+            style={{ borderRadius: 2 }}
+          >
+            ✕ Delete table
+          </button>
+        </div>
+      )}
+
       {showSource ? (
         <div>
           <textarea
@@ -573,6 +620,20 @@ function ToolGroup({ children }: { children: React.ReactNode }) {
 
 function Divider() {
   return <div className="w-px h-6 bg-line mx-1" />
+}
+
+function TableBtn({ onClick, label, tip }: { onClick: () => void; label: string; tip: string }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      title={tip}
+      className="mono-pill px-3 py-1.5 bg-bg text-ink hover:bg-accent hover:text-white border border-line-strong transition-colors"
+      style={{ borderRadius: 2 }}
+    >
+      {label}
+    </button>
+  )
 }
 
 function ToolButton({

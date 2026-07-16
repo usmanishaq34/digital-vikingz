@@ -10,6 +10,7 @@ const updateSchema = z.object({
   excerpt: z.string().optional(),
   content: z.string().optional(),
   categoryId: z.string().nullable().optional(),
+  postAuthorId: z.string().nullable().optional(),
   tags: z.array(z.string()).optional(),
   featuredImage: z.string().nullable().optional(),
   featuredImageAlt: z.string().nullable().optional(),

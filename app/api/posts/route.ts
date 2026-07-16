@@ -10,6 +10,7 @@ const createSchema = z.object({
   excerpt: z.string().min(1),
   content: z.string().min(1),
   categoryId: z.string().nullable().optional(),
+  postAuthorId: z.string().nullable().optional(),
   tags: z.array(z.string()).default([]),
   featuredImage: z.string().nullable().optional(),
   featuredImageAlt: z.string().nullable().optional(),

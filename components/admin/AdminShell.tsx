@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { href: "/vikingz-1000-admin", label: "Dashboard" },
   { href: "/vikingz-1000-admin/pages", label: "Pages" },
   { href: "/vikingz-1000-admin/posts", label: "Posts" },
+  { href: "/vikingz-1000-admin/authors", label: "Authors" },
   { href: "/vikingz-1000-admin/services", label: "Services" },
   { href: "/vikingz-1000-admin/categories", label: "Categories" },
   { href: "/vikingz-1000-admin/settings", label: "Settings" },
@@ -166,7 +167,7 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
                 rel="noopener noreferrer"
                 className="block text-sm text-white/70 hover:text-accent transition-colors mb-2"
               >
-                ↗ View Site
+                ? View Site
               </Link>
               <SignOutButton />
             </div>
