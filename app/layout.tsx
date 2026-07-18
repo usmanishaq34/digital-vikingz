@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   },
   description: 'Digital Vikingz is a semantic SEO authority agency. We architect topical authority, AI search visibility, and pipeline attribution for businesses claiming category ownership.',
   
+ verification: {
+    google: 'EBFJv7MeTbcdwufJHKRH9Olx0SBxTN2ncAzsLPRjrwI',
+  },
+
   icons: { icon: '/images/icon.png' },
 };
 
