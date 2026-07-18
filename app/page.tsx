@@ -301,6 +301,432 @@ export default function Page() {
 </div>
 </section>
 
+
+
+
+
+
+
+
+
+
+
+
+<section className="section rankings" id="rankings">
+<div className="wrap">
+<div className="section-head">
+<div className="section-head-left">
+<span className="label">10 / Real Rankings</span>
+<h2 className="h-display section-h2">Live Search Console data. <em>Not edited.</em></h2>
+</div>
+<p className="section-intro">
+        Most agencies show case study graphics. <strong>Digital Vikingz</strong> shows the actual Google Search Console panels — clicks, impressions, position, and the full 16-month curve. The screenshots below are pulled from real client properties spanning <strong>SaaS, healthcare, e-commerce, local services, IT, B2B, and content publishing</strong>. Different industries. Same methodology. Same compounding pattern.
+      </p>
+</div>
+<div className="rankings-intro-banner">
+<div className="rankings-intro-banner-icon">✓</div>
+<div className="rankings-intro-banner-text">
+        Every screenshot below is a <strong>direct GSC export</strong> from a Digital Vikingz client property — not a graphic, not a recreation, not a marketing chart. The numbers are what Google reports.
+      </div>
+</div>
+
+<div className="rankings-tier">
+<div className="rankings-tier-head">
+<span className="rankings-tier-num">TIER 01</span>
+<h3 className="rankings-tier-title">Established sites — <em>massive organic scale.</em></h3>
+</div>
+<div className="rankings-grid">
+<article className="rank-card">
+<div className="rank-card-head">
+<span className="rank-card-industry">Healthcare · 16 Months</span>
+<span className="rank-card-tag">Flagship</span>
+</div>
+<div className="rank-card-image">
+<img loading="lazy" decoding="async" src="/images/rankings/Health_website_SEO.png" alt="Healthcare site GSC: 105K clicks, 3.19M impressions, 3.3% CTR, position 15.4" />
+</div>
+<div className="rank-card-body">
+<div className="rank-card-title">Healthcare authority site</div>
+<div className="rank-card-metrics">
+<div>
+<div className="rank-metric-num">703K</div>
+<div className="rank-metric-label">Total Clicks</div>
+</div>
+<div>
+<div className="rank-metric-num">33.7M</div>
+<div className="rank-metric-label">Impressions</div>
+</div>
+<div>
+<div className="rank-metric-num">2.1%</div>
+<div className="rank-metric-label">Avg CTR</div>
+</div>
+<div>
+<div className="rank-metric-num">10.1</div>
+<div className="rank-metric-label">Avg Position</div>
+</div>
+</div>
+</div>
+</article>
+<article className="rank-card">
+<div className="rank-card-head">
+<span className="rank-card-industry">IT Services · 16 Months</span>
+<span className="rank-card-tag">Scale</span>
+</div>
+<div className="rank-card-image">
+<img loading="lazy" decoding="async" src="/images/rankings/433.png" alt="IT services site GSC: 31.6K clicks, 3.44M impressions, position 29.8" />
+</div>
+<div className="rank-card-body">
+<div className="rank-card-title">IT services authority site</div>
+<div className="rank-card-metrics">
+<div>
+<div className="rank-metric-num">433K</div>
+<div className="rank-metric-label">Total Clicks</div>
+</div>
+<div>
+<div className="rank-metric-num">15.6M</div>
+<div className="rank-metric-label">Impressions</div>
+</div>
+<div>
+<div className="rank-metric-num">2.8%</div>
+<div className="rank-metric-label">Avg CTR</div>
+</div>
+<div>
+<div className="rank-metric-num">29.5</div>
+<div className="rank-metric-label">Avg Position</div>
+</div>
+</div>
+</div>
+</article>
+<article className="rank-card">
+<div className="rank-card-head">
+<span className="rank-card-industry">Content Publishing · 16 Months</span>
+<span className="rank-card-tag">Scale</span>
+</div>
+<div className="rank-card-image">
+<img loading="lazy" decoding="async" src="/images/rankings/Started_SEO_for_IT.png" alt="Content publishing site GSC: 31.9K clicks, 7.06M impressions, position 11.9" />
+</div>
+<div className="rank-card-body">
+<div className="rank-card-title">Content publishing authority site</div>
+<div className="rank-card-metrics">
+<div>
+<div className="rank-metric-num">87.6K</div>
+<div className="rank-metric-label">Total Clicks</div>
+</div>
+<div>
+<div className="rank-metric-num">1.66M</div>
+<div className="rank-metric-label">Impressions</div>
+</div>
+<div>
+<div className="rank-metric-num">5.3%</div>
+<div className="rank-metric-label">Avg CTR</div>
+</div>
+<div>
+<div className="rank-metric-num">14.1</div>
+<div className="rank-metric-label">Avg Position</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+
+<div className="rankings-tier">
+<div className="rankings-tier-head">
+<span className="rankings-tier-num">TIER 02</span>
+<h3 className="rankings-tier-title">Mid-scale — <em>strong, compounding programs.</em></h3>
+</div>
+<div className="rankings-grid">
+<article className="rank-card">
+<div className="rank-card-head">
+<span className="rank-card-industry">Local Services · 16 Months</span>
+<span className="rank-card-tag">Solid</span>
+</div>
+<div className="rank-card-image">
+<img loading="lazy" decoding="async" src="/images/rankings/Blogging_SEO.png" alt="Local business site GSC: 24.1K clicks, 524K impressions, 4.6% CTR, position 21.9" />
+</div>
+<div className="rank-card-body">
+<div className="rank-card-title">Local business authority site</div>
+<div className="rank-card-metrics">
+<div>
+<div className="rank-metric-num">60.8K</div>
+<div className="rank-metric-label">Total Clicks</div>
+</div>
+<div>
+<div className="rank-metric-num">1.43M</div>
+<div className="rank-metric-label">Impressions</div>
+</div>
+<div>
+<div className="rank-metric-num">4.3%</div>
+<div className="rank-metric-label">Avg CTR</div>
+</div>
+<div>
+<div className="rank-metric-num">9.8</div>
+<div className="rank-metric-label">Avg Position</div>
+</div>
+</div>
+</div>
+</article>
+<article className="rank-card">
+<div className="rank-card-head">
+<span className="rank-card-industry">B2B SaaS · 16 Months</span>
+<span className="rank-card-tag">Solid</span>
+</div>
+<div className="rank-card-image">
+<img loading="lazy" decoding="async" src="/images/rankings/58k.png" alt="B2B SaaS site GSC: 13.8K clicks, 463K impressions, 3% CTR, position 26.9" />
+</div>
+<div className="rank-card-body">
+<div className="rank-card-title">B2B SaaS authority site</div>
+<div className="rank-card-metrics">
+<div>
+<div className="rank-metric-num">58.2K</div>
+<div className="rank-metric-label">Total Clicks</div>
+</div>
+<div>
+<div className="rank-metric-num">6.29M</div>
+<div className="rank-metric-label">Impressions</div>
+</div>
+<div>
+<div className="rank-metric-num">0.9%</div>
+<div className="rank-metric-label">Avg CTR</div>
+</div>
+<div>
+<div className="rank-metric-num">19.8</div>
+<div className="rank-metric-label">Avg Position</div>
+</div>
+</div>
+</div>
+</article>
+<article className="rank-card">
+<div className="rank-card-head">
+<span className="rank-card-industry">E-commerce · 16 Months</span>
+<span className="rank-card-tag">Solid</span>
+</div>
+<div className="rank-card-image">
+<img loading="lazy" decoding="async" src="/images/rankings/53k.png" alt="E-commerce site GSC: 2.83K clicks, 743K impressions, position 45.4" />
+</div>
+<div className="rank-card-body">
+<div className="rank-card-title">Diamond ring e-commerce site</div>
+<div className="rank-card-metrics">
+<div>
+<div className="rank-metric-num">53.3K</div>
+<div className="rank-metric-label">Total Clicks</div>
+</div>
+<div>
+<div className="rank-metric-num">2.97M</div>
+<div className="rank-metric-label">Impressions</div>
+</div>
+<div>
+<div className="rank-metric-num">1.8%</div>
+<div className="rank-metric-label">Avg CTR</div>
+</div>
+<div>
+<div className="rank-metric-num">27.8</div>
+<div className="rank-metric-label">Avg Position</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+
+<div className="rankings-tier">
+<div className="rankings-tier-head">
+<span className="rankings-tier-num">TIER 03</span>
+<h3 className="rankings-tier-title">Newer engagements — <em>visible compounding curves.</em></h3>
+</div>
+<div className="rankings-grid">
+<article className="rank-card">
+<div className="rank-card-head">
+<span className="rank-card-industry">Local Services · Recent</span>
+<span className="rank-card-tag">Growth</span>
+</div>
+<div className="rank-card-image">
+<img loading="lazy" decoding="async" src="/images/rankings/23k.png" alt="Local services site GSC growth from zero to 2.54K clicks, 223K impressions" />
+</div>
+<div className="rank-card-body">
+<div className="rank-card-title">Local services — zero to traction</div>
+<div className="rank-card-metrics">
+<div>
+<div className="rank-metric-num">23.9K</div>
+<div className="rank-metric-label">Total Clicks</div>
+</div>
+<div>
+<div className="rank-metric-num">2.37M</div>
+<div className="rank-metric-label">Impressions</div>
+</div>
+<div>
+<div className="rank-metric-num">1%</div>
+<div className="rank-metric-label">Avg CTR</div>
+</div>
+<div>
+<div className="rank-metric-num">32.4</div>
+<div className="rank-metric-label">Avg Position</div>
+</div>
+</div>
+</div>
+</article>
+<article className="rank-card">
+<div className="rank-card-head">
+<span className="rank-card-industry">Tourism · Recent</span>
+<span className="rank-card-tag">Growth</span>
+</div>
+<div className="rank-card-image">
+<img loading="lazy" decoding="async" src="/images/rankings/21k.png" alt="Bike rental tourism site GSC growth: 1.75K clicks, 41.7K impressions" />
+</div>
+<div className="rank-card-body">
+<div className="rank-card-title">Bike rental — clean upward curve</div>
+<div className="rank-card-metrics">
+<div>
+<div className="rank-metric-num">21.8K</div>
+<div className="rank-metric-label">Total Clicks</div>
+</div>
+<div>
+<div className="rank-metric-num">2.5M</div>
+<div className="rank-metric-label">Impressions</div>
+</div>
+<div>
+<div className="rank-metric-num">0.9%</div>
+<div className="rank-metric-label">Avg CTR</div>
+</div>
+<div>
+<div className="rank-metric-num">20.9</div>
+<div className="rank-metric-label">Avg Position</div>
+</div>
+</div>
+</div>
+</article>
+<article className="rank-card">
+<div className="rank-card-head">
+<span className="rank-card-industry">Content Publishing · Recent</span>
+<span className="rank-card-tag">New Site</span>
+</div>
+<div className="rank-card-image">
+<img loading="lazy" decoding="async" src="/images/rankings/19k.png" alt="New blogging site GSC: 220 clicks, 62.3K impressions, explosive recent growth" />
+</div>
+<div className="rank-card-body">
+<div className="rank-card-title">New blog — explosive recent growth</div>
+<div className="rank-card-metrics">
+<div>
+<div className="rank-metric-num">19.9K</div>
+<div className="rank-metric-label">Total Clicks</div>
+</div>
+<div>
+<div className="rank-metric-num">6.77M</div>
+<div className="rank-metric-label">Impressions</div>
+</div>
+<div>
+<div className="rank-metric-num">0.3%</div>
+<div className="rank-metric-label">Avg CTR</div>
+</div>
+<div>
+<div className="rank-metric-num">14.3</div>
+<div className="rank-metric-label">Avg Position</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+
+<div className="rankings-tier">
+<div className="rankings-tier-head">
+<span className="rankings-tier-num">TIER 04</span>
+<h3 className="rankings-tier-title">More verticals — <em>same methodology, different categories.</em></h3>
+</div>
+<div className="rankings-grid-compact">
+<article className="rank-card-compact">
+<div className="rank-card-compact-head">
+<span className="rank-card-compact-industry">Service Industry</span>
+<div className="rank-card-compact-num">15.6K<span>clicks</span></div>
+</div>
+<div className="rank-card-compact-image">
+<img loading="lazy" decoding="async" src="/images/rankings/15k.png" alt="Digital service site GSC: 2.19K clicks, 477K impressions" />
+</div>
+</article>
+<article className="rank-card-compact">
+<div className="rank-card-compact-head">
+<span className="rank-card-compact-industry">Beauty · Local</span>
+<div className="rank-card-compact-num">14.5K<span>clicks</span></div>
+</div>
+<div className="rank-card-compact-image">
+<img loading="lazy" decoding="async" src="/images/rankings/14k.png" alt="Local hair oil brand GSC: 2.01K clicks, 4.7% CTR" />
+</div>
+</article>
+<article className="rank-card-compact">
+<div className="rank-card-compact-head">
+<span className="rank-card-compact-industry">Pro Services</span>
+<div className="rank-card-compact-num">12.5K<span>clicks</span></div>
+</div>
+<div className="rank-card-compact-image">
+<img loading="lazy" decoding="async" src="/images/rankings/12k.png" alt="Service authority site GSC: 1.53K clicks, 165K impressions" />
+</div>
+</article>
+<article className="rank-card-compact">
+<div className="rank-card-compact-head">
+<span className="rank-card-compact-industry">Tourism · Local</span>
+<div className="rank-card-compact-num">7.74K<span>clicks</span></div>
+</div>
+<div className="rank-card-compact-image">
+<img loading="lazy" decoding="async" src="/images/rankings/7k.png" alt="Local boating tourism site GSC: 432 clicks, 14.6K impressions" />
+</div>
+</article>
+<article className="rank-card-compact">
+<div className="rank-card-compact-head">
+<span className="rank-card-compact-industry">E-commerce</span>
+<div className="rank-card-compact-num">3.71<span>clicks</span></div>
+</div>
+<div className="rank-card-compact-image">
+<img loading="lazy" decoding="async" src="/images/rankings/3.7k.png" alt="LED lighting e-commerce site GSC: 132 clicks, 43.9K impressions" />
+</div>
+</article>
+<article className="rank-card-compact">
+<div className="rank-card-compact-head">
+<span className="rank-card-compact-industry">Real Estate</span>
+<div className="rank-card-compact-num">3.16k<span>clicks</span></div>
+</div>
+<div className="rank-card-compact-image">
+<img loading="lazy" decoding="async" src="/images/rankings/3.1k.png" alt="Real estate site GSC: 32 clicks, 5.83K impressions, position 15.6" />
+</div>
+</article>
+<article className="rank-card-compact">
+<div className="rank-card-compact-head">
+<span className="rank-card-compact-industry">Wedding · Local</span>
+<div className="rank-card-compact-num">2.66K<span>clicks</span></div>
+</div>
+<div className="rank-card-compact-image">
+<img loading="lazy" decoding="async" src="/images/rankings/2.6k.png" alt="Wedding services site GSC: 18 clicks, 2.13K impressions, recently launched" />
+</div>
+</article>
+<article className="rank-card-compact" style={{display: "flex", alignItems: "center", justifyContent: "center", background: "var(--accent-soft)", borderColor: "var(--accent)", minHeight: "240px"}}>
+<div style={{padding: "24px", textAlign: "center"}}>
+<div style={{fontFamily: "var(--display)", fontSize: "32px", fontWeight: "500", color: "var(--accent)", lineHeight: "1", marginBottom: "8px", letterSpacing: "-0.02em"}}>50 +</div>
+<div style={{fontFamily: "var(--mono)", fontSize: "10px", color: "var(--text-2)", letterSpacing: "0.15em", textTransform: "uppercase", lineHeight: "1.5"}}>More verticals across<br />40+ industries served</div>
+</div>
+</article>
+</div>
+</div>
+<div className="rankings-disclaimer">
+<p>Screenshots are anonymized for client confidentiality. <span>Full case context, traffic-to-pipeline attribution, and methodology details</span> are shared on the strategy call.</p>
+</div>
+</div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <section className="section shift">
 <div className="wrap">
 <div className="section-head">
@@ -1334,403 +1760,6 @@ export default function Page() {
 </div>
 </section>
 
-<section className="section rankings" id="rankings">
-<div className="wrap">
-<div className="section-head">
-<div className="section-head-left">
-<span className="label">10 / Real Rankings</span>
-<h2 className="h-display section-h2">Live Search Console data. <em>Not edited.</em></h2>
-</div>
-<p className="section-intro">
-        Most agencies show case study graphics. <strong>Digital Vikingz</strong> shows the actual Google Search Console panels — clicks, impressions, position, and the full 16-month curve. The screenshots below are pulled from real client properties spanning <strong>SaaS, healthcare, e-commerce, local services, IT, B2B, and content publishing</strong>. Different industries. Same methodology. Same compounding pattern.
-      </p>
-</div>
-<div className="rankings-intro-banner">
-<div className="rankings-intro-banner-icon">✓</div>
-<div className="rankings-intro-banner-text">
-        Every screenshot below is a <strong>direct GSC export</strong> from a Digital Vikingz client property — not a graphic, not a recreation, not a marketing chart. The numbers are what Google reports.
-      </div>
-</div>
-
-<div className="rankings-tier">
-<div className="rankings-tier-head">
-<span className="rankings-tier-num">TIER 01</span>
-<h3 className="rankings-tier-title">Established sites — <em>massive organic scale.</em></h3>
-</div>
-<div className="rankings-grid">
-<article className="rank-card">
-<div className="rank-card-head">
-<span className="rank-card-industry">Healthcare · 16 Months</span>
-<span className="rank-card-tag">Flagship</span>
-</div>
-<div className="rank-card-image">
-<img loading="lazy" decoding="async" src="/images/rankings/Health_website_SEO.png" alt="Healthcare site GSC: 105K clicks, 3.19M impressions, 3.3% CTR, position 15.4" />
-</div>
-<div className="rank-card-body">
-<div className="rank-card-title">Healthcare authority site</div>
-<div className="rank-card-metrics">
-<div>
-<div className="rank-metric-num">703K</div>
-<div className="rank-metric-label">Total Clicks</div>
-</div>
-<div>
-<div className="rank-metric-num">33.7M</div>
-<div className="rank-metric-label">Impressions</div>
-</div>
-<div>
-<div className="rank-metric-num">2.1%</div>
-<div className="rank-metric-label">Avg CTR</div>
-</div>
-<div>
-<div className="rank-metric-num">10.1</div>
-<div className="rank-metric-label">Avg Position</div>
-</div>
-</div>
-</div>
-</article>
-<article className="rank-card">
-<div className="rank-card-head">
-<span className="rank-card-industry">IT Services · 16 Months</span>
-<span className="rank-card-tag">Scale</span>
-</div>
-<div className="rank-card-image">
-<img loading="lazy" decoding="async" src="/images/rankings/433.png" alt="IT services site GSC: 31.6K clicks, 3.44M impressions, position 29.8" />
-</div>
-<div className="rank-card-body">
-<div className="rank-card-title">IT services authority site</div>
-<div className="rank-card-metrics">
-<div>
-<div className="rank-metric-num">433K</div>
-<div className="rank-metric-label">Total Clicks</div>
-</div>
-<div>
-<div className="rank-metric-num">15.6M</div>
-<div className="rank-metric-label">Impressions</div>
-</div>
-<div>
-<div className="rank-metric-num">2.8%</div>
-<div className="rank-metric-label">Avg CTR</div>
-</div>
-<div>
-<div className="rank-metric-num">29.5</div>
-<div className="rank-metric-label">Avg Position</div>
-</div>
-</div>
-</div>
-</article>
-<article className="rank-card">
-<div className="rank-card-head">
-<span className="rank-card-industry">Content Publishing · 16 Months</span>
-<span className="rank-card-tag">Scale</span>
-</div>
-<div className="rank-card-image">
-<img loading="lazy" decoding="async" src="/images/rankings/Started_SEO_for_IT.png" alt="Content publishing site GSC: 31.9K clicks, 7.06M impressions, position 11.9" />
-</div>
-<div className="rank-card-body">
-<div className="rank-card-title">Content publishing authority site</div>
-<div className="rank-card-metrics">
-<div>
-<div className="rank-metric-num">87.6K</div>
-<div className="rank-metric-label">Total Clicks</div>
-</div>
-<div>
-<div className="rank-metric-num">1.66M</div>
-<div className="rank-metric-label">Impressions</div>
-</div>
-<div>
-<div className="rank-metric-num">5.3%</div>
-<div className="rank-metric-label">Avg CTR</div>
-</div>
-<div>
-<div className="rank-metric-num">14.1</div>
-<div className="rank-metric-label">Avg Position</div>
-</div>
-</div>
-</div>
-</article>
-</div>
-</div>
-
-<div className="rankings-tier">
-<div className="rankings-tier-head">
-<span className="rankings-tier-num">TIER 02</span>
-<h3 className="rankings-tier-title">Mid-scale — <em>strong, compounding programs.</em></h3>
-</div>
-<div className="rankings-grid">
-<article className="rank-card">
-<div className="rank-card-head">
-<span className="rank-card-industry">Local Services · 16 Months</span>
-<span className="rank-card-tag">Solid</span>
-</div>
-<div className="rank-card-image">
-<img loading="lazy" decoding="async" src="/images/rankings/Blogging_SEO.png" alt="Local business site GSC: 24.1K clicks, 524K impressions, 4.6% CTR, position 21.9" />
-</div>
-<div className="rank-card-body">
-<div className="rank-card-title">Local business authority site</div>
-<div className="rank-card-metrics">
-<div>
-<div className="rank-metric-num">60.8K</div>
-<div className="rank-metric-label">Total Clicks</div>
-</div>
-<div>
-<div className="rank-metric-num">1.43M</div>
-<div className="rank-metric-label">Impressions</div>
-</div>
-<div>
-<div className="rank-metric-num">4.3%</div>
-<div className="rank-metric-label">Avg CTR</div>
-</div>
-<div>
-<div className="rank-metric-num">9.8</div>
-<div className="rank-metric-label">Avg Position</div>
-</div>
-</div>
-</div>
-</article>
-<article className="rank-card">
-<div className="rank-card-head">
-<span className="rank-card-industry">B2B SaaS · 16 Months</span>
-<span className="rank-card-tag">Solid</span>
-</div>
-<div className="rank-card-image">
-<img loading="lazy" decoding="async" src="/images/rankings/58k.png" alt="B2B SaaS site GSC: 13.8K clicks, 463K impressions, 3% CTR, position 26.9" />
-</div>
-<div className="rank-card-body">
-<div className="rank-card-title">B2B SaaS authority site</div>
-<div className="rank-card-metrics">
-<div>
-<div className="rank-metric-num">58.2K</div>
-<div className="rank-metric-label">Total Clicks</div>
-</div>
-<div>
-<div className="rank-metric-num">6.29M</div>
-<div className="rank-metric-label">Impressions</div>
-</div>
-<div>
-<div className="rank-metric-num">0.9%</div>
-<div className="rank-metric-label">Avg CTR</div>
-</div>
-<div>
-<div className="rank-metric-num">19.8</div>
-<div className="rank-metric-label">Avg Position</div>
-</div>
-</div>
-</div>
-</article>
-<article className="rank-card">
-<div className="rank-card-head">
-<span className="rank-card-industry">E-commerce · 16 Months</span>
-<span className="rank-card-tag">Solid</span>
-</div>
-<div className="rank-card-image">
-<img loading="lazy" decoding="async" src="/images/rankings/53k.png" alt="E-commerce site GSC: 2.83K clicks, 743K impressions, position 45.4" />
-</div>
-<div className="rank-card-body">
-<div className="rank-card-title">Diamond ring e-commerce site</div>
-<div className="rank-card-metrics">
-<div>
-<div className="rank-metric-num">53.3K</div>
-<div className="rank-metric-label">Total Clicks</div>
-</div>
-<div>
-<div className="rank-metric-num">2.97M</div>
-<div className="rank-metric-label">Impressions</div>
-</div>
-<div>
-<div className="rank-metric-num">1.8%</div>
-<div className="rank-metric-label">Avg CTR</div>
-</div>
-<div>
-<div className="rank-metric-num">27.8</div>
-<div className="rank-metric-label">Avg Position</div>
-</div>
-</div>
-</div>
-</article>
-</div>
-</div>
-
-<div className="rankings-tier">
-<div className="rankings-tier-head">
-<span className="rankings-tier-num">TIER 03</span>
-<h3 className="rankings-tier-title">Newer engagements — <em>visible compounding curves.</em></h3>
-</div>
-<div className="rankings-grid">
-<article className="rank-card">
-<div className="rank-card-head">
-<span className="rank-card-industry">Local Services · Recent</span>
-<span className="rank-card-tag">Growth</span>
-</div>
-<div className="rank-card-image">
-<img loading="lazy" decoding="async" src="/images/rankings/23k.png" alt="Local services site GSC growth from zero to 2.54K clicks, 223K impressions" />
-</div>
-<div className="rank-card-body">
-<div className="rank-card-title">Local services — zero to traction</div>
-<div className="rank-card-metrics">
-<div>
-<div className="rank-metric-num">23.9K</div>
-<div className="rank-metric-label">Total Clicks</div>
-</div>
-<div>
-<div className="rank-metric-num">2.37M</div>
-<div className="rank-metric-label">Impressions</div>
-</div>
-<div>
-<div className="rank-metric-num">1%</div>
-<div className="rank-metric-label">Avg CTR</div>
-</div>
-<div>
-<div className="rank-metric-num">32.4</div>
-<div className="rank-metric-label">Avg Position</div>
-</div>
-</div>
-</div>
-</article>
-<article className="rank-card">
-<div className="rank-card-head">
-<span className="rank-card-industry">Tourism · Recent</span>
-<span className="rank-card-tag">Growth</span>
-</div>
-<div className="rank-card-image">
-<img loading="lazy" decoding="async" src="/images/rankings/21k.png" alt="Bike rental tourism site GSC growth: 1.75K clicks, 41.7K impressions" />
-</div>
-<div className="rank-card-body">
-<div className="rank-card-title">Bike rental — clean upward curve</div>
-<div className="rank-card-metrics">
-<div>
-<div className="rank-metric-num">21.8K</div>
-<div className="rank-metric-label">Total Clicks</div>
-</div>
-<div>
-<div className="rank-metric-num">2.5M</div>
-<div className="rank-metric-label">Impressions</div>
-</div>
-<div>
-<div className="rank-metric-num">0.9%</div>
-<div className="rank-metric-label">Avg CTR</div>
-</div>
-<div>
-<div className="rank-metric-num">20.9</div>
-<div className="rank-metric-label">Avg Position</div>
-</div>
-</div>
-</div>
-</article>
-<article className="rank-card">
-<div className="rank-card-head">
-<span className="rank-card-industry">Content Publishing · Recent</span>
-<span className="rank-card-tag">New Site</span>
-</div>
-<div className="rank-card-image">
-<img loading="lazy" decoding="async" src="/images/rankings/19k.png" alt="New blogging site GSC: 220 clicks, 62.3K impressions, explosive recent growth" />
-</div>
-<div className="rank-card-body">
-<div className="rank-card-title">New blog — explosive recent growth</div>
-<div className="rank-card-metrics">
-<div>
-<div className="rank-metric-num">19.9K</div>
-<div className="rank-metric-label">Total Clicks</div>
-</div>
-<div>
-<div className="rank-metric-num">6.77M</div>
-<div className="rank-metric-label">Impressions</div>
-</div>
-<div>
-<div className="rank-metric-num">0.3%</div>
-<div className="rank-metric-label">Avg CTR</div>
-</div>
-<div>
-<div className="rank-metric-num">14.3</div>
-<div className="rank-metric-label">Avg Position</div>
-</div>
-</div>
-</div>
-</article>
-</div>
-</div>
-
-<div className="rankings-tier">
-<div className="rankings-tier-head">
-<span className="rankings-tier-num">TIER 04</span>
-<h3 className="rankings-tier-title">More verticals — <em>same methodology, different categories.</em></h3>
-</div>
-<div className="rankings-grid-compact">
-<article className="rank-card-compact">
-<div className="rank-card-compact-head">
-<span className="rank-card-compact-industry">Service Industry</span>
-<div className="rank-card-compact-num">15.6K<span>clicks</span></div>
-</div>
-<div className="rank-card-compact-image">
-<img loading="lazy" decoding="async" src="/images/rankings/15k.png" alt="Digital service site GSC: 2.19K clicks, 477K impressions" />
-</div>
-</article>
-<article className="rank-card-compact">
-<div className="rank-card-compact-head">
-<span className="rank-card-compact-industry">Beauty · Local</span>
-<div className="rank-card-compact-num">14.5K<span>clicks</span></div>
-</div>
-<div className="rank-card-compact-image">
-<img loading="lazy" decoding="async" src="/images/rankings/14k.png" alt="Local hair oil brand GSC: 2.01K clicks, 4.7% CTR" />
-</div>
-</article>
-<article className="rank-card-compact">
-<div className="rank-card-compact-head">
-<span className="rank-card-compact-industry">Pro Services</span>
-<div className="rank-card-compact-num">12.5K<span>clicks</span></div>
-</div>
-<div className="rank-card-compact-image">
-<img loading="lazy" decoding="async" src="/images/rankings/12k.png" alt="Service authority site GSC: 1.53K clicks, 165K impressions" />
-</div>
-</article>
-<article className="rank-card-compact">
-<div className="rank-card-compact-head">
-<span className="rank-card-compact-industry">Tourism · Local</span>
-<div className="rank-card-compact-num">7.74K<span>clicks</span></div>
-</div>
-<div className="rank-card-compact-image">
-<img loading="lazy" decoding="async" src="/images/rankings/7k.png" alt="Local boating tourism site GSC: 432 clicks, 14.6K impressions" />
-</div>
-</article>
-<article className="rank-card-compact">
-<div className="rank-card-compact-head">
-<span className="rank-card-compact-industry">E-commerce</span>
-<div className="rank-card-compact-num">3.71<span>clicks</span></div>
-</div>
-<div className="rank-card-compact-image">
-<img loading="lazy" decoding="async" src="/images/rankings/3.7k.png" alt="LED lighting e-commerce site GSC: 132 clicks, 43.9K impressions" />
-</div>
-</article>
-<article className="rank-card-compact">
-<div className="rank-card-compact-head">
-<span className="rank-card-compact-industry">Real Estate</span>
-<div className="rank-card-compact-num">3.16k<span>clicks</span></div>
-</div>
-<div className="rank-card-compact-image">
-<img loading="lazy" decoding="async" src="/images/rankings/3.1k.png" alt="Real estate site GSC: 32 clicks, 5.83K impressions, position 15.6" />
-</div>
-</article>
-<article className="rank-card-compact">
-<div className="rank-card-compact-head">
-<span className="rank-card-compact-industry">Wedding · Local</span>
-<div className="rank-card-compact-num">2.66K<span>clicks</span></div>
-</div>
-<div className="rank-card-compact-image">
-<img loading="lazy" decoding="async" src="/images/rankings/2.6k.png" alt="Wedding services site GSC: 18 clicks, 2.13K impressions, recently launched" />
-</div>
-</article>
-<article className="rank-card-compact" style={{display: "flex", alignItems: "center", justifyContent: "center", background: "var(--accent-soft)", borderColor: "var(--accent)", minHeight: "240px"}}>
-<div style={{padding: "24px", textAlign: "center"}}>
-<div style={{fontFamily: "var(--display)", fontSize: "32px", fontWeight: "500", color: "var(--accent)", lineHeight: "1", marginBottom: "8px", letterSpacing: "-0.02em"}}>50 +</div>
-<div style={{fontFamily: "var(--mono)", fontSize: "10px", color: "var(--text-2)", letterSpacing: "0.15em", textTransform: "uppercase", lineHeight: "1.5"}}>More verticals across<br />40+ industries served</div>
-</div>
-</article>
-</div>
-</div>
-<div className="rankings-disclaimer">
-<p>Screenshots are anonymized for client confidentiality. <span>Full case context, traffic-to-pipeline attribution, and methodology details</span> are shared on the strategy call.</p>
-</div>
-</div>
-</section>
 
 
 
