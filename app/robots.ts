@@ -7,7 +7,14 @@ export default function robots(): MetadataRoute.Robots {
     rules: [
       {
         userAgent: "*",
-        allow: "/",
+        allow: [
+          "/",
+          // The two real author profiles stay crawlable even though the
+          // /author/ directory below is blocked. A more specific Allow
+          // rule wins over a broader Disallow.
+          "/author/usman-ishaq",
+          "/author/abad-aslam",
+        ],
         disallow: [
           "/api/",
           "/_next/",
