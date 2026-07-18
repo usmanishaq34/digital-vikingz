@@ -25,14 +25,23 @@ export default function MediaLibraryModal({ onClose, onSelect }: Props) {
   const [uploading, setUploading] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
+  // cache:"no-store" makes sure the picker always shows the CURRENT library,
+  // including anything uploaded seconds ago. Without it the browser serves a
+  // stale copy and a fresh upload looks like it is missing.
+  async function loadMedia() {
+    try {
+      const res = await fetch("/api/media", { cache: "no-store" })
+      const data = await res.json()
+      setItems(Array.isArray(data) ? data : [])
+    } catch {
+      // keep whatever is already on screen
+    } finally {
+      setLoading(false)
+    }
+  }
+
   useEffect(() => {
-    fetch("/api/media")
-      .then((r) => r.json())
-      .then((data) => {
-        setItems(data || [])
-        setLoading(false)
-      })
-      .catch(() => setLoading(false))
+    loadMedia()
   }, [])
 
   useEffect(() => {
@@ -51,7 +60,8 @@ export default function MediaLibraryModal({ onClose, onSelect }: Props) {
       const res = await fetch("/api/upload", { method: "POST", body: formData })
       if (!res.ok) throw new Error("Upload failed")
       const newItem = await res.json()
-      setItems([newItem, ...items])
+      setItems((prev) => [newItem, ...prev])
+      loadMedia()
       toast.success("Uploaded")
     } catch {
       toast.error("Upload failed")
