@@ -169,7 +169,7 @@ export default function RichTextEditor({ value, onChange, placeholder }: Props) 
 
   const editor = useEditor({
     extensions: [
-      StarterKit.configure({ heading: { levels: [2, 3, 4] } }),
+      StarterKit.configure({ heading: { levels: [2, 3, 4, 5, 6] } }),
       Link.configure({
         openOnClick: false,
         HTMLAttributes: { rel: "noopener noreferrer", target: "_blank" },
@@ -185,6 +185,23 @@ export default function RichTextEditor({ value, onChange, placeholder }: Props) 
     ],
     content: value || "",
     editorProps: {
+      // Pasted HTML is cleaned before it enters the document.
+      // The post title is already the page's <h1>, so an <h1> inside the body
+      // is demoted to <h2> instead of being dropped. h2-h6 pass through as-is,
+      // and tables are parsed by the Table extensions above.
+      transformPastedHTML(html: string) {
+        try {
+          const doc = new DOMParser().parseFromString(html, "text/html")
+          doc.querySelectorAll("h1").forEach((h1) => {
+            const h2 = doc.createElement("h2")
+            h2.innerHTML = h1.innerHTML
+            h1.replaceWith(h2)
+          })
+          return doc.body.innerHTML
+        } catch {
+          return html
+        }
+      },
       attributes: {
         class:
           "prose prose-sm max-w-none min-h-[400px] p-5 focus:outline-none font-body text-ink",
@@ -294,6 +311,8 @@ export default function RichTextEditor({ value, onChange, placeholder }: Props) 
         .ProseMirror h2 { font-family: var(--font-display, Fraunces, Georgia, serif); font-size: 1.75em; font-weight: 600; margin: 1em 0 0.4em; line-height: 1.2; color: #0a0a0a; }
         .ProseMirror h3 { font-family: var(--font-display, Fraunces, Georgia, serif); font-size: 1.4em; font-weight: 600; margin: 1em 0 0.4em; line-height: 1.25; color: #0a0a0a; }
         .ProseMirror h4 { font-family: var(--font-display, Fraunces, Georgia, serif); font-size: 1.15em; font-weight: 600; margin: 0.8em 0 0.4em; color: #0a0a0a; }
+        .ProseMirror h5 { font-family: var(--mono, "JetBrains Mono", monospace); font-size: 0.85em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin: 0.9em 0 0.35em; color: #0a0a0a; }
+        .ProseMirror h6 { font-family: var(--mono, "JetBrains Mono", monospace); font-size: 0.75em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; margin: 0.9em 0 0.3em; color: #db4c23; }
         .ProseMirror p { margin: 0.6em 0; line-height: 1.6; }
 
         /* CRITICAL OVERRIDES — globals.css forces strong=orange and em=Fraunces+orange,
@@ -339,7 +358,7 @@ export default function RichTextEditor({ value, onChange, placeholder }: Props) 
         /* Tables inside the editor */
         .ProseMirror table { border-collapse: collapse; width: 100%; margin: 1em 0; overflow: hidden; table-layout: fixed; }
         .ProseMirror table td, .ProseMirror table th { border: 1px solid #cbcbc5; padding: 8px 10px; vertical-align: top; position: relative; min-width: 1em; }
-        .ProseMirror table th { background: #f3f1ec; font-weight: 600; text-align: left; }
+        .ProseMirror table th { background: #f3f1ec; font-family: var(--mono, "JetBrains Mono", monospace); font-size: 0.72em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; text-align: left; border-bottom: 2px solid #db4c23; }
         .ProseMirror table .selectedCell:after { content: ""; position: absolute; inset: 0; background: rgba(219,76,35,0.12); pointer-events: none; }
         .ProseMirror table .column-resize-handle { position: absolute; right: -2px; top: 0; bottom: 0; width: 4px; background: #db4c23; pointer-events: none; }
         .ProseMirror .tableWrapper { overflow-x: auto; }
@@ -353,6 +372,8 @@ export default function RichTextEditor({ value, onChange, placeholder }: Props) 
           <ToolButton active={editor.isActive("heading", { level: 2 })} onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} label="H2" tip="Heading 2" />
           <ToolButton active={editor.isActive("heading", { level: 3 })} onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()} label="H3" tip="Heading 3" />
           <ToolButton active={editor.isActive("heading", { level: 4 })} onClick={() => editor.chain().focus().toggleHeading({ level: 4 }).run()} label="H4" tip="Heading 4" />
+          <ToolButton active={editor.isActive("heading", { level: 5 })} onClick={() => editor.chain().focus().toggleHeading({ level: 5 }).run()} label="H5" tip="Heading 5" />
+          <ToolButton active={editor.isActive("heading", { level: 6 })} onClick={() => editor.chain().focus().toggleHeading({ level: 6 }).run()} label="H6" tip="Heading 6" />
           <ToolButton active={editor.isActive("paragraph")} onClick={() => editor.chain().focus().setParagraph().run()} label="P" tip="Paragraph" />
         </ToolGroup>
 
