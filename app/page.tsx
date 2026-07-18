@@ -721,6 +721,39 @@ export default function Page() {
 
 
 
+<section className="feedback-section">
+<div className="container">
+<h2 className="heading">Client <span>Feedback</span></h2>
+
+<div className="slider desktop-slider">
+<div className="track" id="desktopTrack"></div>
+</div>
+<div className="controls desktop-controls">
+<button>‹</button>
+<button>›</button>
+</div>
+<div className="page-counter desktop-counter" id="desktopCounter"></div>
+
+<div className="mobile-slider">
+<div style={{overflow: "hidden"}}>
+<div className="mobile-track" id="mobileTrack"></div>
+</div>
+<div className="controls">
+<button>‹</button>
+<button>›</button>
+</div>
+<div className="page-counter" id="mobileCounter"></div>
+</div>
+</div>
+</section>
+
+
+
+
+
+
+
+
 
 
 
@@ -1771,31 +1804,6 @@ export default function Page() {
 
 
 
-<section className="feedback-section">
-<div className="container">
-<h2 className="heading">Client <span>Feedback</span></h2>
-
-<div className="slider desktop-slider">
-<div className="track" id="desktopTrack"></div>
-</div>
-<div className="controls desktop-controls">
-<button>‹</button>
-<button>›</button>
-</div>
-<div className="page-counter desktop-counter" id="desktopCounter"></div>
-
-<div className="mobile-slider">
-<div style={{overflow: "hidden"}}>
-<div className="mobile-track" id="mobileTrack"></div>
-</div>
-<div className="controls">
-<button>‹</button>
-<button>›</button>
-</div>
-<div className="page-counter" id="mobileCounter"></div>
-</div>
-</div>
-</section>
 
 
 
