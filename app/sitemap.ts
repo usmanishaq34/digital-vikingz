@@ -3,6 +3,12 @@ import { prisma } from "@/lib/db"
 
 const BASE_URL = "https://digitalvikingz.com"
 
+// Without this, Next.js builds sitemap.xml ONCE at deploy time and serves that
+// frozen copy forever, so posts published after a deploy never appear.
+// force-dynamic rebuilds it from Supabase on every request.
+export const dynamic = "force-dynamic"
+export const revalidate = 0
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
 
@@ -94,7 +100,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let postPages: MetadataRoute.Sitemap = []
   try {
     const posts = await prisma.post.findMany({
-      where: { published: true },
+      // Same condition as app/blog/page.tsx so a post that is live on the
+      // blog can never be missing from the sitemap.
+      where: {
+        OR: [
+          { status: "published" } as any,
+          { published: true },
+        ],
+      },
       select: {
         slug: true,
         publishedAt: true,
