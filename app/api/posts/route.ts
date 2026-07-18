@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { auth } from "@/lib/auth"
 import { prisma } from "@/lib/db"
 import { revalidatePath } from "next/cache"
+import { pingIndexNow } from "@/lib/indexnow"
 import { z } from "zod"
 
 const createSchema = z.object({
@@ -65,5 +66,14 @@ export async function POST(req: Request) {
 
   revalidatePath("/blog")
   revalidatePath(`/blog/${post.slug}`)
+
+  // A post created straight into published state is live immediately.
+  if (post.published && !post.noindex) {
+    await pingIndexNow([
+      `https://digitalvikingz.com/blog/${post.slug}`,
+      "https://digitalvikingz.com/blog",
+    ])
+  }
+
   return NextResponse.json(post, { status: 201 })
 }

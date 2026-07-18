@@ -2,6 +2,7 @@ import { NextResponse } from "next/server"
 import { auth } from "@/lib/auth"
 import { prisma } from "@/lib/db"
 import { revalidatePath } from "next/cache"
+import { pingIndexNow } from "@/lib/indexnow"
 import { z } from "zod"
 
 const updateSchema = z.object({
@@ -74,6 +75,16 @@ export async function PATCH(req: Request, { params }: { params: { id: string } }
 
   revalidatePath("/blog")
   revalidatePath(`/blog/${updated.slug}`)
+
+  // Fires on first publish and on every later edit of a live post, so search
+  // engines are told the page changed. Posts marked noindex are skipped.
+  if (updated.published && !updated.noindex) {
+    await pingIndexNow([
+      `https://digitalvikingz.com/blog/${updated.slug}`,
+      "https://digitalvikingz.com/blog",
+    ])
+  }
+
   return NextResponse.json(updated)
 }
 
