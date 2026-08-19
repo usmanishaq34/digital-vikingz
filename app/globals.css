@@ -23884,3 +23884,63 @@ body { margin: 0; }
     right: 12px !important;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+/* =====================================================================
+   HEADER MENU FINAL FIX
+   Paste this entire block at the VERY END of app/globals.css.
+   If you already pasted the earlier "MOBILE HEADER SOLID BACKGROUND FIX"
+   block, delete it and use only this one.
+
+   Root cause: bare rules like
+     nav { position: sticky !important; z-index: 10000 !important; }
+   apply to EVERY <nav> element, including the blog post breadcrumb
+   (Home / Insights / post title). That breadcrumb got sticky + z-index
+   10000 and, coming later in the DOM, painted ON TOP of the open mobile
+   menu. The menu background was always opaque; the breadcrumb was simply
+   rendered on a higher layer.
+
+   Part 1 strips sticky/z-index from every nav inside the page content,
+   so only the real site header stays sticky and elevated.
+   Part 2 keeps the mobile dropdown panel opaque as extra insurance.
+   ===================================================================== */
+
+/* Part 1: content navs (breadcrumbs, pagination, etc.) back to normal flow */
+main nav,
+footer nav,
+article nav,
+.post-content nav {
+  position: static !important;
+  top: auto !important;
+  z-index: auto !important;
+}
+
+/* Part 2: mobile dropdown panel always fully opaque */
+@media (max-width: 960px) {
+  #navLinks {
+    background: #ffffff !important;
+    opacity: 1 !important;
+    z-index: 10000 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14) !important;
+  }
+
+  #navLinks.show {
+    background: #ffffff !important;
+  }
+
+  #megaMenu {
+    background: #f9f9f9 !important;
+    opacity: 1 !important;
+  }
+}

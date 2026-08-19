@@ -4,6 +4,7 @@ import { unstable_noStore as noStore } from "next/cache"
 import PageShell from "@/components/marketing/PageShell"
 import { getServiceBySlug as getStaticService } from "@/data/services"
 import { prisma } from "@/lib/db"
+import { auth } from "@/lib/auth"
 
 export const dynamic = "force-dynamic"
 export const revalidate = 0
@@ -249,12 +250,22 @@ async function getService(slug: string) {
       where: { slug },
     })
 
-    if (
-      dbService &&
-      dbService.status === "published" &&
-      dbService.published === true
-    ) {
-      return { ...dbService, __fromDb: true as const }
+    if (dbService) {
+      const isLive =
+        dbService.status === "published" && dbService.published === true
+
+      if (isLive) {
+        return { ...dbService, __fromDb: true as const, __preview: false as const }
+      }
+
+      // Draft/scheduled services are never public. They render only as a
+      // preview for a logged-in admin (same session cookie as the dashboard).
+      // Anyone without an admin session keeps the exact previous behavior:
+      // static fallback for legacy slugs, otherwise 404.
+      const session = await auth()
+      if (session) {
+        return { ...dbService, __fromDb: true as const, __preview: true as const }
+      }
     }
   } catch (error) {
     console.error(`[services/${slug}] database read failed`, error)
@@ -265,7 +276,7 @@ async function getService(slug: string) {
   // precedence automatically in Next.js.
   const staticService = getStaticService(slug)
   if (staticService) {
-    return { ...staticService, templateData: null, __fromDb: false as const }
+    return { ...staticService, templateData: null, __fromDb: false as const, __preview: false as const }
   }
 
   return null
@@ -279,7 +290,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description =
     (service as any).seoDescription || (service as any).shortDescription || ""
   const canonical = (service as any).canonicalUrl || undefined
-  const noindex = Boolean((service as any).noindex)
+  const noindex =
+    Boolean((service as any).noindex) || (service as any).__preview === true
   const nofollow = Boolean((service as any).nofollow)
 
   return {
@@ -311,9 +323,41 @@ export default async function ServicePage({ params }: PageProps) {
   if (!service) notFound()
 
   const data = normalizeTemplate(service)
+  const isPreview = (service as any).__preview === true
+  const previewStatus = String((service as any).status || "draft")
 
   return (
     <PageShell>
+      {isPreview && (
+        <div
+          style={{
+            background: "#0a0a0a",
+            borderBottom: "1px solid #db4c23",
+            color: "#f5f5f5",
+            padding: "10px 20px",
+            fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+            fontSize: "12px",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "12px",
+            flexWrap: "wrap",
+            position: "relative",
+            zIndex: 60,
+          }}
+        >
+          <span style={{ color: "#db4c23", fontWeight: 700 }}>&#9679; Draft preview</span>
+          <span>Status: {previewStatus} &middot; only logged-in admins can see this page</span>
+          <a
+            href={`/vikingz-1000-admin/services/${(service as any).id}`}
+            style={{ color: "#db4c23", textDecoration: "underline" }}
+          >
+            Back to editor
+          </a>
+        </div>
+      )}
       <div className="dashboard-static-service">
         {/* HERO */}
         <header className="hero service-hero">

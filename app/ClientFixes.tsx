@@ -449,6 +449,16 @@ export default function ClientFixes() {
         if (nav) {
           event.preventDefault();
           nav.classList.toggle('show');
+          // Force a fully opaque dropdown panel. Inline !important set from
+          // JS beats every stylesheet rule, so the page content can never
+          // show through the open mobile menu again. The Menu button only
+          // exists on mobile, so desktop is never touched.
+          nav.style.setProperty('background', '#ffffff', 'important');
+          nav.style.setProperty('opacity', '1', 'important');
+          nav.style.setProperty('backdrop-filter', 'none', 'important');
+          nav.style.setProperty('-webkit-backdrop-filter', 'none', 'important');
+          nav.style.setProperty('box-shadow', '0 12px 32px rgba(0,0,0,0.14)', 'important');
+          nav.style.setProperty('border-bottom', '1px solid rgba(0,0,0,0.08)', 'important');
         }
       }
 
@@ -460,6 +470,16 @@ export default function ClientFixes() {
           event.preventDefault();
           mega.classList.toggle('show');
           if (chev) chev.style.transform = mega.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
+          // Keep the services panel opaque while open on mobile; restore the
+          // original desktop inline values when it closes so the desktop
+          // hover menu keeps working exactly as before.
+          if (mega.classList.contains('show')) {
+            mega.style.setProperty('background', '#f9f9f9', 'important');
+            mega.style.setProperty('opacity', '1', 'important');
+          } else {
+            mega.style.background = '#ffffff';
+            mega.style.opacity = '0';
+          }
         }
       }
 

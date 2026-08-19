@@ -977,7 +977,7 @@ export default function ServiceEditorForm({ service, categories = [], isNew = fa
           <nav className="flex gap-1 -mb-px">
             {[
               { id: "basics", label: "Service basics" },
-              { id: "template", label: "Service Advanced" },
+              { id: "template", label: "Static page template" },
             ].map((item) => (
               <button
                 key={item.id}
@@ -1080,9 +1080,22 @@ export default function ServiceEditorForm({ service, categories = [], isNew = fa
               <input type="number" value={form.sortOrder} onChange={(e) => set("sortOrder", parseInt(e.target.value || "0"))} className="w-16 px-2 py-1 border border-line-strong text-sm" />
             </label>
           </div>
-          <button type="submit" disabled={saving} className="btn-primary disabled:opacity-60 flex-shrink-0">
+          <div className="flex items-center gap-3 flex-shrink-0">
+            {!isNew && (
+              <a
+                href={`/services/${form.slug}`}
+                target="_blank"
+                rel="noopener"
+                title="Opens the last saved version in a new tab. Save first to preview new edits. Draft and scheduled services are visible only to logged-in admins."
+                className="px-4 py-2 border border-line-strong mono-pill text-ink hover:border-accent hover:text-accent"
+              >
+                Preview &#8599;
+              </a>
+            )}
+            <button type="submit" disabled={saving} className="btn-primary disabled:opacity-60">
             {saving ? "Saving..." : form.status === "scheduled" ? "Schedule service →" : form.status === "published" ? (isNew ? "Publish service →" : "Update service →") : "Save draft →"}
-          </button>
+            </button>
+          </div>
         </div>
       </div>
 
