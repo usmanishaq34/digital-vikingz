@@ -306,3 +306,23 @@ model Author {
   updatedAt DateTime @updatedAt
   posts     Post[]
 }
+
+
+
+
+
+
+model GscConnection {
+  id                 String    @id @default("singleton")
+  siteUrl            String?
+  refreshTokenEnc    String?   @db.Text
+  connectedAt        DateTime?
+  updatedAt          DateTime  @updatedAt
+  sitemapPath        String?
+  sitemapSubmittedAt DateTime?
+  lastQuotaError     String?   @db.Text
+  lastQuotaErrorAt   DateTime?
+  lastQuotaSource    String?
+  inspectUsageDay    String?
+  inspectUsageCount  Int       @default(0)
+}

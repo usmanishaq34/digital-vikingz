@@ -12,6 +12,7 @@ const NAV_LINKS = [
   { href: "/vikingz-1000-admin/authors", label: "Authors" },
   { href: "/vikingz-1000-admin/services", label: "Services" },
   { href: "/vikingz-1000-admin/categories", label: "Categories" },
+    { href: "/vikingz-1000-admin/search-console", label: "Search Console" },
   { href: "/vikingz-1000-admin/settings", label: "Settings" },
   { href: "/vikingz-1000-admin/media", label: "Media Library" },
 ]
