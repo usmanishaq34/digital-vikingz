@@ -1,4 +1,5 @@
 import SearchConsolePanel from "@/components/admin/SearchConsolePanel"
+import CoveragePanel from "@/components/admin/CoveragePanel"
 
 export const dynamic = "force-dynamic"
 
@@ -16,9 +17,12 @@ export default function SearchConsoleAdminPage({
   searchParams: { notice?: string; error?: string; connected?: string }
 }) {
   return (
-    <SearchConsolePanel
-      initialNotice={searchParams?.notice}
-      initialError={searchParams?.error}
-    />
+    <div className="max-w-5xl">
+      <SearchConsolePanel
+        initialNotice={searchParams?.notice}
+        initialError={searchParams?.error}
+      />
+      <CoveragePanel />
+    </div>
   )
 }
