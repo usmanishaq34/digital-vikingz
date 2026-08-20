@@ -977,7 +977,7 @@ export default function ServiceEditorForm({ service, categories = [], isNew = fa
           <nav className="flex gap-1 -mb-px">
             {[
               { id: "basics", label: "Service basics" },
-              { id: "template", label: "Static page template" },
+              { id: "template", label: "Service Advanced" },
             ].map((item) => (
               <button
                 key={item.id}
