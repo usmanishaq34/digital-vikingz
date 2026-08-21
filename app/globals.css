@@ -4454,8 +4454,8 @@ body {
 
 /* Main page vertical spacing requested */
 .hero {
-  padding-top: 200px !important;
-  padding-bottom: 200px !important;
+  padding-top: 100px !important;
+  padding-bottom: 100px !important;
 }
 
 .section,
@@ -22946,8 +22946,8 @@ html { scroll-padding-top: 92px; }
 body { margin: 0; }
 .dv-clean-page > .hero,
 .dv-clean-page header.hero {
-  padding-top: 200px !important;
-  padding-bottom: 200px !important;
+  padding-top: 100px !important;
+  padding-bottom: 100px !important;
 }
 .dv-clean-page section,
 .dv-clean-page header,
