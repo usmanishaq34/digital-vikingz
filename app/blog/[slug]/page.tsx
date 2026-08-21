@@ -107,7 +107,7 @@ export default async function SinglePostPage({ params }: PageProps) {
             <span className="text-accent">/</span>
             <Link href="/blog" className="text-ink-muted hover:text-accent transition-colors">Insights</Link>
             <span className="text-accent">/</span>
-            <span>{post.title.slice(0, 40)}{post.title.length > 40 ? "â€¦" : ""}</span>
+            <span>{post.title.slice(0, 40)}{post.title.length > 40 ? "…" : ""}</span>
           </nav>
 
           {/* Meta */}
@@ -191,10 +191,10 @@ export default async function SinglePostPage({ params }: PageProps) {
               Want this <em>methodology</em> applied to your site?
             </h3>
             <p className="text-sm text-ink-2 leading-relaxed mb-5">
-              Book a 30-minute strategy call. No pitch deck â€” methodology fit assessment, scope direction, and honest answers about whether we&apos;re the right partner.
+              Book a 30-minute strategy call. No pitch deck — methodology fit assessment, scope direction, and honest answers about whether we&apos;re the right partner.
             </p>
             <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-primary">
-              Book Strategy Call â†’
+              Book Strategy Call →’
             </a>
           </div>
         </div>

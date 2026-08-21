@@ -18,6 +18,15 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: '/posts/why-most-seo-audits-miss-the-entity-layer',
+        destination: '/blog/why-most-seo-audits-miss-the-entity-layer',
+        permanent: true,
+      },
+    ]
+  },
 };
 
 export default nextConfig;

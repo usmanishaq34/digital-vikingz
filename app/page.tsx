@@ -1827,7 +1827,7 @@ export default function Page() {
 <div className="team-info">
 <div className="team-name">Usman Ishaq</div>
 <div className="team-role">Founder & CEO</div>
-<p className="team-bio">Architect of every engagement. Six years applying the Koray methodology across 200+ projects in 80+ industries. Owns strategic direction, methodology governance, and senior client engagement.</p>
+<p className="team-bio">Architect of every engagement. Six years applying the Koray methodology across 200+ projects in 40+ industries. Owns strategic direction, methodology governance, and senior client engagement.</p>
 </div>
 </article>
 <article className="team-card">
