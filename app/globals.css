@@ -4461,8 +4461,8 @@ body {
 .section,
 .sample-section,
 .final-cta {
-  padding-top: 200px !important;
-  padding-bottom: 200px !important;
+  padding-top: 100px !important;
+  padding-bottom: 100px !important;
   scroll-margin-top: 92px !important;
 }
 
