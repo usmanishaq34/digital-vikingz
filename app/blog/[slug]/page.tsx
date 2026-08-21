@@ -194,7 +194,7 @@ export default async function SinglePostPage({ params }: PageProps) {
               Book a 30-minute strategy call. No pitch deck — methodology fit assessment, scope direction, and honest answers about whether we&apos;re the right partner.
             </p>
             <a href={siteConfig.calendlyUrl} target="_blank" rel="noopener noreferrer" className="btn-primary">
-              Book Strategy Call →’
+              Book Strategy Call →
             </a>
           </div>
         </div>

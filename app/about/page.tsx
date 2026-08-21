@@ -1374,7 +1374,7 @@ export default function Page() {
           <span className="hero-pill">Founder-led · Methodology-trained · Practitioner agency</span>
           <h1 className="h-display hero-h1">Architected by a practitioner, <em>not an agency.</em></h1>
           <p className="hero-sub">
-            Digital Vikingz is a <strong>semantic SEO authority agency</strong> founded by Usman Ishaq — a methodology-trained practitioner with 200+ shipped projects across 80+ industries. The agency runs lean by design. The work is methodology-grade because the practitioner running it owns the methodology — not because a sales deck says so.
+            Digital Vikingz is a <strong>semantic SEO authority agency</strong> founded by Usman Ishaq — a methodology-trained practitioner with 200+ shipped projects across 40+ industries. The agency runs lean by design. The work is methodology-grade because the practitioner running it owns the methodology — not because a sales deck says so.
           </p>
           <div className="hero-meta-strip">
             <div className="hero-meta-cell"><span className="hero-meta-label">Practicing since</span><span className="hero-meta-value">2023 <em>·</em></span></div>
