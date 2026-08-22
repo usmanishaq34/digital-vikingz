@@ -23968,3 +23968,18 @@ article nav,
   .feedback-section { padding-top: 36px !important; }
   .feedback-section .heading { margin-bottom: 22px !important; }
 }
+
+
+
+
+
+
+/* ===== Mobile spacing: all page sections ===== */
+@media (max-width: 768px) {
+  .section { padding: 56px 0 !important; }
+  .section-head { gap: 20px !important; margin-bottom: 28px !important; }
+}
+@media (max-width: 480px) {
+  .section { padding: 44px 0 !important; }
+  .section-head { margin-bottom: 22px !important; }
+}
