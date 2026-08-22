@@ -23957,3 +23957,14 @@ article nav,
     opacity: 1 !important;
   }
 }
+
+
+/* ===== Mobile spacing: feedback section ===== */
+@media (max-width: 768px) {
+  .feedback-section { padding-top: 48px !important; }
+  .feedback-section .heading { margin-bottom: 28px !important; }
+}
+@media (max-width: 480px) {
+  .feedback-section { padding-top: 36px !important; }
+  .feedback-section .heading { margin-bottom: 22px !important; }
+}
