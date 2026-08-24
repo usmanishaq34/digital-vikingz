@@ -14,10 +14,11 @@ export const metadata: Metadata = {
   description: 'Digital Vikingz is a semantic SEO authority agency. We architect topical authority, AI search visibility, and pipeline attribution for businesses claiming category ownership.',
   
  verification: {
-    google: 'EBFJv7MeTbcdwufJHKRH9Olx0SBxTN2ncAzsLPRjrwI',
-    
+  google: 'EBFJv7MeTbcdwufJHKRH901x0SBxTN2ncAzsLPRjrwI',
+  other: {
+    'msvalidate.01': 'F1194E70F93409CEEA3BA42F4DB2A45A',
   },
-
+},
   icons: { icon: '/images/icon.png' },
 };
 
@@ -26,9 +27,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
         
-
-      <meta name="msvalidate.01" content="F1194E70F93409CEEA3BA42F4DB2A45A" />
-
 
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
