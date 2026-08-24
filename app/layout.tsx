@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   
  verification: {
     google: 'EBFJv7MeTbcdwufJHKRH9Olx0SBxTN2ncAzsLPRjrwI',
+    
   },
 
   icons: { icon: '/images/icon.png' },
@@ -25,6 +26,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <head>
         
+
+      <meta name="msvalidate.01" content="F1194E70F93409CEEA3BA42F4DB2A45A" />
+
+
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
