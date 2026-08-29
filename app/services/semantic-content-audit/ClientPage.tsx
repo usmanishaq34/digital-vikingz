@@ -187,7 +187,7 @@ export default function ClientPage() {
                               Semantic Content Audit
                             </div>
                             <div style={{ fontFamily: "monospace", fontSize: "11px", color: "#888", lineHeight: "1.3" }}>
-                              Diagnostic foundation · $2000
+                              Diagnostic foundation · Custom scoped
                             </div>
                           </a>
                         </li>
@@ -359,10 +359,10 @@ export default function ClientPage() {
                 Pricing
               </span>
               <span className="hero-meta-value">
-                $2000
+                Custom 
                 {' '}
                 <em>
-                  USD
+                  scoped
                 </em>
               </span>
             </div>
@@ -972,10 +972,10 @@ export default function ClientPage() {
               </h3>
               <div className="pricing-amount">
                 <span className="pricing-amount-prefix">
-                  Starts at
+                  Pricing
                 </span>
                 <span className="pricing-amount-value">
-                  $2000
+                  Custom scoped
                 </span>
               </div>
               <p>
@@ -1055,40 +1055,34 @@ export default function ClientPage() {
           <div className="faq-list">
             <div className={`faq-item ${openFaq === 0 ? 'open' : ''}`}>
               <button className="faq-question" onClick={() => toggleFaq(0)}>
-                What does "starts at $2000" actually mean — when does it go higher?
+                What determines the final audit price?
                 <span className="faq-icon"></span>
               </button>
               <div className="faq-answer" style={{ maxHeight: openFaq === 0 ? '1000px' : '0px' }}>
                 <div className="faq-answer-inner">
                   <p>
-                    The base price covers a single-language site with up to 200 indexed pages, 1 vertical, and standard scope (no regulatory or YMYL specialization). Pricing scales upward for:
+                    Four variables move the price. Base scope covers a single-language site with up to 200 indexed pages, one vertical, and no regulatory or YMYL specialization. Pricing scales upward for 
                     {' '}
                     <strong>
                       multilingual sites
                     </strong>
                     {' '}
-                    (additional language adds $800–$1500),
+                    (sites above 500 indexed pages,),
                     {' '}
                     <strong>
-                      large sites
+                      YMYL verticals in medical, legal, or financial categories
                     </strong>
                     {' '}
-                    (500+ pages adds $1,500),
+                    where SME-grade review is required,
                     {' '}
                     <strong>
-                      YMYL verticals
+                      and multiple verticals 
                     </strong>
                     {' '}
-                    (medical, legal, financial — adds $2,000 for SME-grade review), and
-                    {' '}
-                    <strong>
-                      multiple verticals
-                    </strong>
-                    {' '}
-                    on one domain.
+                    running on one domain.
                   </p>
                   <p>
-                    Final pricing is locked during the intake call before any work starts.
+                   Final pricing is locked during the intake call before any work starts. No surprise scope additions after kickoff.
                   </p>
                 </div>
               </div>

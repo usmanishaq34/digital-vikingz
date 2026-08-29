@@ -521,7 +521,7 @@ export default function Page() {
                 </em>
               </h3>
               <p>
-                If you want a productized $3,500 diagnostic of your site's entity layer before committing to longer engagements, book the audit intake call instead. Same calendar — different scope.
+                If you want a fixed-scope diagnostic of your site's entity layer before committing to longer engagements, book the audit intake call instead. Same calendar, different conversation. Pricing is quoted once we have seen the site.
               </p>
               <a href="https://calendly.com/usmanishaqsemanticseospecialist/30min?audit=true" target="_blank" rel="noopener" className="dv-contact-card-btn ghost">
                 Book Audit Intake →
@@ -627,7 +627,7 @@ export default function Page() {
                   You decide what to do next.
                 </strong>
                 {' '}
-                Common outcomes: book the audit ($3,500 productized diagnostic), scope an architecture engagement, or take what we discussed and execute it internally. All three are intended outcomes — not failure modes.
+                Common outcomes: book the Semantic Content Audit, scope an architecture engagement, or take what we discussed and execute it internally. All three are intended outcomes, not failure modes.
               </li>
             </ul>
             <p>

@@ -1637,24 +1637,7 @@ export default function Page() {
         Authority is claimed through evidence — not adjectives. The work below represents semantic SEO programs <strong>Digital Vikingz</strong> has delivered for businesses across SaaS, e-commerce, professional services, healthcare, local services, and content publishing.
       </p>
 </div>
-<div className="results-stats">
-<div className="results-stat">
-<div className="results-stat-num">200<span>+</span></div>
-<div className="results-stat-label">Projects across<br />40+ industries</div>
-</div>
-<div className="results-stat">
-<div className="results-stat-num">6<span>+</span></div>
-<div className="results-stat-label">Years applying<br />Koray methodology</div>
-</div>
-<div className="results-stat">
-<div className="results-stat-num">15</div>
-<div className="results-stat-label">Specialist team<br />in Bahawalpur, PK</div>
-</div>
-<div className="results-stat">
-<div className="results-stat-num">5</div>
-<div className="results-stat-label">Country footprint<br />US · UK · CA · AU · DE</div>
-</div>
-</div>
+
 <div className="case-studies">
 <article className="case">
 <div className="case-header">

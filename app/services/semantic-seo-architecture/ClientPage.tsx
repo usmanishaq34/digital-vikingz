@@ -961,7 +961,8 @@ export default function ClientPage() {
                 All pricing locked at kickoff
               </strong>
               {' '}
-              — no scope creep, no surprise additions. The audit is a productized $2000 entry point if you want to validate fit before committing.
+              — no scope creep, no surprise additions. The audit is a productized, fixed-scope entry point if you want to validate fit before committing.
+
             </p>
           </div>
           <div className="pricing-card">
@@ -1071,11 +1072,12 @@ export default function ClientPage() {
                     depending on site complexity, vertical depth, regulatory layer, and multilingual scope. Publishing a flat number would either price out small clients or undercharge enterprise ones — both produce bad outcomes.
                   </p>
                   <p>
-                    If you want a price-validated entry point, the
-                    <a href="../the-audit" style={{ color: "var(--accent)" }}>
-                      $2000 Semantic Audit
-                    </a>
-                    is fully productized. Audit fee is credited toward architecture if you proceed within 60 days.
+                    If you want a lower-commitment entry point, the 
+                     <a href="../the-audit" style={{ color: "var(--accent)" }}>
+                       Semantic Content Audit 
+                     </a>
+                    is productized and fixed-scope: seven diagnostic components, a written deliverable, a single payment. Audit fee is credited toward architecture if you proceed within 60 days.
+
                   </p>
                 </div>
               </div>
@@ -1116,7 +1118,7 @@ export default function ClientPage() {
                       audit diagnoses
                     </strong>
                     {' '}
-                    — entity coverage gaps, predicate inconsistencies, semantic dilution, AI citation gaps. Output: prioritized issue map. 2–3 phases. $2000.
+                    — entity coverage gaps, predicate inconsistencies, semantic dilution, AI citation gaps. Output: prioritized issue map. 2–3 phases. Custom scoped.
                   </p>
                   <p>
                     The

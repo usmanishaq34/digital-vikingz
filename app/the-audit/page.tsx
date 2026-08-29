@@ -125,8 +125,8 @@ export default function Page() {
 <span className="hero-meta-value">25–40 <em>pages</em></span>
 </div>
 <div className="hero-meta-cell">
-<span className="hero-meta-label">Starts at</span>
-<span className="hero-meta-value">$2000 <em>USD</em></span>
+<span className="hero-meta-label">Pricing</span>
+<span className="hero-meta-value"> Custom scoped </span>
 </div>
 <div className="hero-meta-cell">
 <span className="hero-meta-label">Commitment</span>
@@ -538,16 +538,16 @@ export default function Page() {
 <h2 className="h-display section-h2">Transparent. <em>Productized. Fixed.</em></h2>
 </div>
 <p className="section-intro">
-        The audit is a productized engagement. <strong>Starting price: $2000 USD.</strong> Final pricing depends on site complexity (page count, vertical complexity, multilingual scope, regulatory layer). All pricing locked before kickoff — no surprise additions. Below is what's included at the base tier.
+        The audit is a productized engagement. Pricing depends on site complexity: page count, vertical count, multilingual scope, and regulatory layer. The figure is scoped on the intake call and locked before kickoff. No surprise additions. Below is what's included.
       </p>
 </div>
 <div className="pricing-card">
 <div className="pricing-left">
 <h3>The Semantic <em>Audit</em></h3>
 <div className="pricing-amount">
-<span className="pricing-amount-prefix">Starts at</span>
-<span className="pricing-amount-value">$2000</span>
-<span className="pricing-amount-suffix">USD</span>
+<span className="pricing-amount-prefix">Pricing</span>
+<span className="pricing-amount-value">Custom scoped</span>
+
 </div>
 <p>Single payment · invoiced at kickoff · 50% upfront / 50% on deliverable · USD wire or Wise. Audit fee <strong>credited toward architecture engagement</strong> if started within 60 days of deliverable.</p>
 <a href="https://calendly.com/usmanishaqsemanticseospecialist/30min?audit=true" target="_blank" rel="noopener" className="btn btn-primary">Book Audit Intake Call <span className="btn-arrow"></span></a>
@@ -585,12 +585,12 @@ export default function Page() {
 <div className="faq-list">
 <div className="faq-item">
 <button className="faq-question">
-          What does "starts at $2000" actually mean — when does it go higher?
+          What determines the final audit price?
           <span className="faq-icon"></span>
 </button>
 <div className="faq-answer">
 <div className="faq-answer-inner">
-<p>The base price covers a single-language site with up to 200 indexed pages, 1 vertical, and standard scope (no regulatory or YMYL specialization). Pricing scales upward for: <strong>multilingual sites</strong> (additional language adds $1,500–$3,000), <strong>large sites</strong> (500+ pages adds $1,500), <strong>YMYL verticals</strong> (medical, legal, financial — adds $2,000 for SME-grade review), and <strong>multiple verticals</strong> on one domain.</p>
+<p>Four variables move the price. Base scope covers a single-language site with up to 200 indexed pages, one vertical, and no regulatory or YMYL specialization. Pricing scales upward for multilingual sites, sites above 500 indexed pages, YMYL verticals in medical, legal, or financial categories where SME-grade review is required, and multiple verticals running on one domain.</p>
 <p>Final pricing is locked during the intake call before any work starts. No surprise scope additions after kickoff.</p>
 </div>
 </div>
