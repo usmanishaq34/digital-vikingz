@@ -781,11 +781,7 @@ body {
                     Vertical Playbooks
                   </a>
                 </li>
-                <li>
-                  <a href="/blog">
-                    Insights
-                  </a>
-                </li>
+               
                 <li>
                   <a href="/#team">
                     Team
