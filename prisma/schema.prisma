@@ -253,7 +253,7 @@ model Settings {
   contactEmail            String  @default("workwithus@digitalvikingz.com")
   calendlyUrl             String
   calendlyAuditUrl        String
-  agencyLocation          String  @default("Bahawalpur")
+  agencyLocation          String  @default("Wyoming")
   agencyRegions           String  @default("US · UK · CA · AU · DE")
   footerTagline           String  @db.Text
   noPromisesDisclaimer    String  @db.Text

@@ -1376,12 +1376,7 @@ export default function Page() {
           <p className="hero-sub">
             Digital Vikingz is a <strong>semantic SEO authority agency</strong> founded by Usman Ishaq — a methodology-trained practitioner with 200+ shipped projects across 40+ industries. The agency runs lean by design. The work is methodology-grade because the practitioner running it owns the methodology — not because a sales deck says so.
           </p>
-          <div className="hero-meta-strip">
-            <div className="hero-meta-cell"><span className="hero-meta-label">Practicing since</span><span className="hero-meta-value">2023 <em>·</em></span></div>
-            <div className="hero-meta-cell"><span className="hero-meta-label">Projects shipped</span><span className="hero-meta-value">200+ <em>·</em></span></div>
-            <div className="hero-meta-cell"><span className="hero-meta-label">Verticals served</span><span className="hero-meta-value">80+ <em>·</em></span></div>
-            <div className="hero-meta-cell"><span className="hero-meta-label">Regions</span><span className="hero-meta-value">5 <em>continents</em></span></div>
-          </div>
+         
           <div className="hero-ctas">
             <a href="https://calendly.com/usmanishaqsemanticseospecialist/30min" target="_blank" rel="noopener" className="btn btn-primary">Book Strategy Call <span className="btn-arrow"></span></a>
             <a href="#founder" className="btn btn-ghost">Read the Founder Bio <span className="btn-arrow"></span></a>
@@ -1406,7 +1401,7 @@ export default function Page() {
               <div className="founder-tag">Usman Ishaq · Founder</div>
               <div className="founder-meta">
                 <div className="founder-meta-row"><span className="founder-meta-key">Role</span><span className="founder-meta-val">Founder · CEO</span></div>
-                <div className="founder-meta-row"><span className="founder-meta-key">Based</span><span className="founder-meta-val">Bahawalpur, PK</span></div>
+                <div className="founder-meta-row"><span className="founder-meta-key">Based</span><span className="founder-meta-val">Wyoming, US</span></div>
                 <div className="founder-meta-row"><span className="founder-meta-key">Background</span><span className="founder-meta-val">Mech. Engineering</span></div>
                 <div className="founder-meta-row"><span className="founder-meta-key">Methodology</span><span className="founder-meta-val accent">Koray-aligned</span></div>
                 <div className="founder-meta-row"><span className="founder-meta-key">Practicing since</span><span className="founder-meta-val">2023</span></div>
@@ -1724,18 +1719,18 @@ export default function Page() {
           <div className="section-head">
             <div className="section-head-left">
               <span className="label">05 / Where We Operate</span>
-              <h2 className="h-display section-h2">Based in Bahawalpur. <em>Serving the world.</em></h2>
+              <h2 className="h-display section-h2">Based in Wyoming. <em>Serving the world.</em></h2>
             </div>
-            <p className="section-intro">Digital Vikingz operates remote-first from Bahawalpur, Pakistan. Most engagements run async — written deliverables, scheduled review calls, Slack/email channels. <strong>Geography hasn't been a constraint</strong> across 200+ projects. The methodology is what scales globally; the timezone is just a logistics detail.</p>
+            <p className="section-intro">Digital Vikingz operates remote-first from Wyoming, USA. Most engagements run async — written deliverables, scheduled review calls, Slack/email channels. <strong>Geography hasn't been a constraint</strong> across 200+ projects. The methodology is what scales globally; the timezone is just a logistics detail.</p>
           </div>
           <div className="geo-grid">
             <div className="geo-base">
               <span className="geo-base-tag">Home Base</span>
-              <h3 className="geo-base-h">Bahawalpur, <em>Pakistan</em></h3>
+              <h3 className="geo-base-h">Wyoming, <em>United States</em></h3>
               <p className="geo-base-p">A mid-sized city in southern Punjab — not Karachi, not Islamabad. The base is deliberate. Lower overhead than Tier-1 SEO agency cities means we can run methodology-grade engagements at price points that would be unviable from London or NYC. <strong>The methodology is the value</strong>; the geography reduces the cost of delivering it.</p>
               <p className="geo-base-p">Most client communication runs <strong>async</strong> — written deliverables, recorded walkthroughs, scheduled review calls. Live calls scheduled within a 12-hour window aligned to the client's region.</p>
               <div className="geo-base-meta">
-                <div className="geo-base-meta-row"><span className="geo-base-meta-key">Timezone</span><span className="geo-base-meta-val">PKT · UTC +05:00</span></div>
+                <div className="geo-base-meta-row"><span className="geo-base-meta-key">Timezone</span><span className="geo-base-meta-val">MT · UTC -07:00</span></div>
                 <div className="geo-base-meta-row"><span className="geo-base-meta-key">Working hours</span><span className="geo-base-meta-val">10am–10pm flexible</span></div>
                 <div className="geo-base-meta-row"><span className="geo-base-meta-key">Language</span><span className="geo-base-meta-val">English (deliverables)</span></div>
               </div>
@@ -1796,7 +1791,7 @@ export default function Page() {
                 <span>Digital Vikingz</span>
               </a>
               <p>Semantic SEO authority agency built on Koray Tuğberk Gübür's methodology. We architect topical authority, defend it against AI dilution, and convert it into pipeline for businesses that want to claim a topic and own it.</p>
-              <div className="footer-location">Based in Bahawalpur <span>·</span> Serving US · UK · CA · AU · DE</div>
+              <div className="footer-location">Based in Wyoming <span>·</span> Serving US · UK · CA · AU · DE</div>
             </div>
             <div className="footer-col">
               <h5>Services</h5>

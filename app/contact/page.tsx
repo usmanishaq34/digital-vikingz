@@ -552,7 +552,7 @@ export default function Page() {
                 Location
               </span>
               <span className="dv-contact-meta-val">
-                Bahawalpur, Pakistan · UTC +05:00
+                Wyoming, USA · UTC -07:00
               </span>
             </div>
             <div className="dv-contact-meta-row">
@@ -560,7 +560,7 @@ export default function Page() {
                 Working hours
               </span>
               <span className="dv-contact-meta-val">
-                10am–10pm PKT · flexible across regions
+                10am–10pm MT · flexible across regions
               </span>
             </div>
             <div className="dv-contact-meta-row">
@@ -655,7 +655,7 @@ export default function Page() {
                 Semantic SEO authority agency built on Koray Tuğberk Gübür's methodology. We architect topical authority, defend it against AI dilution, and convert it into pipeline for businesses that want to claim a topic and own it.
               </p>
               <div className="footer-location">
-                Based in Bahawalpur
+                Based in Wyoming
                 <span>
                   ·
                 </span>

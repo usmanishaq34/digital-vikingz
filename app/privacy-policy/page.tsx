@@ -548,7 +548,7 @@ export default function Page() {
                 https://digitalvikingz.com/
               </strong>
               {' '}
-              and any direct communications between you and Digital Vikingz (founder: Usman Ishaq, based in Bahawalpur, Pakistan). It does not cover third-party services we use (those have their own policies, linked below).
+              and any direct communications between you and Digital Vikingz (founder: Usman Ishaq, based in Wyoming, USA). It does not cover third-party services we use (those have their own policies, linked below).
             </p>
             <h2>
               What data we
@@ -848,7 +848,7 @@ export default function Page() {
                   Agency:
                 </strong>
                 {' '}
-                Digital Vikingz · Based in Bahawalpur, Pakistan
+                Digital Vikingz · Based in Wyoming, USA
               </li>
             </ul>
           </div>
@@ -869,7 +869,7 @@ export default function Page() {
                 Semantic SEO authority agency built on Koray Tuğberk Gübür's methodology. We architect topical authority, defend it against AI dilution, and convert it into pipeline for businesses that want to claim a topic and own it.
               </p>
               <div className="footer-location">
-                Based in Bahawalpur
+                Based in Wyoming
                 <span>
                   ·
                 </span>

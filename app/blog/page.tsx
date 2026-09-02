@@ -697,7 +697,7 @@ body {
                 Semantic SEO authority agency built on Koray Tuğberk Gübür&apos;s methodology. We architect topical authority, defend it against AI dilution, and convert it into pipeline for businesses that want to claim a topic and own it.
               </p>
               <div className="footer-location">
-                Based in Bahawalpur
+                Based in Wyoming
                 <span>
                   ·
                 </span>

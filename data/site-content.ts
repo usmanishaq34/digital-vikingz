@@ -17,7 +17,7 @@ export const siteConfig = {
   calendlyAuditUrl: "https://calendly.com/usmanishaqsemanticseospecialist/30min?audit=true",
 
   // Location
-  location: "Bahawalpur",
+  location: "Wyoming",
   regions: "US · UK · CA · AU · DE",
 
   // Social URLs
