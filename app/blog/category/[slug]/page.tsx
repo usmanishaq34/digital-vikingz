@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const category = await fetchCategory(params.slug)
   if (!category) return { title: "Category Not Found" }
   return {
-    title: category.seoTitle ?? `${category.name} — Insights`,
+    title: category.seoTitle ?? `${category.name} — Blogs`,
     description: category.seoDescription ?? `Methodology essays in the ${category.name} category.`,
   }
 }
@@ -92,7 +92,7 @@ export default async function CategoryArchivePage({ params }: PageProps) {
           {categoryPosts.length === 0 ? (
             <div className="p-20 border border-dashed border-line text-center">
               <p className="text-ink-muted">
-                No posts in this category yet. <Link href="/blog" className="text-accent underline">Browse all insights</Link>.
+                No posts in this category yet. <Link href="/blog" className="text-accent underline">Browse all Posts</Link>.
               </p>
             </div>
           ) : (

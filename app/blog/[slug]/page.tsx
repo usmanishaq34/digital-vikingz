@@ -105,7 +105,7 @@ export default async function SinglePostPage({ params }: PageProps) {
           <nav className="flex items-center gap-3 mb-9 font-mono text-[11px] uppercase tracking-widest text-ink-muted font-semibold flex-wrap">
             <Link href="/" className="text-ink-muted hover:text-accent transition-colors">Home</Link>
             <span className="text-accent">/</span>
-            <Link href="/blog" className="text-ink-muted hover:text-accent transition-colors">Insights</Link>
+            <Link href="/blog" className="text-ink-muted hover:text-accent transition-colors">Blogs</Link>
             <span className="text-accent">/</span>
             <span>{post.title.slice(0, 40)}{post.title.length > 40 ? "…" : ""}</span>
           </nav>
