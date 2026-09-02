@@ -106,7 +106,7 @@ export default function Page() {
 <div className="wrap">
 <div className="hero-meta reveal">
 <div className="hero-tagline">Claim<span>•</span>Shield<span>•</span>Scale</div>
-<div className="hero-tagline">Est. 2023 · Bahawalpur, PK · Serving 5 Countries</div>
+<div className="hero-tagline">Est. 2023 · Wyoming, USA · Serving 5 Countries</div>
 </div>
 <div className="hero-split">
 <div className="hero-text-col">
@@ -246,24 +246,7 @@ export default function Page() {
 </div>
 </div>
 </div>
-<div className="hero-stats reveal reveal-delay-4">
-<div className="stat">
-<div className="stat-num">200+</div>
-<div className="stat-label">Projects Delivered</div>
-</div>
-<div className="stat">
-<div className="stat-num">40+</div>
-<div className="stat-label">Industries Served</div>
-</div>
-<div className="stat">
-<div className="stat-num">15</div>
-<div className="stat-label">Specialist Team</div>
-</div>
-<div className="stat">
-<div className="stat-num">6+</div>
-<div className="stat-label">Years on Methodology</div>
-</div>
-</div>
+
 </div>
 </header>
 
@@ -2078,7 +2061,7 @@ export default function Page() {
 <span>Digital Vikingz</span>
 </a>
 <p>Semantic SEO authority agency built on Koray Tuğberk Gübür's methodology. We architect topical authority, defend it against AI dilution, and convert it into pipeline for businesses that want to claim a topic and own it.</p>
-<div className="footer-location">Based in Bahawalpur <span>·</span> Serving US · UK · CA · AU · DE</div>
+<div className="footer-location">Based in Wyoming <span>·</span> Serving US · UK · CA · AU · DE</div>
 </div>
 <div className="footer-col">
 <h5>Services</h5>

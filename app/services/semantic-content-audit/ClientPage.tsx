@@ -1308,7 +1308,7 @@ export default function ClientPage() {
                 Semantic SEO authority agency built on Koray Tuğberk Gübür's methodology. We architect topical authority, defend it against AI dilution, and convert it into pipeline.
               </p>
               <div className="footer-location">
-                Based in Bahawalpur
+                Based in Wyoming
                 <span>
                   ·
                 </span>

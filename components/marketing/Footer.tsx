@@ -77,7 +77,7 @@ export default function Footer() {
                 textTransform: "uppercase",
               }}
             >
-              Based in Bahawalpur <span style={{ color: "#db4c23", fontWeight: 600 }}>·</span> Serving US · UK · CA · AU · DE
+              Based in Wyoming <span style={{ color: "#db4c23", fontWeight: 600 }}>·</span> Serving US · UK · CA · AU · DE
             </div>
           </div>
 

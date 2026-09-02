@@ -894,7 +894,7 @@ export default function Page() {
 <span>Digital Vikingz</span>
 </a>
 <p>Semantic SEO authority agency built on Koray Tuğberk Gübür's methodology. We architect topical authority, defend it against AI dilution, and convert it into pipeline for businesses that want to claim a topic and own it.</p>
-<div className="footer-location">Based in Bahawalpur <span>·</span> Serving US · UK · CA · AU · DE</div>
+<div className="footer-location">Based in Wyoming <span>·</span> Serving US · UK · CA · AU · DE</div>
 </div>
 <div className="footer-col">
 <h5>Services</h5>
