@@ -40,7 +40,7 @@ export default function Page() {
 <li>
 <a data-svc="semantic-content-audit" className="svc-link" href="/services/semantic-content-audit" style={{textDecoration: "none", display: "block", padding: "8px 0", borderBottom: "none"}}>
 <div style={{fontFamily: "'Inter',sans-serif", fontSize: "16px", fontWeight: "500", color: "#111", lineHeight: "1.3", marginBottom: "2px"}}>Semantic Content Audit</div>
-<div style={{fontFamily: "monospace", fontSize: "11px", color: "#888", lineHeight: "1.3"}}>Diagnostic foundation · $2000</div>
+<div style={{fontFamily: "monospace", fontSize: "11px", color: "#888", lineHeight: "1.3"}}>Diagnostic foundation · Custom scoped</div>
 </a>
 </li>
 </ul>

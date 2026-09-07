@@ -389,7 +389,7 @@ export default function Page() {
                               Semantic Content Audit
                             </div>
                             <div style={{ fontFamily: "monospace", fontSize: "11px", color: "#888", lineHeight: "1.3" }}>
-                              Diagnostic foundation · $2000
+                              Diagnostic foundation · Custom scoped
                             </div>
                           </a>
                         </li>
